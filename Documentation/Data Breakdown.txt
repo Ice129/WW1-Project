@@ -17,7 +17,7 @@ RollOfHonour:
 - service_no - max 40 characters; service number, contains non-service elements; text format to account for outlier values.
 - other_regiment - max 70 characters; the other regiment for the soldier
 - other_service_no - max 40 characters; service number
-- medals - longtext, variable size text field; this is because the sample dataset did not give any information on this category
+- medals - longtext, variable size text field; the sample dataset did not give any information on this category; but we can imply that it is text.
 - enlistment_date - date; dd/mm/yyyy format; date of enlisting in the army
 - discharge_date - date; dd/mm/yyyy format; if discharged, date they were discharged from the army
 - death_date - date; dd/mm/yyyy format; if died in service, the date they died
