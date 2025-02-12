@@ -1,0 +1,28 @@
+Format:
+Table Name:
+- Field Name - Field Type
+- etc...
+
+RollOfHonour:
+- surname - max 80 characters; forename of individual
+- forename - max 80 characters; surname of individual
+- address - max 150 characters; address of individual during service
+- electoral_ward - max 35 characters
+- town - max 35 characters; town from address
+- rank - max 40 characters; army rank of the individual
+- regiment - max 70 characters; regiment from the army
+- unit - max 40 characters; unit in the army
+- company - max 40 characters; company of the unit
+- age - number, max 3 digits; age of the individual
+- service_no - max 40 characters; service number, contains non-service elements; text format to account for outlier values.
+- other_regiment - max 70 characters; the other regiment for the soldier
+- other_service_no - max 40 characters; service number
+- medals - longtext, variable size text field; this is because the sample dataset did not give any information on this category
+- enlistment_date - date; dd/mm/yyyy format; date of enlisting in the army
+- discharge_date - date; dd/mm/yyyy format; if discharged, date they were discharged from the army
+- death_date - date; dd/mm/yyyy format; if died in service, the date they died
+- misc_info_nroh - max 200 characters; extra info about their service
+- cemetery_memorial - max 150 characters; the address or name of the cemetery or memorial
+- cemetery_memorial_ref - max 40 characters; reference id of the above memorial/cemetary
+- cemetary_memorial_country - max 56 characters; the country name of where the memorial is located.
+- additional_cwgc_info - max 300 characters; grave information for the individual, usual family members.
