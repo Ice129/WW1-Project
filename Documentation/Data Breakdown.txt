@@ -26,3 +26,17 @@ RollOfHonour:
 - cemetery_memorial_ref - max 40 characters; reference id of the above memorial/cemetary
 - cemetary_memorial_country - max 56 characters; the country name of where the memorial is located.
 - additional_cwgc_info - max 300 characters; grave information for the individual, usual family members.
+
+
+NewspapperReferences2025:
+- surname - max 80 characters; surname of individual
+- forename - max 80 characters; forename of individual
+- rank - max 40 characters; army rank of the individual
+- address - max 150 characters; address of individual during service
+- regiment - max 70 characters; regiment from the army
+- unit - max 40 characters; unit in the army
+-Article Comment - max 300 characters; Breife description of what happened to the person
+-Newspaper Name - max 150 charecter; Name of the publishing newspapper
+-Newspaper Date - date;dd/mm/yy; year the newspapper was released
+-Page/Col - max 10 charecters; position in the newspapper where the person was mentioned
+-Photo incl - boolean; wether or not the newspapper includes a picture
