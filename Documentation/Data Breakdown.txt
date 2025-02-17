@@ -36,9 +36,9 @@ NewspaperReferences2025:
 - regiment - max 70 characters; regiment from the army
 - unit - max 40 characters; unit in the army
 -Article Comment - max 300 characters; Breife description of what happened to the person
--Newspaper Name - max 150 charecter; Name of the publishing newspapper
+-Newspaper Name - max 150 character; Name of the publishing newspapper
 -Newspaper Date - date;dd/mm/yy; year the newspaper was released
--Page/Col - max 10 charecters; position in the newspaper where the person was mentioned
+-Page/Col - max 10 characters; position in the newspaper where the person was mentioned
 -Photo incl - boolean; wether or not the newspaper includes a picture
 
 
