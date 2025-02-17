@@ -39,7 +39,7 @@ NewspaperReferences2025:
 -Newspaper Name - max 150 charecter; Name of the publishing newspapper
 -Newspaper Date - date;dd/mm/yy; year the newspaper was released
 -Page/Col - max 10 charecters; position in the newspaper where the person was mentioned
--Photo incl - boolean; wether or not the newspapper includes a picture
+-Photo incl - boolean; wether or not the newspaper includes a picture
 
 
 
