@@ -28,7 +28,7 @@ RollOfHonour:
 - additional_cwgc_info - max 300 characters; grave information for the individual, usual family members.
 
 
-NewspapperReferences2025:
+NewspaperReferences2025:
 - surname - max 80 characters; surname of individual
 - forename - max 80 characters; forename of individual
 - rank - max 40 characters; army rank of the individual
@@ -37,6 +37,10 @@ NewspapperReferences2025:
 - unit - max 40 characters; unit in the army
 -Article Comment - max 300 characters; Breife description of what happened to the person
 -Newspaper Name - max 150 charecter; Name of the publishing newspapper
--Newspaper Date - date;dd/mm/yy; year the newspapper was released
--Page/Col - max 10 charecters; position in the newspapper where the person was mentioned
+-Newspaper Date - date;dd/mm/yy; year the newspaper was released
+-Page/Col - max 10 charecters; position in the newspaper where the person was mentioned
 -Photo incl - boolean; wether or not the newspapper includes a picture
+
+
+
+
