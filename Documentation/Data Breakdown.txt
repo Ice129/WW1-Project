@@ -35,12 +35,27 @@ NewspaperReferences2025:
 - address - max 150 characters; address of individual during service
 - regiment - max 70 characters; regiment from the army
 - unit - max 40 characters; unit in the army
--Article Comment - max 300 characters; Breife description of what happened to the person
--Newspaper Name - max 150 character; Name of the publishing newspapper
--Newspaper Date - date;dd/mm/yy; year the newspaper was released
--Page/Col - max 10 characters; position in the newspaper where the person was mentioned
--Photo incl - boolean; wether or not the newspaper includes a picture
+- Article_Comment - max 300 characters; Breife description of what happened to the person
+- Newspaper_Name - max 150 character; Name of the publishing newspapper
+- Newspaper_Date - date;dd/mm/yy; year the newspaper was released
+- Page/Col - max 10 characters; position in the newspaper where the person was mentioned
+- Photo_incl - boolean; wether or not the newspaper includes a picture
 
+BiographySpreadsheet:
+- surname - max 80 characters; surname of individual
+- forename - max 80 characters; forename of individual
+- regiment - max 70 characters; regiment from the army
+- service_number - max 40 characters; service number, contains non-service elements; text format to account for outlier values.
+- Biography attachment - max 300 characters; file link to that persons biography.
 
-
-
+BradfordMemorials:
+- surname - max 80 characters; surname of individual
+- forename - max 80 characters; forename of individual
+- regiment - max 70 characters; regiment from the army
+- unit - max 40 characters; unit in the army
+- memorial - max 150 characters; location of the memorial site
+- Memorial_location - max 150 characters; address of the memorial
+- Memorial_info - max 150 characters; direct locations of the memorial
+- Memorial_Postcode - max 32 characters; post code of the memorial
+- District - max 150 characters; district that the memorial is located in
+- Photo_available - boolean value; truth value defining if there is a photo available
