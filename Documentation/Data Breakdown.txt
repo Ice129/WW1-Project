@@ -4,8 +4,8 @@ Table Name:
 - etc...
 
 RollOfHonour:
-- surname - max 80 characters; forename of individual
-- forename - max 80 characters; surname of individual
+- surname - max 80 characters; surname of individual
+- forename - max 80 characters; forename of individual
 - address - max 150 characters; address of individual during service
 - electoral_ward - max 35 characters
 - town - max 35 characters; town from address
@@ -35,18 +35,18 @@ NewspaperReferences2025:
 - address - max 150 characters; address of individual during service
 - regiment - max 70 characters; regiment from the army
 - unit - max 40 characters; unit in the army
-- Article_Comment - max 300 characters; Breife description of what happened to the person
-- Newspaper_Name - max 150 character; Name of the publishing newspapper
-- Newspaper_Date - date;dd/mm/yy; year the newspaper was released
-- Page/Col - max 10 characters; position in the newspaper where the person was mentioned
-- Photo_incl - boolean; wether or not the newspaper includes a picture
+- article_comment - max 300 characters; brief description of what happened to the person
+- newspaper_name - max 150 character; Name of the publishing newspaper
+- newspaper_date - date; dd/mm/yyyy; year the newspaper was released
+- page_col - max 10 characters; position in the newspaper where the person was mentioned
+- photo_incl - boolean; whether or not the newspaper includes a picture
 
 BiographySpreadsheet:
 - surname - max 80 characters; surname of individual
 - forename - max 80 characters; forename of individual
 - regiment - max 70 characters; regiment from the army
 - service_number - max 40 characters; service number, contains non-service elements; text format to account for outlier values.
-- Biography attachment - max 300 characters; file link to that persons biography.
+- biography_attachment - max 300 characters; file link to that persons biography.
 
 BradfordMemorials:
 - surname - max 80 characters; surname of individual
@@ -54,8 +54,34 @@ BradfordMemorials:
 - regiment - max 70 characters; regiment from the army
 - unit - max 40 characters; unit in the army
 - memorial - max 150 characters; location of the memorial site
-- Memorial_location - max 150 characters; address of the memorial
-- Memorial_info - max 150 characters; direct locations of the memorial
-- Memorial_Postcode - max 32 characters; post code of the memorial
-- District - max 150 characters; district that the memorial is located in
-- Photo_available - boolean value; truth value defining if there is a photo available
+- memorial_location - max 150 characters; address of the memorial
+- memorial_info - max 150 characters; direct locations of the memorial
+- memorial_postcode - max 32 characters; post code of the memorial
+- district - max 150 characters; district that the memorial is located in
+- photo_available - boolean value; truth value defining if there is a photo available
+
+ServedAndSurvived:
+- broh_nroh - csv value; (0,0); condensed 2 booleans into one column
+- page_reference - max 80 characters; the page of the roll of honour the info is located in
+- surname - max 80 characters; surname of individual
+- forename - max 80 characters; forename of individual
+- rank - max 40 characters; army rank of the individual
+- regiment - max 70 characters; regiment from the army
+- unit - max 40 characters; unit in the army
+- join_year - number, 4 digits; enlistment year in the army
+- join_month - max 20 characters; month enlisted in the army
+- demobilise_year - number, 4 digits; ww1 demobilisation year
+- demobilise_month - max 20 characters; month enlisted in the army
+- street_and_number - max 100 characters; location information
+- other_street_data - max 100 characters; location information, related to above
+- ward_district - max 40 characters; the area of bradford their ward is located in
+- town - max 40 characters; the town their ward is located in. 
+- war_theater_misc - max 200 characters; where they served or other misc information
+- served_location_booleans - csv values (0,0,0,etc), 16 values; where they served, order noted below in [].
+- wounds_afflications - csv values (0,0,0,etc) 6 values; what injuries or afflictions a soldier had
+- discharge_reason - csv values (0,0,0,etc) 8 values; why a soldier was discharged
+
+MemorialNames:
+- surname - max 80 characters; surname of individual soldier
+- forename - max 80 characters; forename of individual soldier
+- memorial - max 150 characters; location of the memorial site
