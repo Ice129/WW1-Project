@@ -1,7 +1,7 @@
 #
 # To run this API locally to test it, you need to install pydantic and fastapi 
 # as well as their dependencies. You can do this by running the following command:#
-# pip install fastapi[all] pydantic[all]
+# pip install fastapi[all] pydantic[all] uvicorn
 #
 
 from fastapi import FastAPI
