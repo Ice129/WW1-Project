@@ -6,10 +6,9 @@
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+import uvicorn
 
-# Only run the FastAPI app if this file is run directly
-if __name__ == "__main__":
-    app = FastAPI()
+app = FastAPI()
 
 # Data model for the CSV POST request
 class CsvUpload(BaseModel):
@@ -77,3 +76,6 @@ async def auth_admin(passwordHash: str):
 @app.get("/download_csv")
 async def download_csv(databaseName: str, filterObject: dict, authToken: str):
     return {"status": "success", "code": 200}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="", port=8000)
