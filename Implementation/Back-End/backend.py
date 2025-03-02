@@ -46,10 +46,13 @@ def load_xlsx(fileLocation: str, fileBytes: bytes = None) -> dict:
 def create_database():
     return True
 
-# Assigned to: ???
+# Assigned to: Charlie
 # This function will call the load_csv() on all of the csv files in the directory
 # It will then convert their returned values into the created SQL databases in create_database()
-def insert_to_sql():
+def insert_to_sql(sheetData: dict) -> bool:
+    # Detect which database the data belongs in
+    desiredTable = ""
+
     return True
 
 # Assigned to: ???
