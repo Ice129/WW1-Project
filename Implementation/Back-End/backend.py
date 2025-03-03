@@ -43,8 +43,108 @@ def load_xlsx(fileLocation: str, fileBytes: bytes = None) -> dict:
 
 # Assigned to: Hope
 # This function will instantiate the databases as well as their columns for the next function, insert_to_sql()
-def create_database():
+def create_database ():
+
+    cursor.execute("""
+        CREATE TABLE biographyspreadsheet (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            surname VARCHAR(80),
+            forename VARCHAR(80),
+            regiment VARCHAR(70),
+            service_number VARCHAR(40),
+            biography_attachment VARCHAR(300)
+        );
+    """)
+
+    cursor.execute("""
+        CREATE TABLE bradfordmemorials (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            surname VARCHAR(80),
+            forename VARCHAR(80) ,
+            regiment VARCHAR(70),
+            unit VARCHAR(40),
+            memorial VARCHAR(150),
+            memorial_location VARCHAR(150),
+            memorial_info VARCHAR(150),
+            memorial_postcode VARCHAR(32),
+            district VARCHAR(150),
+            photo_available BOOLEAN
+        );
+     """)
+
+    cursor.execute("""
+        CREATE TABLE buriedinbradford (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            surname VARCHAR(80),
+            forename VARCHAR(80),
+            age INT(3),
+            medals LONGTEXT,
+            date_of_birth DATE,
+            rank VARCHAR(40),
+            unit VARCHAR(40),
+            cemetery VARCHAR(150),
+            grave_ref VARCHAR(40),
+            info LONGTEXT
+        );
+     """)
+
+    cursor.execute("""
+        CREATE TABLE memorialnames (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            surname VARCHAR(80),
+            forename VARCHAR(80),
+            memorial VARCHAR(150)
+         );
+    """)
+
+    cursor.execute("""
+        CREATE TABLE newspaperreferences2025 (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            surname VARCHAR(80),
+            forename VARCHAR(80),
+            rank VARCHAR(40),
+            address VARCHAR(150),
+            regiment VARCHAR(70),
+            unit VARCHAR(40),
+            article_comment VARCHAR(300),
+            newspaper_name VARCHAR(150),
+            newspaper_date DATE,
+            page_col VARCHAR(10),
+            photo_incl BOOLEAN
+        );
+     """)
+
+    cursor.execute("""
+        CREATE TABLE rollofhonour (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            surname VARCHAR(80),
+            forename VARCHAR(80),
+            address VARCHAR(150),
+            electoral_ward VARCHAR(35),
+            town VARCHAR(35),
+            rank VARCHAR(40),
+            regiment VARCHAR(70),
+            unit VARCHAR(40),
+            company VARCHAR(40),
+            age INT(3),
+            service_no VARCHAR(40),
+            other_regiment VARCHAR(70),
+            other_service_no VARCHAR(40),
+            medals LONGTEXT,
+            enlisted_date DATE,
+            discharged_date DATE,
+            death_date DATE,
+            misc_info_nroh VARCHAR(200),
+            cemetery_memorial VARCHAR(150),
+            cemetery_memorial_ref VARCHAR(40),
+            cemetary_memorial_country VARCHAR(56),
+            additional_cwgc_info VARCHAR(300)
+        );
+     """)
+
     return True
+
+
 
 # Assigned to: Charlie
 # This function will call the load_csv() on all of the csv files in the directory
