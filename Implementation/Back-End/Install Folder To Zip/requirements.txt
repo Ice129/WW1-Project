@@ -2,3 +2,5 @@ fastapi[all]
 pydantic[all]
 uvicorn
 openpyxl
+pandas
+xlsxwriter
