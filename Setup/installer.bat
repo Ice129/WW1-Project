@@ -7,3 +7,5 @@ timeout 2
 
 py -3.12 -m pip install --upgrade pip
 py -3.12 -m pip install -r requirements.txt
+
+start py setup.py
