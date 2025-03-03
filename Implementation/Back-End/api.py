@@ -41,6 +41,7 @@ class IndividualUpload(BaseModel):
 # Assigned to: ???
 @app.post("/upload_csv")
 async def upload_csv(obj: CsvUpload):
+
     return {"status": "success", "code": 200}
 
 # Assigned to: ???
