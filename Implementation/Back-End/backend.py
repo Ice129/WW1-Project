@@ -66,3 +66,5 @@ if __name__ == "__main__":
     create_database()
     insert_to_sql()
     exit()
+
+#test
