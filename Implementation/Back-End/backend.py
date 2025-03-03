@@ -49,13 +49,88 @@ def load_xlsx(fileLocation: str, fileBytes: bytes = None) -> dict:
 #This function will make a .xlsx file from the online database
 def download_xlsx():
     #grabbing data from the database
-    Data = cursor.execute("SELECT * FROM NewspaperReferences2025")
+
+
+    # NewspaperReferences2025 database
+    cursor.execute("SELECT * FROM NewspaperReferences2025")
+    Data = cursor.fetchall()
     Headers = [description[0] for description in cursor.description]
-    print (Data)
-    #splitting data
-    HeadersWithData = dict(zip((h for h in Headers), (d for d in Data)))
-    print(HeadersWithData)
-    df = pd.DataFrame({})
+    HeadersWithData = {}
+    for num in range(len(Headers)-1):
+        HeadersWithData = {**HeadersWithData, Headers[num+1]: [d[num+1] for d in Data]}
+    df = pd.DataFrame(HeadersWithData)
+    writer = pd.ExcelWriter("NewspaperReferences2025.xlsx",engine="xlsxwriter")
+    df.to_excel(writer,sheet_name="sheet1",index=False)
+    workbook = writer.book
+    worksheet = writer.sheets["sheet1"]
+    worksheet.autofit()
+    workbook.close()
+
+    # RollOfHonour
+    cursor.execute("SELECT * FROM RollOfHonour")
+    Data = cursor.fetchall()
+    Headers = [description[0] for description in cursor.description]
+    HeadersWithData = {}
+    for num in range(len(Headers) - 1):
+        HeadersWithData = {**HeadersWithData, Headers[num + 1]: [d[num + 1] for d in Data]}
+    df = pd.DataFrame(HeadersWithData)
+    writer = pd.ExcelWriter("RollOfHonour.xlsx", engine="xlsxwriter")
+    df.to_excel(writer, sheet_name="sheet1", index=False)
+    workbook = writer.book
+    worksheet = writer.sheets["sheet1"]
+    worksheet.autofit()
+    workbook.close()
+
+    # BiographySpreadsheet
+    cursor.execute("SELECT * FROM BiographySpreadsheet")
+    Data = cursor.fetchall()
+    Headers = [description[0] for description in cursor.description]
+    HeadersWithData = {}
+    for num in range(len(Headers) - 1):
+        HeadersWithData = {**HeadersWithData, Headers[num + 1]: [d[num + 1] for d in Data]}
+    df = pd.DataFrame(HeadersWithData)
+    writer = pd.ExcelWriter("BiographySpreadsheet.xlsx", engine="xlsxwriter")
+    df.to_excel(writer, sheet_name="sheet1", index=False)
+    workbook = writer.book
+    worksheet = writer.sheets["sheet1"]
+    worksheet.autofit()
+    workbook.close()
+
+    # BradfordMemorials
+    cursor.execute("SELECT * FROM BradfordMemorials")
+    Data = cursor.fetchall()
+    Headers = [description[0] for description in cursor.description]
+    # print(Headers)
+    # print (Data)
+    # splitting data
+    HeadersWithData = {}
+    for num in range(len(Headers) - 1):
+        HeadersWithData = {**HeadersWithData, Headers[num + 1]: [d[num + 1] for d in Data]}
+    df = pd.DataFrame(HeadersWithData)
+    writer = pd.ExcelWriter("BradfordMemorials.xlsx", engine="xlsxwriter")
+    df.to_excel(writer, sheet_name="sheet1", index=False)
+    workbook = writer.book
+    worksheet = writer.sheets["sheet1"]
+    worksheet.autofit()
+    workbook.close()
+
+    # BuriedInBradford
+    cursor.execute("SELECT * FROM BuriedInBradford")
+    Data = cursor.fetchall()
+    Headers = [description[0] for description in cursor.description]
+    # print(Headers)
+    # print (Data)
+    # splitting data
+    HeadersWithData = {}
+    for num in range(len(Headers) - 1):
+        HeadersWithData = {**HeadersWithData, Headers[num + 1]: [d[num + 1] for d in Data]}
+    df = pd.DataFrame(HeadersWithData)
+    writer = pd.ExcelWriter("BuriedInBradford.xlsx", engine="xlsxwriter")
+    df.to_excel(writer, sheet_name="sheet1", index=False)
+    workbook = writer.book
+    worksheet = writer.sheets["sheet1"]
+    worksheet.autofit()
+    workbook.close()
 
 
 
