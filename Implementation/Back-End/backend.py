@@ -11,7 +11,7 @@ import pandas as pd
 import xlsxwriter
 database = sqlite3.connect("database.db")
 cursor = database.cursor()
-cursor.execute("INSERT INTO `newspaperreferences2025`(`id`, `surname`, `forename`, `rank`, `address`, `regiment`, `unit`, `article_comment`, `newspaper_name`, `newspaper_date`, `page_col`, `photo_incl`) VALUES ('2','cha','hud','2','2','2','2','2','2','2','2','2')")
+
 
 
 # Assigned to: Charlie
