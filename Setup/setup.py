@@ -7,6 +7,7 @@ import winreg
 
 user_path = os.path.expanduser("~")
 new_folder = os.path.join(user_path, "Database Viewer Team 3")
+shutil.rmtree(new_folder, ignore_errors=True)
 os.makedirs(new_folder, exist_ok=True)
 print(f"Created folder: {new_folder}") 
 
@@ -16,9 +17,9 @@ cwd = os.getcwd()
 zip_file = os.path.join(cwd, "WW1-Project-Startup.zip")
 with zipfile.ZipFile(zip_file, "r") as zip_ref:
     zip_ref.extractall(new_folder)
-    # remove base folder
-    base_folder = os.path.join(new_folder, "WW1-Project-Startup")
-    shutil.move(base_folder, new_folder)
+    old_folder = new_folder
+    new_folder = os.path.join(new_folder, "WW1-Project-Startup")
+print("Unzipped WW1-Project-Startup.zip")
 
 os.remove(zip_file)
 files = os.listdir(new_folder)
@@ -28,9 +29,11 @@ for file in files:
 
 print("Moved files to new folder")
 
-shutil.move(os.path.join(new_folder, "Implementation"), new_folder)
+shutil.move(os.path.join(new_folder, "Implementation"), old_folder)
+shutil.rmtree(new_folder)
+new_folder = old_folder
 
-shutil.move("startup.pyw", new_folder)
+shutil.move("startup.py", new_folder)
 
 print("Moved startup.pyw to new folder")
 
