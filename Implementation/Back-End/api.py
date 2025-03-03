@@ -1,7 +1,7 @@
 #
 # To run this API locally to test it, you need to install pydantic and fastapi 
-# as well as their dependencies. You can do this by running the following command:#
-# pip install fastapi[all] pydantic[all] uvicorn
+# as well as their dependencies. You can do this by running the following command:
+# pip install fastapi[all] pydantic[all] uvicorn openpyxl pandas xlsxwriter
 #
 
 from fastapi import FastAPI
@@ -25,7 +25,7 @@ class IndividualUpload(BaseModel):
 ##################################################################################################
 #
 # You should not touch any code above this section as it may interfere with other people's work
-# Should code here NEED changing, please contact the team leader so we can verify 
+# Should code here NEED changing, please contact the team leader so we can verify
 # that the changes are necessary and do not interfere with other people's work
 #
 ##################################################################################################
@@ -39,8 +39,14 @@ class IndividualUpload(BaseModel):
 ##################################################################################################
 
 # Assigned to: ???
+from backend import load_xlsx, insert_to_sql
 @app.post("/upload_csv")
 async def upload_csv(obj: CsvUpload):
+    csv_file = obj.csv
+    try:
+        insert_to_sql(load_xlsx(csv_file))
+    except Exception as e:
+        return {"status": "error", "code": 400, "message": str(e)}
     return {"status": "success", "code": 200}
 
 # Assigned to: ???
