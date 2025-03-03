@@ -7,8 +7,12 @@
 # If you need to reset the database, you can do so by calling database.close() and then database = sqlite3.connect("database.db")
 # Only do this if necessary and do it in your own functions.
 import sqlite3
+import pandas as pd
+import xlsxwriter
 database = sqlite3.connect("database.db")
 cursor = database.cursor()
+cursor.execute("INSERT INTO `newspaperreferences2025`(`id`, `surname`, `forename`, `rank`, `address`, `regiment`, `unit`, `article_comment`, `newspaper_name`, `newspaper_date`, `page_col`, `photo_incl`) VALUES ('2','cha','hud','2','2','2','2','2','2','2','2','2')")
+
 
 # Assigned to: Charlie
 # This function will load a XLSX file from a given location and return it as a dictionary
@@ -41,6 +45,21 @@ def load_xlsx(fileLocation: str, fileBytes: bytes = None) -> dict:
     
     return data_dict
 
+# Assigned to: Edward
+#This function will make a .xlsx file from the online database
+def download_xlsx():
+    #grabbing data from the database
+    Data = cursor.execute("SELECT * FROM NewspaperReferences2025")
+    Headers = [description[0] for description in cursor.description]
+    print (Data)
+    #splitting data
+    HeadersWithData = dict(zip((h for h in Headers), (d for d in Data)))
+    print(HeadersWithData)
+    df = pd.DataFrame({})
+
+
+
+
 # Assigned to: Hope
 # This function will instantiate the databases as well as their columns for the next function, insert_to_sql()
 def create_database():
@@ -64,7 +83,7 @@ def singular_add_sql(dataObject: dict, databaseName: str):
 # Only edit code you have been assigned in this project.
 if __name__ == "__main__":
     create_database()
-    insert_to_sql()
+    download_xlsx()
     exit()
 
-#test
+
