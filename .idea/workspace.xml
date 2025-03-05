@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="seperating data for generating a xlsx file">
+    <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="search functions for a few of the searchable terms">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementation/Back-End/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/backend.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Back-End/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,21 +21,21 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "EdwardQ-UNI"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;EdwardQ-UNI&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Ice129/WW1-Project.git",
-    "accountId": "4c881fe1-77ad-4225-a93e-f43e1df46050"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ice129/WW1-Project.git&quot;,
+    &quot;accountId&quot;: &quot;4c881fe1-77ad-4225-a93e-f43e1df46050&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2toVDkYlhqJagKMfuPvVkSHOROP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -47,7 +47,7 @@
     "Python.backend.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "XLSX__to__csv",
+    "git-widget-placeholder": "Search-functions",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Edward Quail/PycharmProjects/WW1-Project"
   }
@@ -76,11 +76,28 @@
       <option name="project" value="LOCAL" />
       <updated>1741029298188</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="search functions for a few of the searchable terms">
+      <option name="closed" value="true" />
+      <created>1741184492788</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741184492788</updated>
+    </task>
+    <task id="LOCAL-00003" summary="search functions for a few of the searchable terms">
+      <option name="closed" value="true" />
+      <created>1741184709415</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741184709415</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="seperating data for generating a xlsx file" />
-    <option name="LAST_COMMIT_MESSAGE" value="seperating data for generating a xlsx file" />
+    <MESSAGE value="search functions for a few of the searchable terms" />
+    <option name="LAST_COMMIT_MESSAGE" value="search functions for a few of the searchable terms" />
   </component>
 </project>
