@@ -5,15 +5,15 @@ import subprocess
 import winreg
 import sys
 
+# create new folder in user's home directory for project files
 user_path = os.path.expanduser("~")
 new_folder = os.path.join(user_path, "Database Viewer Team 3")
 shutil.rmtree(new_folder, ignore_errors=True)
 os.makedirs(new_folder, exist_ok=True)
 print(f"Created folder: {new_folder}") 
 
+# Unzip WW1-Project-Startup.zip to current directory
 cwd = os.getcwd()
-
-# unzip WW1-Project-Startup.zip to current working directory
 zip_file = None
 for file in os.listdir(cwd):
     if file.startswith("WW1-Project-") and file.endswith(".zip"):
@@ -28,7 +28,7 @@ with zipfile.ZipFile(zip_file, "r") as zip_ref:
     zip_ref.extractall(cwd)
 print("Unzipped WW1-Project-Startup.zip to current directory")
 
-# Move contents of Implementation directory to new folder
+# Move contents of the Implementation folder to the new folder in user's home directory
 implementation_dir = os.path.join(cwd, zip_name, "Implementation")
 if os.path.exists(implementation_dir):
     for item in os.listdir(implementation_dir):
@@ -42,11 +42,12 @@ if os.path.exists(implementation_dir):
             print(f"Moved {src} to {dst}")
 
 
-# Clean up
+# Clean up zip file and extracted folder
 os.remove(zip_file)
 shutil.rmtree(os.path.join(cwd, zip_name), ignore_errors=True)
 print("Moved Implementation contents to new folder and cleaned up")
 
+# Create Start Database Viewer.bat on desktop
 with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders") as key:
     desktop_dir, _ = winreg.QueryValueEx(key, "Desktop")
     desktop_dir = os.path.expandvars(desktop_dir)
@@ -59,4 +60,5 @@ start python "{os.path.join(new_folder, "startup.pyw")}"
 
 print("Created Start Database Viewer.bat on desktop")
 
-subprocess.Popen([sys.executable, os.path.join(new_folder, "startup.py")])
+# Start the project
+subprocess.Popen([sys.executable, os.path.join(new_folder, "startup.pyw")])
