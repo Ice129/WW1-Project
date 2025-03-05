@@ -136,18 +136,34 @@ def download_xlsx():
 # Assigned to: Edward
 #This function should search for a name
 def  forename_S(desired_DB,forname_S):
-    cursor.execute("SELECT %(desired_DB)s FROM users WHERE forename = %(forename)s",
+    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE forename = %(forename)s",
                    {"forename": forname_S,"desired_DB": desired_DB })
 
+def  surname_S(desired_DB,surname_S):
+    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE surname = %(surname)s",
+                   {"surname": surname_S,"desired_DB": desired_DB })
+
+def  regiment_S(desired_DB,regiment_S):
+    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE regiment = %(regiment)s",
+                   {"regiment": regiment_S,"desired_DB": desired_DB })
 
 def  forename_surname_S(desired_DB,forname_S,surname_S):
-    cursor.execute("SELECT %(desired_DB)s FROM users WHERE forename = %(forename)s and surname = %(surname)s ",
+    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE forename = %(forename)s and surname = %(surname)s ",
                    {"forename": forname_S,"surname": surname_S, "desired_DB": desired_DB })
+
+def  forename_regiment_S(desired_DB,forname_S,regiment_S):
+    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE forename = %(forename)s and regiment = %(regiment)s ",
+                   {"forename": forname_S,"regiment": regiment_S, "desired_DB": desired_DB })
+
+def  surname_regiment_S(desired_DB,surname_S,regiment_S):
+    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE surname = %(surname)s and regiment = %(regiment)s ",
+                   {"surname": surname_S,"regiment": regiment_S, "desired_DB": desired_DB })
 
 
 def forename_surname_regiment_S(desired_DB,forname_S,surname_S,regiment_S):
-    cursor.execute("SELECT %(desired_DB)s FROM users WHERE forename = %(forename)s and surname = %(surname)s and %(regiment)s ",
+    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE forename = %(forename)s and surname = %(surname)s and %(regiment)s ",
                    {"forename": forname_S, "surname": surname_S,"regiment": regiment_S , "desired_DB": desired_DB})
+
 
 # Assigned to: Hope
 # This function will instantiate the databases as well as their columns for the next function, insert_to_sql()
