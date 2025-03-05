@@ -48,9 +48,9 @@ with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"SOFTWARE\Microsoft\Windows\Curre
 
 with open(os.path.join(desktop_dir, "Start Database Viewer.bat"), "w") as f:
     batch_content = f"""@echo off
-start python "{os.path.join(new_folder, "startup.pyw")}"
+start python "{os.path.join(new_folder, "Back-End", "startup.pyw")}"
 """
     f.write(batch_content)
 
 # Start the project
-subprocess.Popen([sys.executable, os.path.join(new_folder, "Back-End", "startup.pyw")])
+# subprocess.Popen([sys.executable, os.path.join(new_folder, "Back-End", "startup.pyw")])
