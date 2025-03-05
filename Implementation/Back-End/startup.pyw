@@ -1,8 +1,6 @@
 import time
 import subprocess
 
-print("Starting Database Viewer Team 3")
-
 subprocess.run(["python", "backend.py"])
 time.sleep(1)
 subprocess.Popen(["pythonw", "api.py"])
