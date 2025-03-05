@@ -137,17 +137,18 @@ def download_xlsx():
 #This function should search for a name
 def  forename_S(desired_DB,forname_S):
     cursor.execute("SELECT %(desired_DB)s FROM users WHERE forename = %(forename)s",
-                   {"forename": forname_S,"desired_DB": desired_DB });
+                   {"forename": forname_S,"desired_DB": desired_DB })
 
 
 def  forename_surname_S(desired_DB,forname_S,surname_S):
     cursor.execute("SELECT %(desired_DB)s FROM users WHERE forename = %(forename)s and surname = %(surname)s ",
-                   {"forename": forname_S,"surname": surname_S, "desired_DB": desired_DB });
+                   {"forename": forname_S,"surname": surname_S, "desired_DB": desired_DB })
 
 
 def forename_surname_regiment_S(desired_DB,forname_S,surname_S,regiment_S):
     cursor.execute("SELECT %(desired_DB)s FROM users WHERE forename = %(forename)s and surname = %(surname)s and %(regiment)s ",
-                   {"forename": forname_S, "surname": surname_S,"regiment": regiment_S , "desired_DB": desired_DB});
+                   {"forename": forname_S, "surname": surname_S,"regiment": regiment_S , "desired_DB": desired_DB})
+
 # Assigned to: Hope
 # This function will instantiate the databases as well as their columns for the next function, insert_to_sql()
 def create_database ():
