@@ -10,7 +10,11 @@ backend_path = os.path.join(script_dir, "backend.py")
 api_path = os.path.join(script_dir, "api.py")
 kiosk_keeper_path = os.path.join(script_dir, "kiosk_keeper.pyw")
 
-subprocess.run(["python", backend_path])
+try:
+    subprocess.run(["python", backend_path])
+except Exception as e:
+    print(e)
+    input("an error occurred in the backend, press enter to continue")
 time.sleep(1)
 subprocess.Popen(["pythonw", api_path])
 
