@@ -5,8 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <link rel="stylesheet" href="Styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+
+<header>
+    <img src="photos/ww1 logo.png" alt="website logo" class="logo">
+</header>
+
+<h1>WW1: Bradford and Surrounding township's database.</h1>
+
+<div class="design_line_under_header">
+</div>
+
+<div class="back_admin">
+    <form action="index.html" method="GET">
+         <button type="submit">Back</button>
+    </form>
+</div>
+
+<!--need to put 8 char min to have it work on practice-->
+<div class="login_box">
+    <form action="admin_dashboard.html" method="GET">
+        <label for="pwd">Admin Password:</label>
+        <input type="password" id="pwd" name="pwd" minlength="8" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
 </body>
 </html>
