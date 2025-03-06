@@ -11,10 +11,10 @@ api_path = os.path.join(script_dir, "api.py")
 kiosk_keeper_path = os.path.join(script_dir, "kiosk_keeper.pyw")
 
 # Define the path to Python 3.12 executable
-username = os.getenv('USERNAME')
+username = os.getenv("USERNAME")
 possible_paths = [
+    rf"C:\Users\{username}\AppData\Local\Programs\Python\Python312\python.exe",  # User installation
     r"C:\Program Files\Python312\python.exe",  # System-wide installation
-    fr"C:\Users\{username}\AppData\Local\Programs\Python\Python312\python.exe"  # User installation
 ]
 
 # Try to find Python in the default locations

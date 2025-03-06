@@ -47,10 +47,10 @@ with winreg.OpenKey(
     desktop_dir, _ = winreg.QueryValueEx(key, "Desktop")
     desktop_dir = os.path.expandvars(desktop_dir)
 
-username = os.getenv('USERNAME')
+username = os.getenv("USERNAME")
 possible_paths = [
     r"C:\Program Files\Python312\python.exe",  # System-wide installation
-    fr"C:\Users\{username}\AppData\Local\Programs\Python\Python312\python.exe"  # User installation
+    rf"C:\Users\{username}\AppData\Local\Programs\Python\Python312\python.exe",  # User installation
 ]
 
 # Try to find Python in the default locations
@@ -64,9 +64,9 @@ if python_path is None:
     raise FileNotFoundError("Python 3.12 not found in default locations")
 
 with open(os.path.join(desktop_dir, "Start Database Viewer.bat"), "w") as f:
-    batch_content = fr"""@echo off
+    batch_content = rf"""@echo off
 cd /d "{os.path.join(new_folder, "Back-End")}"
-start {python_path} startup.py
+start "" "{python_path}" startup.py
 """
     f.write(batch_content)
     # TODO: update file extentions to pyw
