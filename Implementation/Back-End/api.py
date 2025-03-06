@@ -95,5 +95,9 @@ async def close_program(authToken: str):
     subprocess.run(["taskkill", "/f", "/im", "msedge.exe"])
     sys.exit()
 
+@app.get("/test") # Test endpoint
+async def test():
+    return {"status": "success", "code": 200, "message": "Test successful"}
+
 if __name__ == "__main__":
     uvicorn.run(app, host="", port=8000)
