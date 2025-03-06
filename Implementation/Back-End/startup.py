@@ -36,7 +36,7 @@ except Exception as e:
     print(e)
     input("an error occurred in the backend, press enter to continue")
 
-time.sleep(1)
+time.sleep(1) # give backend time to finish file processing
 
 try:
     # starts web server in new process
