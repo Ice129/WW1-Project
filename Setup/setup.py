@@ -1,9 +1,7 @@
 import os
 import shutil
 import zipfile
-import subprocess
 import winreg
-import sys
 
 # create new folder in user's home directory for project files
 user_path = os.path.expanduser("~")
@@ -15,12 +13,12 @@ os.makedirs(new_folder, exist_ok=True)
 cwd = os.getcwd()
 zip_file = None
 for file in os.listdir(cwd):
-    if file.startswith("WW1-Project-") and file.endswith(".zip"):
+    if file.startswith("WW1-Project") and file.endswith(".zip"):
         zip_file = os.path.join(cwd, file)
         zip_name = file[:-4]
         break
 if zip_file is None:
-    raise FileNotFoundError(f"Could not find WW1-Project-*.zip in {cwd}")
+    raise FileNotFoundError(f"Could not find WW1-Project*.zip in {cwd}")
 
 with zipfile.ZipFile(zip_file, "r") as zip_ref:
     zip_ref.extractall(cwd)
@@ -42,16 +40,33 @@ os.remove(zip_file)
 shutil.rmtree(os.path.join(cwd, zip_name), ignore_errors=True)
 
 # Create Start Database Viewer.bat on desktop
-with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders") as key:
+with winreg.OpenKey(
+    winreg.HKEY_CURRENT_USER,
+    r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders",
+) as key:
     desktop_dir, _ = winreg.QueryValueEx(key, "Desktop")
     desktop_dir = os.path.expandvars(desktop_dir)
 
+username = os.getenv("USERNAME")
+possible_paths = [
+    r"C:\Program Files\Python312\python.exe",  # System-wide installation
+    rf"C:\Users\{username}\AppData\Local\Programs\Python\Python312\python.exe",  # User installation
+]
+
+# Try to find Python in the default locations
+python_path = None
+for path in possible_paths:
+    if os.path.exists(path):
+        python_path = path
+        break
+
+if python_path is None:
+    raise FileNotFoundError("Python 3.12 not found in default locations")
+
 with open(os.path.join(desktop_dir, "Start Database Viewer.bat"), "w") as f:
-    batch_content = f"""@echo off
+    batch_content = rf"""@echo off
 cd /d "{os.path.join(new_folder, "Back-End")}"
-start python "startup.pyw"
+start "" "{python_path}" startup.py
 """
     f.write(batch_content)
-
-# Start the project
-# subprocess.Popen([sys.executable, os.path.join(new_folder, "Back-End", "startup.pyw")])
+    # TODO: update file extentions to pyw

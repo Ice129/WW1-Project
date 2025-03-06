@@ -85,7 +85,6 @@ async def close_program(authToken: str):
     
     # TODO: authenticate token
     
-    
     try:
         with open("PID", "r") as f:
             pid = f.read()

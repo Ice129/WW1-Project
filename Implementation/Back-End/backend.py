@@ -64,5 +64,9 @@ def singular_add_sql(dataObject: dict, databaseName: str):
 # Only edit code you have been assigned in this project.
 if __name__ == "__main__":
     create_database()
-    insert_to_sql()
+    try:
+        insert_to_sql()
+    except Exception as e:
+        print(e)
+        print("this is here just to temporarily fix this error, can be deleted/reverted in the merge")
     exit()
