@@ -4,9 +4,11 @@
 # pip install fastapi[all] pydantic[all] uvicorn openpyxl pandas xlsxwriter
 #
 
+import sys
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
+import subprocess
 
 app = FastAPI()
 
@@ -82,6 +84,26 @@ async def auth_admin(passwordHash: str):
 @app.get("/download_csv")
 async def download_csv(databaseName: str, filterObject: dict, authToken: str):
     return {"status": "success", "code": 200}
+
+# Assigned to: James
+@app.get("/close_program")
+async def close_program(authToken: str):
+    
+    # TODO: authenticate token
+    
+    try:
+        with open("PID", "r") as f:
+            pid = f.read()
+    except FileNotFoundError:
+        return {"status": "error", "code": 400, "message": "No PID file found"}
+    
+    subprocess.run(["taskkill", "/f", "/pid", pid])
+    subprocess.run(["taskkill", "/f", "/im", "msedge.exe"])
+    sys.exit()
+
+@app.get("/test") # Test endpoint
+async def test():
+    return {"status": "success", "code": 200, "message": "Test successful"}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="", port=8000)
