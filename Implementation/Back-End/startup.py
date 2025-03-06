@@ -13,6 +13,7 @@ kiosk_keeper_path = os.path.join(script_dir, "kiosk_keeper.pyw")
 python_command = ["py", "-3.12"]
 
 try:
+    # run and wait for the backend to finish
     subprocess.run(python_command + [backend_path])
 except Exception as e:
     print(e)
@@ -21,6 +22,7 @@ except Exception as e:
 time.sleep(1)
 
 try:
+    # starts web server in new process
     subprocess.Popen(python_command + [api_path])
 except Exception as e:
     print(e)
@@ -38,5 +40,3 @@ time.sleep(0.3)
 pid = subprocess.Popen(python_command + [kiosk_keeper_path]).pid
 with open(os.path.join(script_dir, "PID"), "w") as f:
     f.write(str(pid))
-
-# input("Press enter to close the startup script")

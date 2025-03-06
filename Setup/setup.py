@@ -3,9 +3,6 @@ import shutil
 import zipfile
 import winreg
 
-# import subprocess
-# import sys
-
 # create new folder in user's home directory for project files
 user_path = os.path.expanduser("~")
 new_folder = os.path.join(user_path, "Database Viewer Team 3")
@@ -57,6 +54,3 @@ start python "startup.py"
 """
     f.write(batch_content)
     # TODO: update file extentions to pyw
-
-# Start the project
-# subprocess.Popen([sys.executable, os.path.join(new_folder, "Back-End", "startup.pyw")])
