@@ -43,13 +43,7 @@ def load_xlsx(fileLocation: str = "", fileBytes: bytes = None) -> dict:
     
     return data_dict
 
-# Assigned to: Edward
-#This function will make a .xlsx file from the online database
-def download_xlsx():
-    #grabbing data from the database
-
-
-    # NewspaperReferences2025 database
+def DLNewspaperReferences2025():
     cursor.execute("SELECT * FROM NewspaperReferences2025")
     Data = cursor.fetchall()
     Headers = [description[0] for description in cursor.description]
@@ -65,6 +59,7 @@ def download_xlsx():
     workbook.close()
 
     # RollOfHonour
+def DLRollOfHonour():
     cursor.execute("SELECT * FROM RollOfHonour")
     Data = cursor.fetchall()
     Headers = [description[0] for description in cursor.description]
@@ -80,6 +75,7 @@ def download_xlsx():
     workbook.close()
 
     # BiographySpreadsheet
+def DLBiographySpreadsheet():
     cursor.execute("SELECT * FROM BiographySpreadsheet")
     Data = cursor.fetchall()
     Headers = [description[0] for description in cursor.description]
@@ -95,12 +91,10 @@ def download_xlsx():
     workbook.close()
 
     # BradfordMemorials
+def DLBradfordMemorials():
     cursor.execute("SELECT * FROM BradfordMemorials")
     Data = cursor.fetchall()
     Headers = [description[0] for description in cursor.description]
-    # print(Headers)
-    # print (Data)
-    # splitting data
     HeadersWithData = {}
     for num in range(len(Headers) - 1):
         HeadersWithData = {**HeadersWithData, Headers[num + 1]: [d[num + 1] for d in Data]}
@@ -113,12 +107,10 @@ def download_xlsx():
     workbook.close()
 
     # BuriedInBradford
+def DLBuriedInBradford():
     cursor.execute("SELECT * FROM BuriedInBradford")
     Data = cursor.fetchall()
     Headers = [description[0] for description in cursor.description]
-    # print(Headers)
-    # print (Data)
-    # splitting data
     HeadersWithData = {}
     for num in range(len(Headers) - 1):
         HeadersWithData = {**HeadersWithData, Headers[num + 1]: [d[num + 1] for d in Data]}
