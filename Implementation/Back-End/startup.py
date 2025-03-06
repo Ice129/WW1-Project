@@ -9,8 +9,25 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 backend_path = os.path.join(script_dir, "backend.py")
 api_path = os.path.join(script_dir, "api.py")
 kiosk_keeper_path = os.path.join(script_dir, "kiosk_keeper.pyw")
-# Define the path to Python 3.12 for the subprocess calls
-python_command = ["py", "-3.12"]
+
+# Define the path to Python 3.12 executable
+username = os.getenv('USERNAME')
+possible_paths = [
+    r"C:\Program Files\Python312\python.exe",  # System-wide installation
+    fr"C:\Users\{username}\AppData\Local\Programs\Python\Python312\python.exe"  # User installation
+]
+
+# Try to find Python in the default locations
+python_path = None
+for path in possible_paths:
+    if os.path.exists(path):
+        python_path = path
+        break
+
+if python_path is None:
+    raise FileNotFoundError("Python 3.12 not found in default locations")
+else:
+    python_command = [python_path]
 
 try:
     # run and wait for the backend to finish
