@@ -15,12 +15,12 @@
     </header>
     <h1>WW1: Bradford and Surrounding township's database.</h1>
     <div class="design_line_under_header"></div>
-
+                                    // buttons for upload and download 
     <div class="data_managment_buttons">
         <button class="small button">Upload Data</button>
         <button class="small button">Download Data</button>
     </div>
-
+                                    // sidebar for quick navigation
     <div class="sidebar-container">
         <div class="sidebar">
             <ul>
@@ -28,26 +28,26 @@
                     <a href="guest_home.html">Home</a>
                 </li>
                 <li>
-                    <a href="">Bradford and surrounding townships</a>
+                    <a href="townships.html">Bradford and surrounding townships</a>
                 </li>
                 <li>
-                    <a href="">Names on Bradford Memorials</a>
+                    <a href="memorials.html">Names on Bradford Memorials</a>
                 </li>
                 <li>
-                    <a href="">Burried in Bradford</a>
+                    <a href="buried.html">Burried in Bradford</a>
                 </li>
                 <li>
-                    <a href="">Newspaper References</a>
+                    <a href="newspaper.html">Newspaper References</a>
                 </li>
                 <li class="active">
-                    <a href="guest_database_view.html">Biographies</a>
+                    <a href="biographies.html">Biographies</a>
                 </li>
                 <li>
                     <a href="index.html">Log Out</a>
                 </li>
             </ul>
         </div>
-
+                                            // search input fields and buttons for search and clear
         <div class="database-content">
             <div class="search-section">
                 <form action="biographies.html" method="GET">
@@ -63,31 +63,98 @@
                     <label for="service">Service Number:</label>
                     <input type="text" id="service" name="service" class="search-input">
                     
-                    <button type="submit" class="search-button">🔍</button>
+                    <button type="submit" class="search-button">Search</button>
+                    <button type="reset" class="clear-button">Clear</button>
                 </form>
             </div>
             
             <table>
                 <thead>
-                    <tr>
+                    <tr>                   // test data to check manual editing
                         <th>Forename</th>
                         <th>Surname</th>
                         <th>Regiment</th>
                         <th>Service No.</th>
                         <th>Biography Link</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
+                        <td contenteditable="false">John</td>
+                        <td contenteditable="false">Doe</td>
+                        <td contenteditable="false">Infantry</td>
+                        <td contenteditable="false">12345</td>
+                        <td contenteditable="false"><a href="#">Link</a></td>
+                        <td>
+                            <button class="edit-button">Edit</button>
+                            <button class="save-button" style="display:none;">Save</button>
+                            <button class="cancel-button" style="display:none;">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="false">Jane</td>
+                        <td contenteditable="false">Smith</td>
+                        <td contenteditable="false">Artillery</td>
+                        <td contenteditable="false">67890</td>
+                        <td contenteditable="false"><a href="#">Link</a></td>
+                        <td>
+                            <button class="edit-button">Edit</button>
+                            <button class="save-button" style="display:none;">Save</button>
+                            <button class="cancel-button" style="display:none;">Cancel</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <div class="nav-buttons">
+            <button class="result-count-button">Results: 0</button>
+            <button class="prev-record-button">Previous Record</button>
+            <button class="next-record-button">Next Record</button>
+            <button class="close-button" onclick="window.location.href='guest_home.html'">Close</button>
+        </div>
     </div>
+    <script>
+        document.querySelectorAll('.edit-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                row.querySelectorAll('td[contenteditable]').forEach(cell => {
+                    cell.setAttribute('contenteditable', 'true');
+                });
+                row.querySelector('.edit-button').style.display = 'none';
+                row.querySelector('.save-button').style.display = 'inline';
+                row.querySelector('.cancel-button').style.display = 'inline';
+            });
+        });
+
+        document.querySelectorAll('.save-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                row.querySelectorAll('td[contenteditable]').forEach(cell => {
+                    cell.setAttribute('contenteditable', 'false');
+                });
+                row.querySelector('.edit-button').style.display = 'inline';
+                row.querySelector('.save-button').style.display = 'none';
+                row.querySelector('.cancel-button').style.display = 'none';
+                // Add the save logic here
+                alert('Changes saved!');
+            });
+        });
+
+        document.querySelectorAll('.cancel-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                row.querySelectorAll('td[contenteditable]').forEach(cell => {
+                    cell.setAttribute('contenteditable', 'false');
+                });
+                row.querySelector('.edit-button').style.display = 'inline';
+                row.querySelector('.save-button').style.display = 'none';
+                row.querySelector('.cancel-button').style.display = 'none';
+                // Add the cancel logic here
+                alert('Changes canceled!');
+            });
+        });
+    </script>
 </body>
 </html>

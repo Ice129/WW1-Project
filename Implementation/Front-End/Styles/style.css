@@ -384,3 +384,40 @@ th {
 .small-button:hover {
     background-color: #600010;
 }
+
+.search-button, .clear-button {
+    padding: 5px 10px;
+    background-color: #800020;
+    color: white;
+    border: 1px solid #800020;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.search-button:hover, .clear-button:hover {
+    background-color: #600010;
+}
+
+.nav-buttons {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.nav-buttons button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #800020;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-buttons button:hover {
+    background-color: #600010;
+}
