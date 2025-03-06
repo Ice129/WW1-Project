@@ -133,34 +133,40 @@ def download_xlsx():
 
 # Assigned to: Edward
 #This function should search for a name
-def  forename_S(desired_DB,forname_S):
-    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE forename = %(forename)s",
-                   {"forename": forname_S,"desired_DB": desired_DB })
+def forename_S(desired_DB,forname_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forname_S}%'"
+    cursor.execute(sql_fixed)
+    return cursor.fetchall()
 
-def  surname_S(desired_DB,surname_S):
-    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE surname = %(surname)s",
-                   {"surname": surname_S,"desired_DB": desired_DB })
+def surname_S(desired_DB,surname_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE surname LIKE '%{surname_S}%'"
+    cursor.execute(sql_fixed)
+    return cursor.fetchall()
 
-def  regiment_S(desired_DB,regiment_S):
-    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE regiment = %(regiment)s",
-                   {"regiment": regiment_S,"desired_DB": desired_DB })
+def regiment_S(desired_DB,regiment_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE regiment LIKE '%{regiment_S}%'"
+    cursor.execute(sql_fixed)
+    return cursor.fetchall()
+    
+def forename_surname_S(desired_DB,forname_S,surname_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forname_S}%' AND surname LIKE '%{surname_S}%'"
+    cursor.execute(sql_fixed)
+    return cursor.fetchall()
 
-def  forename_surname_S(desired_DB,forname_S,surname_S):
-    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE forename = %(forename)s and surname = %(surname)s ",
-                   {"forename": forname_S,"surname": surname_S, "desired_DB": desired_DB })
+def forename_regiment_S(desired_DB,forname_S,regiment_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forname_S}%' AND regiment LIKE '%{regiment_S}%'"
+    cursor.execute(sql_fixed)
+    return cursor.fetchall()
 
-def  forename_regiment_S(desired_DB,forname_S,regiment_S):
-    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE forename = %(forename)s and regiment = %(regiment)s ",
-                   {"forename": forname_S,"regiment": regiment_S, "desired_DB": desired_DB })
-
-def  surname_regiment_S(desired_DB,surname_S,regiment_S):
-    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE surname = %(surname)s and regiment = %(regiment)s ",
-                   {"surname": surname_S,"regiment": regiment_S, "desired_DB": desired_DB })
-
+def surname_regiment_S(desired_DB,surname_S,regiment_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE surname LIKE '%{surname_S}%' AND regiment LIKE '%{regiment_S}%'"
+    cursor.execute(sql_fixed)
+    return cursor.fetchall()
 
 def forename_surname_regiment_S(desired_DB,forname_S,surname_S,regiment_S):
-    cursor.execute("SELECT desired_DB = %(desired_DB)s FROM users WHERE forename = %(forename)s and surname = %(surname)s and %(regiment)s ",
-                   {"forename": forname_S, "surname": surname_S,"regiment": regiment_S , "desired_DB": desired_DB})
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forname_S}%' AND surname LIKE '%{surname_S}%' AND regiment LIKE '%{regiment_S}%'"
+    cursor.execute(sql_fixed)
+    return cursor.fetchall()
 
 
 # Assigned to: Hope

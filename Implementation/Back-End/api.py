@@ -66,12 +66,35 @@ async def change_password(newPasswordHash: str, authToken: str):
 async def delete_row(databaseName: str, filterObject: dict, authToken: str):
     return {"status": "success", "code": 200}
 
-# Assigned to: ???
+# Assigned to: Charlie
 # Should return a JSON object containing the data that matches the filter object
 # JSON object should be nested under the variable name "data" in the returned JSON object
-@app.get("/get_data")
-async def get_data(databaseName: str, filterObject: dict):
-    return {"status": "success", "code": 200}
+from backend import forename_S, surname_S, regiment_S, forename_surname_S, forename_regiment_S, surname_regiment_S, forename_surname_regiment_S
+@app.post("/get_data")
+async def get_data(databaseName: str, forename=None, surname=None, regiment=None):
+    if forename == "None":
+        forename = None
+    if surname == "None":
+        surname = None
+    if regiment == "None":
+        regiment = None
+    
+    if forename and surname and regiment:
+        return {"status": "success", "code": 200, "data": forename_surname_regiment_S(databaseName, forename, surname, regiment)}
+    elif forename and surname:
+        return {"status": "success", "code": 200, "data": forename_surname_S(databaseName, forename, surname)}
+    elif forename and regiment:
+        return {"status": "success", "code": 200, "data": forename_regiment_S(databaseName, forename, regiment)}
+    elif surname and regiment:
+        return {"status": "success", "code": 200, "data": surname_regiment_S(databaseName, surname, regiment)}
+    elif forename:
+        return {"status": "success", "code": 200, "data": forename_S(databaseName, forename)}
+    elif surname:
+        return {"status": "success", "code": 200, "data": surname_S(databaseName, surname)}
+    elif regiment:
+        return {"status": "success", "code": 200, "data": regiment_S(databaseName, regiment)}
+    else:
+        return {"status": "error", "code": 400, "message": "No filter object provided"}
 
 # Assigned to: ???
 # Should return a randomly generated Base64 token (string) of length 256 to be used in further functions as an input
