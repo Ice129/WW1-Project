@@ -1,0 +1,276 @@
+body {
+    background-color:#f4e8ad;
+    margin:0;
+    padding:0;
+    position:relative;
+}
+
+.page-container {
+    position: relative;
+    height: 100vh;
+}
+
+/*logo design*/
+header {
+    position:fixed;
+    top: 0;
+    left: 0;
+    padding: 40px;
+}
+
+.logo {
+    width:300px;
+    height:auto;
+}
+
+.design_line_under_header{
+    position:fixed;
+    width:100%;
+    top:22%;
+    background-color:#c8abcf;
+    border-bottom: 5px solid #c8abcf;
+}
+
+
+/*text design*/
+h1 {
+    text-align: center;
+    font-size: 45px;
+    padding:47px;
+    text-decoration:underline;
+    padding-left:300px;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+  }
+
+h2 {
+text-align:center;
+font-size: 45px;
+font-family: 'kameron', Helvetica, Arial, sans-serif;
+color:black;
+}
+
+h3 {
+    text-align: center;
+    font-size: 60px;
+    padding:20px;
+    text-decoration:underline;
+    padding-left:90px;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+}
+
+h4 {
+
+    font-size: 60px;
+    text-decoration:underline;
+    padding:20px;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+}
+
+
+
+p {
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+    color:black;
+}
+
+/*class boxes design*/
+
+.contact_box {
+    position: fixed;
+    bottom: 2%;
+    left: 2%;
+    width: 15%;
+    padding: 20px;
+    background-color: #ded0e1;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+
+.about_us_box{
+    position:fixed;
+    bottom:30%;
+    left:2%;
+    padding:2%;
+    width:25%;
+    border-radius:15px;
+    background-color:#c8abcf;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1)
+}
+
+.guest_box{
+    position:fixed;
+    left:35%;
+    bottom:15%;
+    width:25%;
+    background-color:#8b2876;
+    height:40%;
+    border-radius: 15px;
+    background-color:#8b2876;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #c86ca1;
+    padding:2%;
+}
+
+.admin_box{
+    position:fixed;
+    left:65%;
+    bottom:15%;
+    width:25%;
+    height:40%;
+    border-radius: 15px;
+    background-color:#8b2876;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #c86ca1;
+    padding:2%;
+    }
+
+ /*admin login page*/
+
+.login_box {
+    position: absolute;
+    top: 350%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the box */
+    width: 50%;
+    height: 200%;
+    border-radius: 15px;
+    background-color: #e4bbe7;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #e4bbe6;
+    padding: 2%;
+}
+
+.login_box label {
+    position: absolute;
+    font-size:35px;
+    top:30%;
+    left:20%;
+    color: black;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+}
+
+.login_box input {
+    position: absolute;
+    top:28%;
+    left:48%;
+    width:30%;
+    height:15%;
+    border-radius:15px;
+}
+
+.login_box button {
+    position: absolute;
+    top:65%;
+    left:35%;
+    width:25%;
+    height:20%;
+    border-radius:15px;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+    font-size:25px;
+    color:black;
+    background-color: #e4bbe7;
+
+}
+
+.login_box button:hover {
+    background-color: #bd9ac0;
+}
+
+.back_admin button{
+    position: absolute;
+    top:160%;
+    left:3%;
+    width:8%;
+    height:35%;
+    border-radius:15px;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+    font-size:25px;
+    color:black;
+    background-color: #e4bbe7;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #e4bbe6;
+}
+
+.back_admin button:hover {
+    background-color: #bd9ac0;
+}
+
+/*admin dashboard page*/
+
+.data_mang {
+position:fixed;
+    left:23%;
+    bottom:15%;
+    width:25%;
+    height:40%;
+    border-radius: 15px;
+    background-color:#8b2876;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #c86ca1;
+    padding:2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+}
+
+.exit_full {
+position:fixed;
+    left:55%;
+    bottom:42%;
+    width:25%;
+    height:15%;
+    border-radius: 15px;
+    background-color:#8b2876;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #c86ca1;
+    padding:2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+}
+
+.term_program {
+position:fixed;
+    left:55%;
+    bottom:13%;
+    width:25%;
+    height:16%;
+    border-radius: 15px;
+    background-color:#8b2876;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #c86ca1;
+    padding:2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+}
+
+.logout_home-admin {
+position:fixed;
+    left:2%;
+    top:25%;
+    width:10%;
+    height:5%;
+    border-radius: 15px;
+    background-color:#8b2876;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #c86ca1;
+    padding:2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+}
+
+
+
+
+
