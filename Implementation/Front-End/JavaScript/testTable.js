@@ -1,11 +1,14 @@
+//This file is used alongside Test_Database_Table to test javascript to call info from database
+//Wait for DOM to be fully loaded before executing further code
 document.addEventListener("DOMContentLoaded", () => {
+  //Define search parameters for database query
     const postData = {
       databaseName: "rollofhonour",
-      surname: "",
       forename: "",
+      surname: "",
       regiment: ""
     };
-  
+  //Make API request to fetch the data from SQL server
     fetch("http://localhost:8000/get_data", {
       method: "POST",
       headers: {
@@ -13,16 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       body: JSON.stringify(postData)
     })
+    //Parse, then process data returned from server
     .then(response => response.json())
     .then(data => {
       const tbody = document.querySelector('#testTable tbody');
-      tbody.innerHTML = ''; // Clear the loading row
-  
+      tbody.innerHTML = '';
+      //Incase no data is returned
       if (data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4">No records found.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="22">No records found.</td></tr>';
         return;
       }
-  
+      //Iterate through each data item and creates table rows
       data.forEach(item => {
         const row = `<tr>
           <td>${item.surname}</td>
@@ -48,13 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>${item.cemetery_memorial_country}</td>
           <td>${item.additional_cwgc_info}</td>
         </tr>`;
+        //Adds the new row to the table
         tbody.insertAdjacentHTML('beforeend', row);
       });
     })
+    //Handles errors the may occur during the fetch operation
     .catch(error => {
       console.error("Error fetching data:", error);
       const tbody = document.querySelector('#testTable tbody');
-      tbody.innerHTML = '<tr><td colspan="4">Error loading data.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="22">Error loading data.</td></tr>';
     });
   });
   
