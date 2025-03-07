@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bradford WWI Group - Biographies</title>
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="photos/ww1 logo.png" alt="website logo" class="logo">
+    </header>
+    <h1>WW1: Bradford and Surrounding township's database.</h1>
+    <div class="design_line_under_header"></div>
+
+    <div class="sidebar-container">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="guest_home.html">Home</a>
+                </li>
+                <li>
+                    <a href="townships.html">Bradford and surrounding townships</a>
+                </li>
+                <li>
+                    <a href="memorials.html">Names on Bradford Memorials</a>
+                </li>
+                <li>
+                    <a href="buried.html">Burried in Bradford</a>
+                </li>
+                <li>
+                    <a href="newspaper.html">Newspaper References</a>
+                </li>
+                <li class="active">
+                    <a href="biographies.html">Biographies</a>
+                </li>
+                <li>
+                    <a href="index.html">Log Out</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="database-content">
+            <div class="search-section">
+                <form action="newspaper.html" method="GET">
+                    <label for="surname">Surname:</label>
+                    <input type="text" id="surname" name="surname" class="search-input">
+
+                    <label for="forename">Forename:</label>
+                    <input type="text" id="forename" name="forename" class="search-input">
+                    
+                    <button type="submit" class="search-button">Search</button>
+                    <button type="reset" class="clear-button">Clear</button>
+                </form>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Surname, Forename, Address, Regiment, Rank</th>
+                        <th>Newspaper Name, Newspaper Date, Page/Col, Contains Photo</th>
+                        <th>Article, Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="result-count-button">Results: 0</button>
+            <button class="prev-record-button">Previous Record</button>
+            <button class="next-record-button">Next Record</button>
+            <button class="close-button" onclick="window.location.href='guest_home.html'">Close</button>
+        </div>
+    </div>
+</body>
+</html>
