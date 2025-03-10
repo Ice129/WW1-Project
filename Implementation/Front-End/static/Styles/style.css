@@ -30,9 +30,9 @@ header {
 .design_line_under_header{
     position:fixed;
     width:100%;
-    top:22%;
-    background-color:#c8abcf;
-    border-bottom: 5px solid #c8abcf;
+    top:21%;
+    background-color:#872e3c;
+    border-bottom: 5px solid #9d3042;
 }
 
 
@@ -85,7 +85,7 @@ p {
     left: 2%;
     width: 15%;
     padding: 20px;
-    background-color: #ded0e1;
+    background-color:#800020;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
@@ -98,7 +98,7 @@ p {
     padding:2%;
     width:25%;
     border-radius:15px;
-    background-color:#c8abcf;
+    background-color:#800020;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.1)
 }
 
@@ -107,12 +107,11 @@ p {
     left:35%;
     bottom:15%;
     width:25%;
-    background-color:#8b2876;
     height:40%;
     border-radius: 15px;
-    background-color:#8b2876;
+    background-color:#800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #c86ca1;
+    border: 2px solid #9d3042;
     padding:2%;
 }
 
@@ -123,9 +122,9 @@ p {
     width:25%;
     height:40%;
     border-radius: 15px;
-    background-color:#8b2876;
+    background-color:#800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #c86ca1;
+    border: 2px solid #9d3042;
     padding:2%;
     }
 
@@ -139,9 +138,9 @@ p {
     width: 20%;
     height: auto;
     border-radius: 15px;
-    background-color: #e4bbe7;
+    background-color: #800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #e4bbe6;
+    border: 2px solid #9d3042;
     padding: 2%;
     margin-top: 250px;
 }
@@ -166,12 +165,12 @@ p {
     font-family: 'kameron', Helvetica, Arial, sans-serif;
     font-size:25px;
     color:black;
-    background-color: #e4bbe7;
+    background-color: #800020;
     margin-top: 20px;
 }
 
 .login_box button:hover {
-    background-color: #bd9ac0;
+    background-color: #800020;
 }
 .back_admin{
     position: relative;
@@ -185,9 +184,9 @@ p {
     font-family: 'kameron', Helvetica, Arial, sans-serif;
     font-size:25px;
     color:black;
-    background-color: #e4bbe7;
+    background-color: #800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #e4bbe6;
+    border: 2px solid #9d3042;
     margin-top: 20px;
 }
 
@@ -204,9 +203,9 @@ position:fixed;
     width:25%;
     height:40%;
     border-radius: 15px;
-    background-color:#8b2876;
+    background-color:#800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #c86ca1;
+    border: 2px solid #9d3042;
     padding:2%;
     display: flex;
     justify-content: center;
@@ -222,9 +221,9 @@ position:fixed;
     width:25%;
     height:15%;
     border-radius: 15px;
-    background-color:#8b2876;
+    background-color:#800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #c86ca1;
+    border: 2px solid #9d3042;
     padding:2%;
     display: flex;
     justify-content: center;
@@ -240,9 +239,9 @@ position:fixed;
     width:25%;
     height:16%;
     border-radius: 15px;
-    background-color:#8b2876;
+    background-color:#800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #c86ca1;
+    border: 2px solid #9d3042;
     padding:2%;
     display: flex;
     justify-content: center;
@@ -258,9 +257,9 @@ position:fixed;
     width:10%;
     height:5%;
     border-radius: 15px;
-    background-color:#8b2876;
+    background-color:#800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #c86ca1;
+    border: 2px solid #9d3042;
     padding:2%;
     display: flex;
     justify-content: center;
@@ -281,6 +280,7 @@ position:fixed;
     top: 205px;
     left: 0;
     width: 200px;
+    display:flex;
     height: 100%;
     background-color: #800020;
     color: white;
@@ -296,8 +296,13 @@ position:fixed;
 }
 
 .sidebar li {
-    padding: 15px;
+    padding: 24px;
     border-bottom: 1px solid #600010;
+}
+
+.sidebar li a {
+padding:15px 15px;
+display:block;
 }
 
 .sidebar li.active {
@@ -307,12 +312,16 @@ position:fixed;
 .sidebar a {
     color: white;
     text-decoration: none;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-size: 16px;
+    width: 90%;
 }
 
 .database-content {
     flex-grow: 1;
-    padding: 20px;
+    padding: 10px;
 }
 
 .search-section {

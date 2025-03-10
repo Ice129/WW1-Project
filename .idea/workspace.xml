@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="search functions for a few of the searchable terms">
+      <change beforePath="$PROJECT_DIR$/.idea/WW1-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WW1-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Back-End/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/backend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/Test_database_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/Test_database_table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/biographies.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/biographies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/buried.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/buried.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/guest_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/guest_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/memorials.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/memorials.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/newspaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/newspaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/static/Styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/static/Styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/townships.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/townships.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="download-DB-corrections" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,14 +67,41 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.api.executor": "Run",
     "Python.backend.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Search-functions",
+    "git-widget-placeholder": "hope-design-update",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Edward Quail/PycharmProjects/WW1-Project"
+    "last_opened_file_path": "C:/Users/Edward Quail/PycharmProjects/WW1-Project",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="api" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="WW1-Project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Implementation/Back-End" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Implementation/Back-End/api.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
