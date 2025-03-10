@@ -1,4 +1,4 @@
-function fetchData(forename, surname, regiment, databaseName) {
+export function fetchData(forename, surname, regiment, databaseName) {
     const url = '/get_data';
     const body = {
         databaseName: databaseName,
@@ -25,6 +25,7 @@ function fetchData(forename, surname, regiment, databaseName) {
     })
     .then(data => {
         console.log('Success:', data);
+        return data;
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
