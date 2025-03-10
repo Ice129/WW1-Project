@@ -125,38 +125,38 @@ def DLBuriedInBradford():
 
 # Assigned to: Edward
 #This function should search for a name
-def forename_S(desired_DB,forname_S):
-    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forname_S}%'"
+def forename_S(desired_DB, forename_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forename_S}%'"
     cursor.execute(sql_fixed)
     return cursor.fetchall()
 
-def surname_S(desired_DB,surname_S):
+def surname_S(desired_DB, surname_S):
     sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE surname LIKE '%{surname_S}%'"
     cursor.execute(sql_fixed)
     return cursor.fetchall()
 
-def regiment_S(desired_DB,regiment_S):
+def regiment_S(desired_DB, regiment_S):
     sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE regiment LIKE '%{regiment_S}%'"
     cursor.execute(sql_fixed)
     return cursor.fetchall()
-    
-def forename_surname_S(desired_DB,forname_S,surname_S):
-    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forname_S}%' AND surname LIKE '%{surname_S}%'"
+
+def forename_surname_S(desired_DB, forename_S, surname_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forename_S}%' AND surname LIKE '%{surname_S}%'"
     cursor.execute(sql_fixed)
     return cursor.fetchall()
 
-def forename_regiment_S(desired_DB,forname_S,regiment_S):
-    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forname_S}%' AND regiment LIKE '%{regiment_S}%'"
+def forename_regiment_S(desired_DB, forename_S, regiment_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forename_S}%' AND regiment LIKE '%{regiment_S}%'"
     cursor.execute(sql_fixed)
     return cursor.fetchall()
 
-def surname_regiment_S(desired_DB,surname_S,regiment_S):
+def surname_regiment_S(desired_DB, surname_S, regiment_S):
     sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE surname LIKE '%{surname_S}%' AND regiment LIKE '%{regiment_S}%'"
     cursor.execute(sql_fixed)
     return cursor.fetchall()
 
-def forename_surname_regiment_S(desired_DB,forname_S,surname_S,regiment_S):
-    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forname_S}%' AND surname LIKE '%{surname_S}%' AND regiment LIKE '%{regiment_S}%'"
+def forename_surname_regiment_S(desired_DB, forename_S, surname_S, regiment_S):
+    sql_fixed = f"SELECT * FROM `{desired_DB}` WHERE forename LIKE '%{forename_S}%' AND surname LIKE '%{surname_S}%' AND regiment LIKE '%{regiment_S}%'"
     cursor.execute(sql_fixed)
     return cursor.fetchall()
 

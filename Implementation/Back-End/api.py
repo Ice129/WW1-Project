@@ -6,7 +6,7 @@
 
 import sys
 from fastapi import FastAPI, Response
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 import uvicorn
 import subprocess
 from fastapi.middleware.cors import CORSMiddleware
@@ -35,9 +35,9 @@ class IndividualUpload(BaseModel):
 
 class GetDataBody(BaseModel):
     databaseName: str
-    forename: str = None
-    surname: str = None
-    regiment: str = None
+    forename: str = ""
+    surname: str = ""
+    regiment: str = ""
 
 ##################################################################################################
 #
@@ -135,7 +135,12 @@ async def delete_row(databaseName: str, filterObject: dict, authToken: str):
 # Assigned to: Charlie
 # Should return a JSON object containing the data that matches the filter object
 # JSON object should be nested under the variable name "data" in the returned JSON object
-from backend import forename_S, surname_S, regiment_S, forename_surname_S, forename_regiment_S, surname_regiment_S, forename_surname_regiment_S
+import logging
+from backend import cursor, forename_S, surname_S, regiment_S, forename_surname_S, forename_regiment_S, surname_regiment_S, forename_surname_regiment_S
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+
 @app.post("/get_data")
 async def get_data(obj: GetDataBody):
     databaseName = obj.databaseName
@@ -143,22 +148,38 @@ async def get_data(obj: GetDataBody):
     surname = obj.surname
     regiment = obj.regiment
     
-    if forename and surname and regiment:
-        return {"status": "success", "code": 200, "data": forename_surname_regiment_S(databaseName, forename, surname, regiment)}
-    elif forename and surname:
-        return {"status": "success", "code": 200, "data": forename_surname_S(databaseName, forename, surname)}
-    elif forename and regiment:
-        return {"status": "success", "code": 200, "data": forename_regiment_S(databaseName, forename, regiment)}
-    elif surname and regiment:
-        return {"status": "success", "code": 200, "data": surname_regiment_S(databaseName, surname, regiment)}
-    elif forename:
-        return {"status": "success", "code": 200, "data": forename_S(databaseName, forename)}
-    elif surname:
-        return {"status": "success", "code": 200, "data": surname_S(databaseName, surname)}
-    elif regiment:
-        return {"status": "success", "code": 200, "data": regiment_S(databaseName, regiment)}
-    else:
-        return {"status": "error", "code": 400, "message": "No filter object provided"}
+    try:
+        logging.info(f"Request received: {obj}")  # Log the request object
+        if forename and surname and regiment:
+            data = forename_surname_regiment_S(databaseName, forename, surname, regiment)
+        elif forename and surname:
+            data = forename_surname_S(databaseName, forename, surname)
+        elif forename and regiment:
+            data = forename_regiment_S(databaseName, forename, regiment)
+        elif surname and regiment:
+            data = surname_regiment_S(databaseName, surname, regiment)
+        elif forename:
+            data = forename_S(databaseName, forename)
+        elif surname:
+            data = surname_S(databaseName, surname)
+        elif regiment:
+            data = regiment_S(databaseName, regiment)
+        else:
+            # If no filter object is provided, return all rows
+            cursor.execute(f"SELECT * FROM `{databaseName}`")
+            data = cursor.fetchall()
+        
+        # Convert the data to a list of dictionaries with the correct keys
+        columns = [column[0] for column in cursor.description]
+        data = [dict(zip(columns, row)) for row in data]
+        
+        return {"status": "success", "code": 200, "data": data}
+    except ValidationError as e:
+        logging.error(f"Validation error: {e.json()}")
+        return {"status": "error", "code": 422, "message": e.errors()}
+    except Exception as e:
+        logging.error(f"Error fetching data: {e}")
+        return {"status": "error", "code": 500, "message": str(e)}
 
 # Assigned to: ???
 # Should return a randomly generated Base64 token (string) of length 256 to be used in further functions as an input

@@ -29,7 +29,7 @@
                     <a href="memorials">Names on Bradford Memorials</a>
                 </li>
                 <li>
-                    <a href="buried">Burried in Bradford</a>
+                    <a href="buried">Buried in Bradford</a>
                 </li>
                 <li>
                     <a href="newspaper">Newspaper References</a>
@@ -45,7 +45,7 @@
 
         <div class="database-content">
             <div class="search-section">
-                <form action="biographies" method="GET">
+                <form id="searchForm">
                     <label for="surname">Surname:</label>
                     <input type="text" id="surname" name="surname" class="search-input">
 
@@ -67,13 +67,9 @@
                         <th>Biography attachment</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="biographiesTableBody">
                     <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
+                        <td colspan="5">No data available</td>
                     </tr>
                 </tbody>
             </table>
@@ -86,5 +82,73 @@
             <button class="close-button" onclick="window.location.href='guest_home'">Close</button>
         </div>
     </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetchData();
+        });
+
+        function fetchData() {
+            const surname = document.getElementById('surname').value || "";
+            const forename = document.getElementById('forename').value || "";
+
+            const requestBody = {
+                databaseName: 'biographyspreadsheet',
+                surname: surname,
+                forename: forename
+            };
+
+            console.log('Request Body:', requestBody); // Log the request body
+
+            fetch('/get_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        console.error('Validation Error:', err);
+                        throw new Error('Validation Error');
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data fetched:', data); // Log the fetched data
+                const tableBody = document.getElementById('biographiesTableBody');
+                tableBody.innerHTML = '';
+
+                if (!data.data || data.data.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="5">No data available</td></tr>';
+                } else {
+                    data.data.forEach(row => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${row.surname}</td>
+                            <td>${row.forename}</td>
+                            <td>${row.regiment}</td>
+                            <td>${row.service_number}</td>
+                            <td>${row.biography_attachment}</td>
+                        `;
+                        tableBody.appendChild(tr);
+                    });
+                }
+
+                document.querySelector('.result-count-button').textContent = `Results: ${data.data ? data.data.length : 0}`;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+        }
+
+        // Fetch all rows on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchData();
+        });
+    </script>
 </body>
 </html>
