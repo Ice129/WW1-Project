@@ -86,6 +86,26 @@ async def admin_login():
 async def database_view():
     return FileResponse("../Front-End/database_view.html")
 
+@app.get("/biographies")
+async def database_view():
+    return FileResponse("../Front-End/biographies.html")
+
+@app.get("/buried")
+async def database_view():
+    return FileResponse("../Front-End/buried.html")
+
+@app.get("/memorials")
+async def database_view():
+    return FileResponse("../Front-End/memorials.html")
+
+@app.get("/newspaper")
+async def database_view():
+    return FileResponse("../Front-End/newspaper.html")
+
+@app.get("/townships")
+async def database_view():
+    return FileResponse("../Front-End/townships.html")
+
 # Assigned to: ???
 from backend import load_xlsx, insert_to_sql
 @app.post("/upload_csv")
