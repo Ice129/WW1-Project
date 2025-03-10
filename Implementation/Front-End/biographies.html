@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,64 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap" rel="stylesheet">
+
+    <style>
+        /* PDF Modal Styles */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    
+        .pdf-modal-content {
+            position: relative;
+            margin: 2% auto;
+            width: 90%;
+            height: 90%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+    
+        .pdf-close {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff0000;
+            cursor: pointer;
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px 12px;
+            border-radius: 5px;
+        }
+    
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    
+        .view-pdf-btn {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    
+        .view-pdf-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <img src="static/photos/ww1 logo.png" alt="website logo" class="logo">
@@ -51,12 +109,12 @@
 
                     <label for="forename">Forename:</label>
                     <input type="text" id="forename" name="forename" class="search-input">
-                    
+
                     <button type="submit" class="search-button">Search</button>
                     <button type="reset" class="clear-button">Clear</button>
                 </form>
             </div>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -83,8 +141,16 @@
         </div>
     </div>
 
+    <!-- PDF Viewer Modal -->
+    <div id="pdfModal" class="pdf-modal">
+        <div class="pdf-modal-content">
+            <span class="pdf-close">&times;</span> <!-- Close button with X -->
+            <iframe id="pdfViewer" class="pdf-viewer" title="Biography PDF Document Viewer"></iframe>
+        </div>
+    </div>
+
     <script>
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
+        document.getElementById('searchForm').addEventListener('submit', function (event) {
             event.preventDefault();
             fetchData();
         });
@@ -125,47 +191,77 @@
                 },
                 body: JSON.stringify(requestBody)
             })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(err => {
-                        console.error('Validation Error:', err);
-                        throw new Error('Validation Error');
-                    });
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Data fetched:', data); // Log the fetched data
-                const tableBody = document.getElementById('biographiesTableBody');
-                tableBody.innerHTML = '';
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => {
+                            console.error('Validation Error:', err);
+                            throw new Error('Validation Error');
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data fetched:', data); // Log the fetched data
+                    const tableBody = document.getElementById('biographiesTableBody');
+                    tableBody.innerHTML = '';
 
-                if (!data.data || data.data.length === 0) {
-                    tableBody.innerHTML = '<tr><td colspan="5">No data available</td></tr>';
-                } else {
-                    data.data.slice(begin_pointer, end_pointer).forEach(row => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
+                    if (!data.data || data.data.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="5">No data available</td></tr>';
+                    } else {
+                        data.data.forEach(row => {
+                            const tr = document.createElement('tr');
+
+                            let pdfbutton;
+                            if (row.biography_attachment) { // If there is a biography attachment
+                                pdfbutton = `<button class="pdf-button" data-filename="${row.biography_attachment}">View PDF</button>`;
+                            } else {
+                                pdfbutton = 'No attachment';
+                            }
+
+                            tr.innerHTML = `
                             <td>${row.surname}</td>
                             <td>${row.forename}</td>
                             <td>${row.regiment}</td>
                             <td>${row.service_number}</td>
-                            <td>${row.biography_attachment}</td>
+                            <td>${pdfbutton}</td>
                         `;
-                        tableBody.appendChild(tr);
-                    });
-                }
+                            tableBody.appendChild(tr);
+                        });
 
-                document.querySelector('.result-count-button').textContent = `Results: ${data.data ? data.data.length : 0}`;
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+                        document.querySelectorAll('.pdf-button').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const filename = this.getAttribute('data-filename');
+                                openPdfModal(filename);
+                            });
+                        });
+                    }
+
+                    document.querySelector('.result-count-button').textContent = `Results: ${data.data ? data.data.length : 0}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
         }
 
         // Fetch all rows on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             fetchData();
         });
+
+        function openPdfModal(filename) { // modal is a pop-up window
+            const modal = document.getElementById('pdfModal');
+            const pdfViewer = document.getElementById('pdfViewer');
+
+            pdfViewer.src = `/static/biography files/${filename}#toolbar=0`; // set the source of the PDF viewer, and hide the toolbar
+            modal.style.display = 'block'; // Display the modal window
+        };
+
+        document.querySelector('.pdf-close').addEventListener('click', function () {
+            document.getElementById('pdfModal').style.display = 'none'; // Hide the modal window when the close button is clicked
+            document.getElementById('pdfViewer').src = ''; // Clear the PDF viewer source
+        });
+            
     </script>
 </body>
+
 </html>
