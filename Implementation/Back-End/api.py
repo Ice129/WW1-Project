@@ -194,11 +194,11 @@ class DownloadCSV(BaseModel):
     databaseName: str = ""
     authToken: str = ""
 
-@app.get("/download_csv")
+@app.post("/download_csv")
 async def download_csv(obj: DownloadCSV):
     databaseName = obj.databaseName
     authToken = obj.authToken
-async def download_csv(databaseName: str,authToken: str):
+
     print(databaseName)
     if databaseName == "newspaperreferences2025":
         DLNewspaperReferences2025()
