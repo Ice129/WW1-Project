@@ -190,8 +190,16 @@ async def auth_admin(passwordHash: str):
 
 # Assigned to: Edward
 from backend import DLBiographySpreadsheet,DLBradfordMemorials,DLBuriedInBradford,DLRollOfHonour,DLNewspaperReferences2025
+class DownloadCSV(BaseModel):
+    databaseName: str = ""
+    authToken: str = ""
+
 @app.get("/download_csv")
+async def download_csv(obj: DownloadCSV):
+    databaseName = obj.databaseName
+    authToken = obj.authToken
 async def download_csv(databaseName: str,authToken: str):
+    print(databaseName)
     if databaseName == "newspaperreferences2025":
         DLNewspaperReferences2025()
     elif databaseName == "rollofhonour":

@@ -125,7 +125,7 @@
         function DownloadSelectedTable(){
             const url = '/download_csv';
             const body = {
-            databaseName: getElementById(databaseSelect).value,
+            databaseName: document.getElementById('databaseSelect'),
             authToken: "A_I_HATE_JS_JUST_END_MY-SUFFERING"
             };
             fetch(url, {
