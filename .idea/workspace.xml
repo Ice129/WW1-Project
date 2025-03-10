@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="search functions for a few of the searchable terms">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Back-End/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/backend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Back-End/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/database_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/database_view.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="download-DB-corrections" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,22 +32,22 @@
     &quot;state&quot;: &quot;OPEN&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Ice129/WW1-Project.git&quot;,
-    &quot;accountId&quot;: &quot;f885bfc2-dfcb-42bf-84ba-742a8b7885db&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Ice129/WW1-Project.git",
+    "accountId": "4c881fe1-77ad-4225-a93e-f43e1df46050"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;Ice129&quot;,
-    &quot;repository&quot;: &quot;WW1-Project&quot;
+    "owner": "Ice129",
+    "repository": "WW1-Project"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -58,10 +59,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.api.executor": "Run",
     "Python.backend.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Search-functions",
+    "git-widget-placeholder": "searchisfun",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Edward Quail/PycharmProjects/WW1-Project"
   }
