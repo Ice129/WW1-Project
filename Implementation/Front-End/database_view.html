@@ -17,7 +17,8 @@
     <div class="design_line_under_header"></div>
     <div class="data_managment_buttons">
         <button class="small button">Upload Data</button>
-        <button class="small button">Download Data</button>
+
+        <button class="small button" onclick="DownloadSelectedTable()">Download Data</button>
     </div>
 
     <div class="sidebar-container">
@@ -120,7 +121,30 @@
                 fetchData();
             }
         });
+        function DownloadSelectedTable(){
+            const url = '/download_csv';
+            const body = {
+            databaseName: getElementById(databaseSelect).value,
+            authToken: "A_I_HATE_JS_JUST_END_MY-SUFFERING"
+            };
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'  // Ensure the content type is JSON
+                },
+                body: JSON.stringify(body)  // Convert the body to a JSON string
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => {
+                            console.error('Validation Error:', err);
+                            throw new Error('Validation Error');
+                        });
+                    }
+                    return response.json();
+                });
 
+        }
         function updateTableHeaders(databaseName) {
             const tableHeadRow = document.getElementById('tableHeadRow');
             tableHeadRow.innerHTML = '';
