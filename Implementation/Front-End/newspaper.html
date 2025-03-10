@@ -88,18 +88,18 @@
         });
 
         let begin_pointer = 0;
-        let end_pointer = 8;
+        let end_pointer = 1;
 
         document.querySelector('.next-record-button').addEventListener('click', function() {
-            begin_pointer += 8;
-            end_pointer += 8;
+            begin_pointer += 1;
+            end_pointer += 1;
             fetchData();
         });
 
         document.querySelector('.prev-record-button').addEventListener('click', function() {
             if (begin_pointer > 0) {
-                begin_pointer -= 8;
-                end_pointer -= 8;
+                begin_pointer -= 1;
+                end_pointer -= 1;
                 fetchData();
             }
         });
