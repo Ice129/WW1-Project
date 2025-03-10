@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="/static/Styles/style.css">
 </head>
 <body>
-    
+    <div class="upload button">
+    <!-- Form for file upload -->
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <!-- Hidden file input -->
+        <input type="file" id="file" name="file" class="upload-input" style="display: none;" onchange="this.form.submit();">
+
+        <!-- Trigger the file input when the "Upload" button is clicked -->
+        <label for="file" class="upload-button">Select file to upload</label>
+
+        <!-- Submit button (optional) -->
+        <button type="submit" class="upload-button" style="display: none;">Upload</button>
+    </form>
+</div>
+
 </body>
 </html>
