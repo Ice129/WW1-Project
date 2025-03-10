@@ -155,6 +155,23 @@
             fetchData();
         });
 
+        let begin_pointer = 0;
+        let end_pointer = 8;
+
+        document.querySelector('.next-record-button').addEventListener('click', function() {
+            begin_pointer += 8;
+            end_pointer += 8;
+            fetchData();
+        });
+
+        document.querySelector('.prev-record-button').addEventListener('click', function() {
+            if (begin_pointer > 0) {
+                begin_pointer -= 8;
+                end_pointer -= 8;
+                fetchData();
+            }
+        });
+
         function fetchData() {
             const surname = document.getElementById('surname').value || "";
             const forename = document.getElementById('forename').value || "";
