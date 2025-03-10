@@ -1,4 +1,4 @@
-function fetchData(forename, surname, regiment, databaseName) {
+export function fetchData(forename, surname, regiment, databaseName) {
     const url = '/get_data';
     const body = {
         databaseName: databaseName,
