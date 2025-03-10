@@ -104,6 +104,23 @@
             rollofhonour: ['Forename', 'Surname', 'Address', 'Electoral Ward', 'Town', 'Rank', 'Regiment', 'Unit', 'Company', 'Age', 'Service No.', 'Other Regiment', 'Other Service No.', 'Medals', 'Enlistment Date', 'Discharge Date', 'Death Date', 'Misc Info', 'Cemetery/Memorial', 'Cemetery/Memorial Ref', 'Cemetery/Memorial Country', 'Additional CWGC Info']
         };
 
+        let begin_pointer = 0;
+        let end_pointer = 8;
+
+        document.querySelector('.next-record-button').addEventListener('click', function() {
+            begin_pointer += 8;
+            end_pointer += 8;
+            fetchData();
+        });
+
+        document.querySelector('.prev-record-button').addEventListener('click', function() {
+            if (begin_pointer > 0) {
+                begin_pointer -= 8;
+                end_pointer -= 8;
+                fetchData();
+            }
+        });
+
         function updateTableHeaders(databaseName) {
             const tableHeadRow = document.getElementById('tableHeadRow');
             tableHeadRow.innerHTML = '';

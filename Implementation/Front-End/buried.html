@@ -88,6 +88,23 @@
             fetchData();
         });
 
+        let begin_pointer = 0;
+        let end_pointer = 8;
+
+        document.querySelector('.next-record-button').addEventListener('click', function() {
+            begin_pointer += 8;
+            end_pointer += 8;
+            fetchData();
+        });
+
+        document.querySelector('.prev-record-button').addEventListener('click', function() {
+            if (begin_pointer > 0) {
+                begin_pointer -= 8;
+                end_pointer -= 8;
+                fetchData();
+            }
+        });
+
         function fetchData() {
             const surname = document.getElementById('surname').value || "";
             const forename = document.getElementById('forename').value || "";
@@ -124,7 +141,7 @@
                 if (!data.data || data.data.length === 0) {
                     tableBody.innerHTML = '<tr><td colspan="4">No data available</td></tr>';
                 } else {
-                    data.data.forEach(row => {
+                    data.data.slice(begin_pointer, end_pointer).forEach(row => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                             <td>${row.surname}, ${row.forename}, ${row.age}</td>
