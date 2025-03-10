@@ -12,7 +12,7 @@ while True:
                 "start",
                 "msedge",
                 "--kiosk",
-                f"{user_path}/Database Viewer Team 3/Front-End/index.html",
+                f"localhost:8000",
                 "--edge-kiosk-type=fullscreen",
                 "-no-first-run",
             ],
