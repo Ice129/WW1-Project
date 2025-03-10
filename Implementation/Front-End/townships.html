@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <img src="static/photos/ww1 logo.png" alt="website logo" class="logo">
@@ -52,15 +54,15 @@
 
                     <label for="forename">Forename:</label>
                     <input type="text" id="forename" name="forename" class="search-input">
-                    
+
                     <label for="regiment">Regiment:</label>
                     <input type="text" id="regiment" name="regiment" class="search-input">
-                    
+
                     <button type="submit" class="search-button">Search</button>
                     <button type="reset" class="clear-button">Clear</button>
                 </form>
             </div>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -80,8 +82,44 @@
                         <td>...</td>
                         <td>...</td>
                     </tr>
+                    <script>
+                        function fetchData(forename, surname, regiment, databaseName) {
+                            const url = '/get_data';
+                            const body = {
+                                databaseName: databaseName,
+                                forename: forename,
+                                surname: surname,
+                                regiment: regiment
+                            };
+
+                            fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'  // Ensure the content type is JSON
+                                },
+                                body: JSON.stringify(body)  // Convert the body to a JSON string
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        return response.json().then(err => {
+                                            console.error('Validation Error:', err);
+                                            throw new Error('Validation Error');
+                                        });
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    fill_table(data);
+                                });
+                        }
+
+                        fetchData('Frank', '', '', 'rollofhonour');
+                        function fill_table(data) {
+                            console.log(data);
+                        }
+                    </script>
                 </tbody>
-            </table>
+            </table
         </div>
 
         <div class="nav-buttons">
@@ -92,4 +130,5 @@
         </div>
     </div>
 </body>
+
 </html>
