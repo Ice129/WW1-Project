@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bradford WWI Group - Biographies</title>
+    <title>Bradford WWI Group - Database View</title>
     <link rel="stylesheet" href="static/Styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,7 @@
                     <a href="memorials">Names on Bradford Memorials</a>
                 </li>
                 <li>
-                    <a href="buried">Burried in Bradford</a>
+                    <a href="buried">Buried in Bradford</a>
                 </li>
                 <li>
                     <a href="newspaper">Newspaper References</a>
@@ -49,7 +49,16 @@
                                         
         <div class="database-content">
             <div class="search-section">
-                <form action="biographies.html" method="GET">
+                <form id="searchForm">
+                    <label for="databaseSelect">Select Database:</label>
+                    <select id="databaseSelect" name="databaseSelect" class="search-input">
+                        <option value="biographyspreadsheet">Biography Spreadsheet</option>
+                        <option value="bradfordmemorials">Bradford Memorials</option>
+                        <option value="buriedinbradford">Buried in Bradford</option>
+                        <option value="newspaperreferences2025">Newspaper References</option>
+                        <option value="rollofhonour">Roll of Honour</option>
+                    </select>
+                    
                     <label for="forename">Forename:</label>
                     <input type="text" id="forename" name="forename" class="search-input">
                     
@@ -68,40 +77,12 @@
             </div>
             
             <table>
-                <thead>
-                    <tr>                   
-                        <th>Forename</th>
-                        <th>Surname</th>
-                        <th>Regiment</th>
-                        <th>Service No.</th>
-                        <th>Biography Link</th>
-                        <th>Actions</th>
-                    </tr>
+                <thead id="tableHead">
+                    <tr id="tableHeadRow"></tr>
                 </thead>
-                <tbody>
+                <tbody id="dataBody">
                     <tr>
-                        <td contenteditable="false">John</td>
-                        <td contenteditable="false">Doe</td>
-                        <td contenteditable="false">Infantry</td>
-                        <td contenteditable="false">12345</td>
-                        <td contenteditable="false"><a href="#">Link</a></td>
-                        <td>
-                            <button class="edit-button">Edit</button>
-                            <button class="save-button" style="display:none;">Save</button>
-                            <button class="cancel-button" style="display:none;">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td contenteditable="false">Jane</td>
-                        <td contenteditable="false">Smith</td>
-                        <td contenteditable="false">Artillery</td>
-                        <td contenteditable="false">67890</td>
-                        <td contenteditable="false"><a href="#">Link</a></td>
-                        <td>
-                            <button class="edit-button">Edit</button>
-                            <button class="save-button" style="display:none;">Save</button>
-                            <button class="cancel-button" style="display:none;">Cancel</button>
-                        </td>
+                        <td colspan="33">No data available</td>
                     </tr>
                 </tbody>
             </table>
@@ -115,6 +96,85 @@
         </div>
     </div>
     <script>
+        const columns = {
+            biographyspreadsheet: ['Forename', 'Surname', 'Regiment', 'Service No.', 'Biography Link'],
+            bradfordmemorials: ['Forename', 'Surname', 'Regiment', 'Unit', 'Memorial', 'Memorial Location', 'Memorial Info', 'Memorial Postcode', 'District', 'Photo Available'],
+            buriedinbradford: ['Forename', 'Surname', 'Age', 'Medals', 'Date of Birth', 'Rank', 'Unit', 'Cemetery', 'Grave Ref', 'Info'],
+            newspaperreferences2025: ['Forename', 'Surname', 'Rank', 'Address', 'Regiment', 'Unit', 'Article Comment', 'Newspaper Name', 'Newspaper Date', 'Page/Col', 'Photo Included'],
+            rollofhonour: ['Forename', 'Surname', 'Address', 'Electoral Ward', 'Town', 'Rank', 'Regiment', 'Unit', 'Company', 'Age', 'Service No.', 'Other Regiment', 'Other Service No.', 'Medals', 'Enlistment Date', 'Discharge Date', 'Death Date', 'Misc Info', 'Cemetery/Memorial', 'Cemetery/Memorial Ref', 'Cemetery/Memorial Country', 'Additional CWGC Info']
+        };
+
+        function updateTableHeaders(databaseName) {
+            const tableHeadRow = document.getElementById('tableHeadRow');
+            tableHeadRow.innerHTML = '';
+            columns[databaseName].forEach(column => {
+                const th = document.createElement('th');
+                th.textContent = column;
+                tableHeadRow.appendChild(th);
+            });
+            const thActions = document.createElement('th');
+            thActions.textContent = 'Actions';
+            tableHeadRow.appendChild(thActions);
+        }
+
+        document.getElementById('databaseSelect').addEventListener('change', function() {
+            updateTableHeaders(this.value);
+        });
+
+        document.getElementById('searchForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const databaseName = document.getElementById('databaseSelect').value;
+            const surname = document.getElementById('surname').value;
+            const forename = document.getElementById('forename').value;
+            const regiment = document.getElementById('regiment').value;
+            const service = document.getElementById('service').value;
+
+            const fetchData = async (databaseName) => {
+                const response = await fetch('http://localhost:8000/get_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        databaseName: databaseName,
+                        surname: surname,
+                        forename: forename,
+                        regiment: regiment,
+                        service_number: service
+                    })
+                });
+                return response.json();
+            };
+
+            const result = await fetchData(databaseName);
+            const data = result.data;
+
+            const dataBody = document.getElementById('dataBody');
+            dataBody.innerHTML = '';
+            if (data.length === 0) {
+                dataBody.innerHTML = '<tr><td colspan="33">No data available</td></tr>';
+            } else {
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    columns[databaseName].forEach(column => {
+                        const td = document.createElement('td');
+                        td.contentEditable = 'false';
+                        td.textContent = row[column.toLowerCase().replace(/ /g, '_')] || '';
+                        tr.appendChild(td);
+                    });
+                    const tdActions = document.createElement('td');
+                    tdActions.innerHTML = `
+                        <button class="edit-button">Edit</button>
+                        <button class="save-button" style="display:none;">Save</button>
+                        <button class="cancel-button" style="display:none;">Cancel</button>
+                    `;
+                    tr.appendChild(tdActions);
+                    dataBody.appendChild(tr);
+                });
+            }
+            document.querySelector('.result-count-button').textContent = `Results: ${data.length}`;
+        });
+
         document.querySelectorAll('.edit-button').forEach(button => {
             button.addEventListener('click', function() {
                 const row = this.closest('tr');
@@ -151,6 +211,57 @@
                 row.querySelector('.cancel-button').style.display = 'none';
                 alert('Changes canceled!');
             });
+        });
+
+        // Fetch all rows on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            const databaseName = document.getElementById('databaseSelect').value;
+            updateTableHeaders(databaseName);
+
+            const fetchData = async (databaseName) => {
+                const response = await fetch('http://localhost:8000/get_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        databaseName: databaseName,
+                        surname: '',
+                        forename: '',
+                        regiment: '',
+                        service_number: ''
+                    })
+                });
+                return response.json();
+            };
+
+            const result = await fetchData(databaseName);
+            const data = result.data;
+
+            const dataBody = document.getElementById('dataBody');
+            dataBody.innerHTML = '';
+            if (data.length === 0) {
+                dataBody.innerHTML = '<tr><td colspan="33">No data available</td></tr>';
+            } else {
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    columns[databaseName].forEach(column => {
+                        const td = document.createElement('td');
+                        td.contentEditable = 'false';
+                        td.textContent = row[column.toLowerCase().replace(/ /g, '_')] || '';
+                        tr.appendChild(td);
+                    });
+                    const tdActions = document.createElement('td');
+                    tdActions.innerHTML = `
+                        <button class="edit-button">Edit</button>
+                        <button class="save-button" style="display:none;">Save</button>
+                        <button class="cancel-button" style="display:none;">Cancel</button>
+                    `;
+                    tr.appendChild(tdActions);
+                    dataBody.appendChild(tr);
+                });
+            }
+            document.querySelector('.result-count-button').textContent = `Results: ${data.length}`;
         });
     </script>
 </body>
