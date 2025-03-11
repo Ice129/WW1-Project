@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="search functions for a few of the searchable terms">
+    <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="front end download change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementation/Back-End/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Back-End/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/backend.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementation/Front-End/database_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/database_view.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,22 +33,22 @@
     &quot;state&quot;: &quot;OPEN&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Ice129/WW1-Project.git",
-    "accountId": "4c881fe1-77ad-4225-a93e-f43e1df46050"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ice129/WW1-Project.git&quot;,
+    &quot;accountId&quot;: &quot;4c881fe1-77ad-4225-a93e-f43e1df46050&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "Ice129",
-    "repository": "WW1-Project"
+    &quot;owner&quot;: &quot;Ice129&quot;,
+    &quot;repository&quot;: &quot;WW1-Project&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -61,6 +62,7 @@
   "keyToString": {
     "Python.api.executor": "Run",
     "Python.backend.executor": "Run",
+    "Python.worksheet.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "searchisfun",
@@ -108,12 +110,37 @@
       <option name="project" value="LOCAL" />
       <updated>1741184709415</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="search functions for a few of the searchable terms">
+      <option name="closed" value="true" />
+      <created>1741637394194</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741637394194</updated>
+    </task>
+    <task id="LOCAL-00005" summary="search functions for a few of the searchable terms">
+      <option name="closed" value="true" />
+      <created>1741637460123</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741637460123</updated>
+    </task>
+    <task id="LOCAL-00006" summary="front end download change">
+      <option name="closed" value="true" />
+      <created>1741644274946</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741644274946</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="seperating data for generating a xlsx file" />
     <MESSAGE value="search functions for a few of the searchable terms" />
-    <option name="LAST_COMMIT_MESSAGE" value="search functions for a few of the searchable terms" />
+    <MESSAGE value="front end download change" />
+    <option name="LAST_COMMIT_MESSAGE" value="front end download change" />
   </component>
 </project>
