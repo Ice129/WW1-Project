@@ -73,7 +73,7 @@
     </header>
     <h1>WW1: Biographies</h1>
     <div class="design_line_under_header"></div>
-
+    <!-- A sidebar with navigation links -->
     <div class="sidebar-container">
         <div class="sidebar">
             <ul>
@@ -100,7 +100,7 @@
                 </li>
             </ul>
         </div>
-
+        <!-- A search section with buttons-->
         <div class="database-content">
             <div class="search-section">
                 <form id="searchForm">
@@ -114,7 +114,7 @@
                     <button type="reset" class="clear-button">Clear</button>
                 </form>
             </div>
-
+            <!-- Added a table to display the fetched data -->
             <table>
                 <thead>
                     <tr>
@@ -132,7 +132,7 @@
                 </tbody>
             </table>
         </div>
-
+        <!-- Added navigation buttons for pagination -->
         <div class="nav-buttons">
             <button class="result-count-button">Results: 0</button>
             <button class="prev-record-button">Previous Record</button>
@@ -148,16 +148,17 @@
             <iframe id="pdfViewer" class="pdf-viewer" title="Biography PDF Document Viewer"></iframe>
         </div>
     </div>
-
+    <!-- JavaScript code to fetch data and display it in the table -->
     <script>
+        // Add an event listener to the search form
         document.getElementById('searchForm').addEventListener('submit', function (event) {
             event.preventDefault();
             fetchData();
         });
-
+        // Pagination variables
         let begin_pointer = 0;
         let end_pointer = 8;
-
+        // Added event listeners to the navigation buttons
         document.querySelector('.next-record-button').addEventListener('click', function() {
             begin_pointer += 8;
             end_pointer += 8;
@@ -171,11 +172,11 @@
                 fetchData();
             }
         });
-
+        // Function to fetch data from the server
         function fetchData() {
-            const surname = document.getElementById('surname').value || "";
-            const forename = document.getElementById('forename').value || "";
-
+            const surname = document.getElementById('surname').value || ""; // Get the surname value from the input field
+            const forename = document.getElementById('forename').value || ""; // Get the forename value from the input field
+            // Create the request body
             const requestBody = {
                 databaseName: 'biographyspreadsheet',
                 surname: surname,
@@ -183,7 +184,7 @@
             };
 
             console.log('Request Body:', requestBody); // Log the request body
-
+            // Create a fetch request to the server
             fetch('/get_data', {
                 method: 'POST',
                 headers: {
@@ -191,25 +192,26 @@
                 },
                 body: JSON.stringify(requestBody)
             })
+            // Handle the response from the server
                 .then(response => {
                     if (!response.ok) {
-                        return response.json().then(err => {
+                        return response.json().then(err => { 
                             console.error('Validation Error:', err);
                             throw new Error('Validation Error');
-                        });
+                        }); 
                     }
-                    return response.json();
+                    return response.json(); // Return the response as JSON
                 })
                 .then(data => {
                     console.log('Data fetched:', data); // Log the fetched data
                     const tableBody = document.getElementById('biographiesTableBody');
                     tableBody.innerHTML = '';
-
+                    // Check if there is data available
                     if (!data.data || data.data.length === 0) {
-                        tableBody.innerHTML = '<tr><td colspan="5">No data available</td></tr>';
+                        tableBody.innerHTML = '<tr><td colspan="5">No data available</td></tr>'; // Display a message if no data is available
                     } else {
-                        data.data.forEach(row => {
-                            const tr = document.createElement('tr');
+                        data.data.forEach(row => { //
+                            const tr = document.createElement('tr'); // Create a table row
 
                             let pdfbutton;
                             if (row.biography_attachment) { // If there is a biography attachment
@@ -217,7 +219,7 @@
                             } else {
                                 pdfbutton = 'No attachment';
                             }
-
+                            // 
                             tr.innerHTML = `
                             <td>${row.surname}</td>
                             <td>${row.forename}</td>
@@ -235,17 +237,17 @@
                             });
                         });
                     }
-
+                    // Update the result count button
                     document.querySelector('.result-count-button').textContent = `Results: ${data.data ? data.data.length : 0}`;
                 })
                 .catch(error => {
-                    console.error('Error fetching data:', error);
+                    console.error('Error fetching data:', error); // Log any errors
                 });
         }
 
         // Fetch all rows on page load
         document.addEventListener('DOMContentLoaded', function () {
-            fetchData();
+            fetchData(); // Fetch data when the page loads
         });
 
         function openPdfModal(filename) { // modal is a pop-up window

@@ -17,7 +17,7 @@
     </header>
     <h1>WW1: Bradford and Surrounding townships</h1>
     <div class="design_line_under_header"></div>
-
+ <!-- A sidebar with navigation links -->
     <div class="sidebar-container">
         <div class="sidebar">
             <ul>
@@ -44,7 +44,7 @@
                 </li>
             </ul>
         </div>
-
+        <!-- A search section with buttons-->
         <div class="database-content">
             <div class="search-section">
                 <form id="searchForm">
@@ -58,7 +58,7 @@
                     <button type="reset" class="clear-button">Clear</button>
                 </form>
             </div>
-
+            <!-- Added a table to display the fetched data -->
             <table>
                 <thead>
                     <tr>
@@ -75,6 +75,7 @@
                         <td colspan="6">No data available</td>
                     </tr>
                     <script>
+                        // Fetch data from the server
                         function fetchData(forename, surname, regiment, databaseName) {
                             const url = '/get_data';
                             const body = {
@@ -83,14 +84,14 @@
                                 surname: surname,
                                 regiment: regiment
                             };
-
+                            // Make a POST request to the server
                             fetch(url, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'  // Ensure the content type is JSON
                                 },
                                 body: JSON.stringify(body)  // Convert the body to a JSON string
-                            })
+                            })  // Handle the response from the server
                                 .then(response => {
                                     if (!response.ok) {
                                         return response.json().then(err => {
@@ -98,13 +99,13 @@
                                             throw new Error('Validation Error');
                                         });
                                     }
-                                    return response.json();
+                                    return response.json(); // Return the response as JSON
                                 })
                                 .then(data => {
                                     fill_table(data);
                                 });
                         }
-
+                        // Function to fill the table with the fetched data
                         fetchData('Frank', '', '', 'rollofhonour');
                         function fill_table(data) {
                             console.log(data);
@@ -113,7 +114,7 @@
                 </tbody>
             </table
         </div>
-
+        <!-- Added buttons for navigation and p -->
         <div class="nav-buttons">
             <button class="result-count-button">Results: 0</button>
             <button class="prev-record-button">Previous Record</button>
@@ -121,16 +122,17 @@
             <button class="close-button" onclick="window.location.href='guest_home'">Close</button>
         </div>
     </div>
-
+    
     <script>
+        // Add an event listener to the search form
         document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            fetchData();
+            event.preventDefault(); // Prevent the default form submission
+            fetchData(); // Fetch data when the form is submitted
         });
-
+        // Initialize the begin and end pointers for pagination
         let begin_pointer = 0;
         let end_pointer = 8;
-
+        // Add event listeners for the next and previous record buttons
         document.querySelector('.next-record-button').addEventListener('click', function() {
             begin_pointer += 8;
             end_pointer += 8;
@@ -144,11 +146,11 @@
                 fetchData();
             }
         });
-
+        // Function to fetch data from the server
         function fetchData() {
-            const surname = document.getElementById('surname').value || "";
-            const forename = document.getElementById('forename').value || "";
-
+            const surname = document.getElementById('surname').value || ""; // Get the surname from the input field
+            const forename = document.getElementById('forename').value || ""; // Get the forename from the input field
+            // Create the request body
             const requestBody = {
                 databaseName: 'rollofhonour',
                 surname: surname,
@@ -156,34 +158,35 @@
             };
 
             console.log('Request Body:', requestBody); // Log the request body
-
+            // Create a fetch request to the server
             fetch('/get_data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(requestBody)
-            })
+                body: JSON.stringify(requestBody) // Convert the request body to JSON
+            })  // Handle the response from the server
             .then(response => {
                 if (!response.ok) {
-                    return response.json().then(err => {
+                    return response.json().then(err => { 
                         console.error('Validation Error:', err);
                         throw new Error('Validation Error');
                     });
                 }
-                return response.json();
+                return response.json(); // Return the response as JSON
             })
             .then(data => {
                 console.log('Data fetched:', data); // Log the fetched data
-                const tableBody = document.getElementById('townshipsTableBody');
-                tableBody.innerHTML = '';
+                const tableBody = document.getElementById('townshipsTableBody'); // Get the table body
+                tableBody.innerHTML = ''; // Clear the table body
 
-                if (!data.data || data.data.length === 0) {
-                    tableBody.innerHTML = '<tr><td colspan="6">No data available</td></tr>';
+                if (!data.data || data.data.length === 0) { // Check if the data is empty
+                    tableBody.innerHTML = '<tr><td colspan="6">No data available</td></tr>'; // Display a message if no data is available
                 } else {
-                    data.data.slice(begin_pointer, end_pointer).forEach(row => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
+                    data.data.slice(begin_pointer, end_pointer).forEach(row => { // Slice the data based on the begin and end pointers
+                        const tr = document.createElement('tr'); // Create a table row
+                        // Populate the table row with the fetched data
+                        tr.innerHTML = ` 
                             <td>${row.surname}, ${row.forename}, ${row.address}, ${row.electoral_ward}, ${row.town}</td>
                             <td>${row.regiment}, ${row.unit}, ${row.rank}, ${row.service_no}</td>
                             <td>${row.other_regiment}, ${row.other_unit}, ${row.other_service_no}</td>
@@ -191,20 +194,20 @@
                             <td>${row.cemetery_memorial}, ${row.cemetery_memorial_ref}, ${row.cemetery_memorial_country}</td>
                             <td>${row.misc_info_nroh}, ${row.additional_cwgc_info}</td>
                         `;
-                        tableBody.appendChild(tr);
+                        tableBody.appendChild(tr); 
                     });
                 }
-
+                // Update the result count button
                 document.querySelector('.result-count-button').textContent = `Results: ${data.data ? data.data.length : 0}`;
             })
             .catch(error => {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching data:', error); // Log any errors that occur
             });
         }
 
         // Fetch all rows on page load
         document.addEventListener('DOMContentLoaded', function() {
-            fetchData();
+            fetchData(); // Fetch data when the page loads
         });
     </script>
 </body>
