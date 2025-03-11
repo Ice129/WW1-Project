@@ -31,7 +31,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Ice129/WW1-Project.git&quot;,
-    &quot;accountId&quot;: &quot;f885bfc2-dfcb-42bf-84ba-742a8b7885db&quot;
+    &quot;accountId&quot;: &quot;4c881fe1-77ad-4225-a93e-f43e1df46050&quot;
   },
   &quot;recentNewPullRequestHead&quot;: {
     &quot;server&quot;: {
@@ -57,6 +57,7 @@
   "keyToString": {
     "Python.api.executor": "Run",
     "Python.backend.executor": "Run",
+    "Python.worksheet.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "hope-design-update",

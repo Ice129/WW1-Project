@@ -181,16 +181,37 @@ async def get_data(obj: GetDataBody):
         logging.error(f"Error fetching data: {e}")
         return {"status": "error", "code": 500, "message": str(e)}
 
-# Assigned to: ???
+# Assigned to: mariam
 # Should return a randomly generated Base64 token (string) of length 256 to be used in further functions as an input
 # To verify that the sender is an administrator user
 @app.get("/auth_admin")
 async def auth_admin(passwordHash: str):
     return {"status": "success", "code": 200}
 
-# Assigned to: ???
-@app.get("/download_csv")
-async def download_csv(databaseName: str, filterObject: dict, authToken: str):
+# Assigned to: Edward
+from backend import DLBiographySpreadsheet,DLBradfordMemorials,DLBuriedInBradford,DLRollOfHonour,DLNewspaperReferences2025
+class DownloadCSV(BaseModel):
+    databaseName: str = ""
+    authToken: str = ""
+
+@app.post("/download_csv")
+async def download_csv(obj: DownloadCSV):
+    databaseName = obj.databaseName
+    authToken = obj.authToken
+
+    print(databaseName)
+    if databaseName == "newspaperreferences2025":
+        DLNewspaperReferences2025()
+    elif databaseName == "rollofhonour":
+        DLRollOfHonour()
+    elif databaseName == "biographyspreadsheet":
+        DLBiographySpreadsheet()
+    elif databaseName == "bradfordmemorials":
+        DLBradfordMemorials()
+    elif databaseName == "buriedinbradford":
+        DLBuriedInBradford()
+    else:
+        print("No database detected")
     return {"status": "success", "code": 200}
 
 # Assigned to: James

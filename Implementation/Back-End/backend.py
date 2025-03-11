@@ -762,4 +762,5 @@ if __name__ == "__main__":
         insert_to_sql(load_xlsx("Tests Data/Bradford Memorials.xlsx"))
         insert_to_sql(load_xlsx("Tests Data/Newspaper references 2025.xlsx"))
         insert_to_sql(load_xlsx("Tests Data/Biography spreadsheet.xlsx"))
+
     exit()
