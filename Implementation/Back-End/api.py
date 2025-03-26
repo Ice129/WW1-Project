@@ -122,7 +122,7 @@ async def upload_csv(obj: CsvUpload):
 async def upload_individual(obj: IndividualUpload):
     return {"status": "success", "code": 200}
 
-# Assigned to: ???
+# Assigned to: Connor
 @app.patch("/change_password")
 async def change_password(newPasswordHash: str, authToken: str):
     return {"status": "success", "code": 200}
