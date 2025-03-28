@@ -59,21 +59,45 @@
                 </form>
             </div>
             <!-- Added a table to display the fetched data -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Surname, Forename, Address, Electoral Ward, Town</th>
-                        <th>Regiment, Battalion, Rank, Service No</th>
-                        <th>Other Regiment, Other Regiment, Other Service No</th>
-                        <th>Enlistment Date, Discharge Date, Death (in service) Date, Medals</th>
-                        <th>Cemetery/Memorial, Cemetery/Memorial Ref, Cemetery/Memorial Country</th>
-                        <th>Misc Info (broh), Misc Info (cwgc)</th>
-                    </tr>
-                </thead>
-                <tbody id="townshipsTableBody">
-                    <tr>
-                        <td colspan="6">No data available</td>
-                    </tr>
+            <section class="table-section">
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Surname</th>
+                    <th>Forename</th>
+                    <th>Address</th>
+                    <th>Electoral Ward</th>
+                    <th>Town</th>
+                    <th>Regiment</th>
+                    <th>Battalion</th>
+                    <th>Rank</th>
+                    <th>Service No</th>
+                    <th>Other Regiment</th>
+                    <th>Other Regiment</th>
+                    <th>Other Service No</th>
+                    <th>Enlistment Date</th>
+                    <th>Discharge Date</th>
+                    <th>Death (in service) Date</th>
+                    <th>Medals</th>
+                    <th>Cemetery/Memorial</th>
+                    <th>Cemetery/Memorial Ref</th>
+                    <th>Cemetery/Memorial Country</th>
+                    <th>Misc Info (broh)</th>
+                    <th>Misc Info (cwgc)</th>
+                </tr>
+            </thead>
+
+            <tbody id="townshipsTableBody">
+                <tr>
+                    <td colspan="23">No data available</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
                     <script>
                         // Fetch data from the server
                         function fetchData(forename, surname, regiment, databaseName) {
@@ -187,12 +211,26 @@
                         const tr = document.createElement('tr'); // Create a table row
                         // Populate the table row with the fetched data
                         tr.innerHTML = ` 
-                            <td>${row.surname}, ${row.forename}, ${row.address}, ${row.electoral_ward}, ${row.town}</td>
-                            <td>${row.regiment}, ${row.unit}, ${row.rank}, ${row.service_no}</td>
-                            <td>${row.other_regiment}, ${row.other_unit}, ${row.other_service_no}</td>
-                            <td>${row.enlisted_date}, ${row.discharged_date}, ${row.death_date}, ${row.medals}</td>
-                            <td>${row.cemetery_memorial}, ${row.cemetery_memorial_ref}, ${row.cemetery_memorial_country}</td>
-                            <td>${row.misc_info_nroh}, ${row.additional_cwgc_info}</td>
+                           <td>${row.surname}</td>
+                           <td>${row.forename}</td>
+                           <td>${row.address}</td>
+                           <td>${row.electoral_ward}</td>
+                           <td> ${row.town}</td>
+                           <td>${row.regiment}</td>
+                           <td> ${row.unit}</td>
+                           <td>${row.rank}</td>
+                           <td> ${row.service_no}</td>
+                           <td>${row.other_regiment}</td>
+                           <td>${row.other_unit} </td>
+                           <td> ${row.other_service_no}</td>
+                           <td>${row.enlisted_date}</td>
+                           <td>${row.discharged_date}</td>
+                           <td> ${row.death_date}</td>
+                           <td> ${row.medals}</td>
+                           <td>${row.cemetery_memorial}</td>
+                           <td>${row.cemetery_memorial_ref} ${row.cemetery_memorial_country}</td>
+                           <td>${row.misc_info_nroh}</td>
+                           <td>${row.additional_cwgc_info}</td>
                         `;
                         tableBody.appendChild(tr); 
                     });

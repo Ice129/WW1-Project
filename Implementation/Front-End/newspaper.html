@@ -60,14 +60,23 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Surname, Forename, Address, Regiment, Rank</th>
-                        <th>Newspaper Name, Newspaper Date, Page/Col, Contains Photo</th>
-                        <th>Article, Comments</th>
+                        <th>Surname</th>
+                        <th>Forename</th>
+                        <th>Rank</th>
+                        <th>Address</th>
+                        <th>Regiment</th>
+                        <th>Unit</th>
+                        <th>Article Comments</th>
+                        <th>Newspaper Name</th>
+                        <th>Newspaper Date</th>
+                        <th>Page/col</th>
+                        <th>Contains photo</th>
+
                     </tr>
                 </thead>
                 <tbody id="newspaperTableBody">
                     <tr>
-                        <td colspan="3">No data available</td>
+                        <td colspan="12">No data available</td>
                     </tr>
                 </tbody>
             </table>
@@ -146,10 +155,18 @@
                     data.data.slice(begin_pointer, end_pointer).forEach(row => { // Slice the data to display only 8 records at a time
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                            <td>${row.surname}, ${row.forename}, ${row.address}, ${row.regiment}, ${row.rank}</td>
-                            <td>${row.newspaper_name}, ${row.newspaper_date}, ${row.page_col}, ${row.photo_incl}</td>
-                            <td>${row.article_comment}</td>
-                        `;
+                    <td>${row.surname }</td>
+                    <td>${row.forename}</td>
+                    <td>${row.rank}</td>
+                    <td>${row.address}</td>
+                    <td>${row.regiment}</td>
+                    <td>${row.unit}</td>
+                    <td>${row.article_comments}</td>
+                    <td>${row.newspaper_name}</td>
+                    <td>${row.newspaper_date}</td>
+                    <td>${row.page_col}</td>
+                    <td>${row.contains_photo}</td>
+                `;
                         tableBody.appendChild(tr);
                     });
                 }

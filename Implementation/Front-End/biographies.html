@@ -116,21 +116,19 @@
             </div>
             <!-- Added a table to display the fetched data -->
             <table>
-                <thead>
-                    <tr>
-                        <th>Surname</th>
-                        <th>Forename</th>
-                        <th>Regiment</th>
-                        <th>Service Number</th>
-                        <th>Biography attachment</th>
-                    </tr>
-                </thead>
-                <tbody id="biographiesTableBody">
-                    <tr>
-                        <td colspan="5">No data available</td>
-                    </tr>
-                </tbody>
-            </table>
+        <thead>
+            <tr>
+                <th>Surname</th>
+                <th>Forename</th>
+                <th>Regiment</th>
+                <th>Service Number</th>
+                <th>Biography Attachment</th>
+            </tr>
+        </thead>
+        <tbody id="biographiesTableBody">
+            <!-- Data rows will be inserted here by JavaScript -->
+        </tbody>
+    </table>
         </div>
         <!-- Added navigation buttons for pagination -->
         <div class="nav-buttons">
@@ -195,10 +193,10 @@
             // Handle the response from the server
                 .then(response => {
                     if (!response.ok) {
-                        return response.json().then(err => { 
+                        return response.json().then(err => {
                             console.error('Validation Error:', err);
                             throw new Error('Validation Error');
-                        }); 
+                        });
                     }
                     return response.json(); // Return the response as JSON
                 })
@@ -219,7 +217,7 @@
                             } else {
                                 pdfbutton = 'No attachment';
                             }
-                            // 
+                            //
                             tr.innerHTML = `
                             <td>${row.surname}</td>
                             <td>${row.forename}</td>

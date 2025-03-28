@@ -60,9 +60,16 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Surname, Forename, DoB</th>
-                        <th>Regiment, Battalion, Service No, Rank, Date of death</th>
-                        <th>Cemetery, Grave Ref</th>
+                        <th>Surname</th>
+                        <th>Forename</th>
+                        <th>DoB</th>
+                        <th>Regiment</th>
+                        <th>Battalion</th>
+                        <th>Service No</th>
+                        <th>Rank</th>
+                        <th>Date of death</th>
+                        <th>Cemetery</th>
+                        <th>Grave Ref</th>
                         <th>Misc info</th>
                     </tr>
                 </thead>
@@ -150,9 +157,16 @@
                     data.data.slice(begin_pointer, end_pointer).forEach(row => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                            <td>${row.surname}, ${row.forename}, ${row.age}</td>
-                            <td>${row.regiment}, ${row.unit}, ${row.service_no}, ${row.rank}, ${row.date_of_death}</td>
-                            <td>${row.cemetery}, ${row.grave_ref}</td>
+                            <td>${row.surname}</td>
+                            <td>${row.forename}</td>
+                            <td>${row.age}</td>
+                            <td>${row.regiment}</td>
+                            <td>${row.unit}</td>
+                            <td>${row.service_no}</td>
+                            <td>${row.rank}</td>
+                            <td>${row.date_of_death}</td>
+                            <td>${row.cemetery}</td>
+                            <td>${row.grave_ref}</td>
                             <td>${row.misc_info}</td>
                         `;
                         tableBody.appendChild(tr);
