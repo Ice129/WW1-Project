@@ -96,30 +96,133 @@
     </div>
     <script>
         // Fetch table data from the server
-        const columns = {
-            biographyspreadsheet: ['Forename', 'Surname', 'Regiment', 'Service No.', 'Biography Link'],
-            bradfordmemorials: ['Forename', 'Surname', 'Regiment', 'Unit', 'Memorial', 'Memorial Location', 'Memorial Info', 'Memorial Postcode', 'District', 'Photo Available'],
-            buriedinbradford: ['Forename', 'Surname', 'Age', 'Medals', 'Date of Birth', 'Rank', 'Unit', 'Cemetery', 'Grave Ref', 'Info'],
-            newspaperreferences2025: ['Forename', 'Surname', 'Rank', 'Address', 'Regiment', 'Unit', 'Article Comment', 'Newspaper Name', 'Newspaper Date', 'Page/Col', 'Photo Included'],
-            rollofhonour: ['Forename', 'Surname', 'Address', 'Electoral Ward', 'Town', 'Rank', 'Regiment', 'Unit', 'Company', 'Age', 'Service No.', 'Other Regiment', 'Other Service No.', 'Medals', 'Enlistment Date', 'Discharge Date', 'Death Date', 'Misc Info', 'Cemetery/Memorial', 'Cemetery/Memorial Ref', 'Cemetery/Memorial Country', 'Additional CWGC Info']
-        };
-        // Implementing the pagination
-        let begin_pointer = 0;
-        let end_pointer = 8;
-        // Event listeners for the navigation buttons
-        document.querySelector('.next-record-button').addEventListener('click', function() {
-            begin_pointer += 8;
-            end_pointer += 8;
-            fetchData();
+        // Define the columns for each database
+    // Define the columns for each database
+    const columns = {
+        biographyspreadsheet: ['Forename', 'Surname', 'Regiment', 'Service No.', 'Biography Link'],
+        bradfordmemorials: ['Forename', 'Surname', 'Regiment', 'Unit', 'Memorial', 'Memorial Location', 'Memorial Info', 'Memorial Postcode', 'District', 'Photo Available'],
+        buriedinbradford: ['Forename', 'Surname', 'Age', 'Medals', 'Date of Birth', 'Rank', 'Unit', 'Cemetery', 'Grave Ref', 'Info'],
+        newspaperreferences2025: ['Forename', 'Surname', 'Rank', 'Address', 'Regiment', 'Unit', 'Article Comment', 'Newspaper Name', 'Newspaper Date', 'Page/Col', 'Photo Included'],
+        rollofhonour: ['Forename', 'Surname', 'Address', 'Electoral Ward', 'Town', 'Rank', 'Regiment', 'Unit', 'Company', 'Age', 'Service No.', 'Other Regiment', 'Other Service No.', 'Medals', 'Enlistment Date', 'Discharge Date', 'Death Date', 'Misc Info', 'Cemetery/Memorial', 'Cemetery/Memorial Ref', 'Cemetery/Memorial Country', 'Additional CWGC Info']
+    };
+
+    // Initialize pagination variables
+    let begin_pointer = 0;
+    let end_pointer = 3;
+    let allData = []; // Store all fetched data
+
+    // Function to fetch all data from the server
+    async function fetchData() {
+        const databaseName = document.getElementById('databaseSelect').value;
+        const response = await fetch('http://localhost:8000/get_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                databaseName: databaseName,
+                forename: '',
+                surname: '',
+                regiment: ''
+            })
         });
 
-        document.querySelector('.prev-record-button').addEventListener('click', function() {
-            if (begin_pointer > 0) {
-                begin_pointer -= 8;
-                end_pointer -= 8;
-                fetchData();
-            }
+        const result = await response.json();
+        allData = result.data || []; // Store all data in the global variable
+        begin_pointer = 0; // Reset pagination pointers
+        end_pointer = 3;
+        displayPage(); // Display the first page
+    }
+
+    // Function to display the current page
+    function displayPage() {
+        const dataBody = document.getElementById('dataBody');
+        dataBody.innerHTML = ''; // Clear the table body
+
+        // Slice the data for the current page
+        const pageData = allData.slice(begin_pointer, end_pointer);
+
+        if (pageData.length === 0) {
+            dataBody.innerHTML = '<tr><td colspan="33">No data available</td></tr>';
+        } else {
+            pageData.forEach(row => {
+                const tr = document.createElement('tr');
+                const databaseName = document.getElementById('databaseSelect').value;
+
+                columns[databaseName].forEach(column => {
+                    const td = document.createElement('td');
+                    td.contentEditable = 'false';
+                    td.textContent = row[column.toLowerCase().replace(/ /g, '_')] || '';
+                    tr.appendChild(td);
+                });
+
+                const tdActions = document.createElement('td');
+                tdActions.innerHTML = `
+                    <button class="edit-button">Edit</button>
+                    <button class="save-button" style="display:none;">Save</button>
+                    <button class="cancel-button" style="display:none;">Cancel</button>
+                `;
+                tr.appendChild(tdActions);
+                dataBody.appendChild(tr);
+            });
+        }
+
+        // Update the result count button
+        document.querySelector('.result-count-button').textContent = `Results: ${allData.length}`;
+    }
+
+    // Event listeners for pagination buttons
+    document.querySelector('.next-record-button').addEventListener('click', function () {
+        if (end_pointer < allData.length) {
+            begin_pointer += 3;
+            end_pointer += 3;
+            displayPage();
+        }
+    });
+
+    document.querySelector('.prev-record-button').addEventListener('click', function () {
+        if (begin_pointer > 0) {
+            begin_pointer -= 3;
+            end_pointer -= 3;
+            displayPage();
+        }
+    });
+
+    // Event listener for the search form
+    document.getElementById('searchForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent the default form submission
+        const databaseName = document.getElementById('databaseSelect').value;
+        const surname = document.getElementById('surname').value;
+        const forename = document.getElementById('forename').value;
+        const regiment = document.getElementById('regiment').value;
+        const service = document.getElementById('service').value;
+
+        const response = await fetch('http://localhost:8000/get_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                databaseName: databaseName,
+                surname: surname,
+                forename: forename,
+                regiment: regiment,
+                service_number: service
+            })
         });
+
+        const result = await response.json();
+        allData = result.data || []; // Store all data in the global variable
+        begin_pointer = 0; // Reset pagination pointers
+        end_pointer = 3;
+        displayPage(); // Display the first page
+    });
+
+    // Fetch all rows on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchData();
+    });
+
         //Downlaoding Database in to an excel file
         function DownloadSelectedTable(){
             const url = '/download_csv';
