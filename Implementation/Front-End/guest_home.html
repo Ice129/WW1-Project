@@ -34,8 +34,11 @@
     padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
     text-align: center;
+    font-size:100px;
+    align-items:center;
+    color:white;
+    text-decoration:underline;
     font-family: 'kameron', Helvetica, Arial, sans-serif;
 }
 
@@ -60,8 +63,8 @@
 }
 
 .surrounding h5 {
-    color: black;
-    font-size: 25px;
+    color: white;
+    font-size: 34px;
     font-family: 'kameron', Helvetica, Arial, sans-serif;
     margin: 0;
     display: flex;
@@ -85,13 +88,13 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 25px;
     color: white;
     transition: background-color 0.3s ease;
 }
 
 .surrounding button:hover {
-    background-color: #8b2876; /* Darker color on hover */
+    background-color:#555;
 }
 
 
@@ -117,8 +120,8 @@
 }
 
 .names h5 {
-    color: black;
-    font-size: 25px;
+    color: white;
+    font-size: 35px;
     font-family: 'kameron', Helvetica, Arial, sans-serif;
     margin: 0;
     display: flex;
@@ -142,13 +145,13 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 25px;
     color: white;
     transition: background-color 0.3s ease;
 }
 
 .names button:hover {
-    background-color: #8b2876;
+    background-color:#555;
 }
 
 
@@ -173,8 +176,8 @@ position: fixed;
 }
 
 .buried h5 {
-    color: black;
-    font-size: 25px;
+    color: white;
+    font-size: 40px;
     font-family: 'kameron', Helvetica, Arial, sans-serif;
     margin: 0;
     display: flex;
@@ -198,13 +201,13 @@ position: fixed;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 25px;
     color: white;
     transition: background-color 0.3s ease;
 }
 
 .buried button:hover {
-    background-color: #8b2876; /* Darker color on hover */
+    background-color: #555;
 }
 
 
@@ -229,8 +232,8 @@ position: fixed;
 }
 
 .newspaper h5 {
-    color: black;
-    font-size: 25px;
+    color: white;
+    font-size: 40px;
     font-family: 'kameron', Helvetica, Arial, sans-serif;
     margin: 0;
     display: flex;
@@ -254,13 +257,13 @@ position: fixed;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 25px;
     color: white;
     transition: background-color 0.3s ease;
 }
 
 .newspaper button:hover {
-    background-color: #8b2876; /* Darker color on hover */
+    background-color: #555;
 }
 
 
@@ -282,11 +285,12 @@ position: fixed;
     font-family: 'kameron', Helvetica, Arial, sans-serif;
     transform: translateX(-50%); /* Centers the box horizontally */
     padding: 2%; /* Padding to ensure text doesn't touch the edges */
+
 }
 
 .biographies h5 {
-    color: black;
-    font-size: 25px;
+    color: white;
+    font-size: 40px;
     font-family: 'kameron', Helvetica, Arial, sans-serif;
     margin: 0;
     display: flex;
@@ -310,14 +314,79 @@ position: fixed;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 25px;
     color: white;
     transition: background-color 0.3s ease;
 }
 
 .biographies button:hover {
-    background-color: #8b2876; /* Darker color on hover */
+    background-color: #555;
 }
+
+/* Modal background */
+.pdf-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed in place */
+    z-index: 1000; /* On top of all other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+}
+/* PDF Modal Styles */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .pdf-modal-content {
+            position: relative;
+            margin: 2% auto;
+            width: 90%;
+            height: 90%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .pdf-close {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff0000;
+            cursor: pointer;
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px 12px;
+            border-radius: 5px;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .view-pdf-btn {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .view-pdf-btn:hover {
+            background-color: #45a049;
+        }
 
 
 </style>
@@ -336,7 +405,7 @@ position: fixed;
 <div class="sidebar-container">
         <div class="sidebar">
             <ul>
-                <li>
+                <li class="active">
                     <a href="/">Home</a>
                 </li>
                 <li>
@@ -351,7 +420,7 @@ position: fixed;
                 <li>
                     <a href="newspaper">Newspaper References</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="biographies">Biographies</a>
                 </li>
                 <li>
@@ -361,11 +430,19 @@ position: fixed;
         </div>
 
 <div class="surrounding">
- <h5>Bradford and Surrounding township's</h5>
- <div class="button-container">
-        <button onclick="window.location.href='townships'">More Information</button>
+    <h5>Bradford and Surrounding Township's</h5>
+    <div class="button-container">
+        <button class="read-more-btn" onclick="openPdfModal('example.pdf')">Read More</button>
     </div>
 </div>
+
+ <div id="pdfModal" class="pdf-modal">
+        <div class="pdf-modal-content">
+            <span class="pdf-close">&times;</span> <!-- Close button with X -->
+            <iframe id="pdfViewer" class="pdf-viewer" title="Biography PDF Document Viewer"></iframe>
+        </div>
+    </div>
+
 
 <div class="names">
 
@@ -399,5 +476,28 @@ position: fixed;
 
 </div>
 
-</body>
+
+
+<script>
+function openPdfModal(filename) {
+    // Get the modal and iframe elements
+    const modal = document.getElementById('pdfModal');
+    const pdfViewer = document.getElementById('pdfViewer');
+
+    // Set the iframe's source to the PDF path
+    pdfViewer.src = `/static/biography files/${filename}#toolbar=0`; // Ensure the correct path to the PDF
+    modal.style.display = 'block'; // Display the modal window
+}
+
+// Close the modal when the close button is clicked
+document.querySelector('.pdf-close').addEventListener('click', function () {
+    document.getElementById('pdfModal').style.display = 'none'; // Hide the modal
+    document.getElementById('pdfViewer').src = ''; // Clear the iframe source
+});
+
+
+
+
+</script>
+    </body>
 </html>

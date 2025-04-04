@@ -229,7 +229,7 @@ def create_database ():
             newspaper_name VARCHAR(150),
             newspaper_date DATE,
             page_col VARCHAR(10),
-            photo_incl BOOLEAN
+            photo_incl BOOLEAN,
         );
      """)
 
