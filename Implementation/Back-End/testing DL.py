@@ -5,12 +5,20 @@ import pandas as pd
 import xlsxwriter
 
 class MyTestCase(unittest.TestCase):
-    database = sqlite3.connect("database.db")
-    cursor = database.cursor()
-    def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
 
-    def DLNewspaperReferences2025():
+
+
+    def test_Data_Base_Header_Extraction(self):
+        database = sqlite3.connect("database.db")
+        cursor = database.cursor()
+        cursor.execute("SELECT * FROM NewspaperReferences2025")
+        Data = cursor.fetchall()
+        Headers = [description[0] for description in cursor.description]
+        self.assertEqual(Headers[0], "ID")  #The first Header should be Surname
+
+    def DLNewspaperReferences2025(self):
+        database = sqlite3.connect("database.db")
+        cursor = database.cursor()
         cursor.execute("SELECT * FROM NewspaperReferences2025")
         Data = cursor.fetchall()
         Headers = [description[0] for description in cursor.description]
