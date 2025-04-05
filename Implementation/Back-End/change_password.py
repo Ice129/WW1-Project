@@ -26,3 +26,14 @@ def hash_password_sha256(password: str, salt: bytes, iterations: int = 100000) -
     except Exception as e:
         logging.error(f"An error occurred while hashing the password: {e}")
         raise
+    
+def save_to_file(filename: str, hashed_password: str, salt: str):
+    try:
+        with open (filename, 'w') as file:
+            file.write(f"Hashed Password: {hashed_password}\n")
+            file.write(f"Salt: {salt}\n")
+        logging.info(f"Password and salt saved to {filename}.")
+    except Exception as e:
+        logging.error(f"An error occurred while saving to file: {e}")
+        raise
+    
