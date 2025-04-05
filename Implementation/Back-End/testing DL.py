@@ -39,7 +39,15 @@ class MyTestCase(unittest.TestCase):
         cursor.execute("SELECT * FROM NewspaperReferences2025")
         Data = cursor.fetchall()
         Headers = [description[0] for description in cursor.description]
-        self.assertEqual(Headers[1], "surname")  #The first Header should be surname
+        self.assertEqual(Headers[1], "surname")  #The second Header should be surname
+
+    def test_Data_Base_Header_Extraction_last(self):
+        database = sqlite3.connect("database.db")
+        cursor = database.cursor()
+        cursor.execute("SELECT * FROM NewspaperReferences2025")
+        Data = cursor.fetchall()
+        Headers = [description[0] for description in cursor.description]
+        self.assertEqual(Headers[-1], "photo_incl")  #The last Header should be photo_incl
 
 if __name__ == '__main__':
     unittest.main()

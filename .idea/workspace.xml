@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="Unit testing Xcel Dowloader">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Back-End/testing DL.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/testing DL.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,23 +63,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for testing DL.MyTestCase.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in testing DL.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.api.executor&quot;: &quot;Run&quot;,
-    &quot;Python.backend.executor&quot;: &quot;Run&quot;,
-    &quot;Python.worksheet.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;TESTTING&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Edward Quail/PycharmProjects/WW1-Project&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for testing DL.MyTestCase.executor": "Run",
+    "Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction.executor": "Run",
+    "Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction_2.executor": "Run",
+    "Python tests.Python tests in testing DL.py.executor": "Run",
+    "Python.api.executor": "Run",
+    "Python.backend.executor": "Run",
+    "Python.worksheet.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "TESTTING",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Edward Quail/PycharmProjects/WW1-Project",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
-  <component name="RunManager" selected="Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction">
+}]]></component>
+  <component name="RunManager" selected="Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction_2">
     <configuration name="api" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="WW1-Project" />
       <option name="ENV_FILES" value="" />
@@ -131,6 +133,21 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction_2" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="WW1-Project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Implementation/Back-End" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;testing DL.MyTestCase.test_Data_Base_Header_Extraction_2&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for testing DL.MyTestCase.test_something" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="WW1-Project" />
       <option name="ENV_FILES" value="" />
@@ -163,6 +180,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction_2" />
         <item itemvalue="Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction" />
         <item itemvalue="Python tests.Python tests in testing DL.py" />
         <item itemvalue="Python tests.Python tests for testing DL.MyTestCase" />
@@ -242,7 +260,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743760037277</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Unit testing Xcel Dowloader">
+      <option name="closed" value="true" />
+      <created>1743849271700</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1743849271700</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Unit testing Xcel Dowloader">
+      <option name="closed" value="true" />
+      <created>1743849451040</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743849451040</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
