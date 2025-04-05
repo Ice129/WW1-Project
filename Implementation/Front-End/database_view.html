@@ -105,32 +105,75 @@
         };
         // Implementing the pagination
         let begin_pointer = 0;
-        let end_pointer = 8;
-        // Event listeners for the navigation buttons
-        document.querySelector('.next-record-button').addEventListener('click', function() {
-            begin_pointer += 8;
-            end_pointer += 8;
-            fetchData();
-        });
+        let end_pointer = 3;
 
-        document.querySelector('.prev-record-button').addEventListener('click', function() {
-            if (begin_pointer > 0) {
-                begin_pointer -= 8;
-                end_pointer -= 8;
-                fetchData();
+        // Function to display the current page
+        function displayPage(data, databaseName) {
+            const dataBody = document.getElementById('dataBody');
+            dataBody.innerHTML = ''; // Clear the table body
+
+            // Slice the data for the current page
+            const pageData = data.slice(begin_pointer, end_pointer);
+
+            if (pageData.length === 0) {
+                dataBody.innerHTML = '<tr><td colspan="33">No data available</td></tr>';
+            } else {
+                pageData.forEach(row => {
+                    const tr = document.createElement('tr');
+                    columns[databaseName].forEach(column => {
+                        const td = document.createElement('td');
+                        td.contentEditable = 'false';
+                        td.textContent = row[column.toLowerCase().replace(/ /g, '_')] || '';
+                        tr.appendChild(td);
+                    });
+
+                    const tdActions = document.createElement('td');
+                    tdActions.innerHTML = `
+                        <button class="edit-button">Edit</button>
+                        <button class="save-button" style="display:none;">Save</button>
+                        <button class="cancel-button" style="display:none;">Cancel</button>
+                    `;
+                    tr.appendChild(tdActions);
+                    dataBody.appendChild(tr);
+                });
+            }
+
+            // Update the result count button
+            document.querySelector('.result-count-button').textContent = `Results: ${data.length}`;
+        }
+
+        // Event listeners for pagination buttons
+        document.querySelector('.next-record-button').addEventListener('click', function () {
+            const databaseName = document.getElementById('databaseSelect').value;
+            const data = JSON.parse(sessionStorage.getItem('currentData')) || [];
+            if (end_pointer < data.length) {
+                begin_pointer += 3;
+                end_pointer += 3;
+                displayPage(data, databaseName);
             }
         });
-        //Downlaoding Database in to an excel file
-        function DownloadSelectedTable(){
+
+        document.querySelector('.prev-record-button').addEventListener('click', function () {
+            const databaseName = document.getElementById('databaseSelect').value;
+            const data = JSON.parse(sessionStorage.getItem('currentData')) || [];
+            if (begin_pointer > 0) {
+                begin_pointer -= 3;
+                end_pointer -= 3;
+                displayPage(data, databaseName);
+            }
+        });
+
+        // Function to download the selected table
+        function DownloadSelectedTable() {
             const url = '/download_csv';
             const body = {
-            databaseName: document.getElementById('databaseSelect').value,
-            authToken: "A_I_HATE_JS_JUST_END_MY-SUFFERING"
+                databaseName: document.getElementById('databaseSelect').value,
+                authToken: "A_I_HATE_JS_JUST_END_MY-SUFFERING"
             };
             fetch(url, {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json'  // Ensure the content type is JSON
+                    'Content-Type': 'application/json'  // Ensure the content type is JSON
                 },
                 body: JSON.stringify(body)  // Convert the body to a JSON string
             })
@@ -143,8 +186,9 @@
                     }
                     return response.json();
                 });
+        }
 
-        } //Updating the table headers
+        // Function to update the table headers
         function updateTableHeaders(databaseName) {
             const tableHeadRow = document.getElementById('tableHeadRow'); // Get the table head row
             tableHeadRow.innerHTML = '';
@@ -157,26 +201,30 @@
             thActions.textContent = 'Actions';
             tableHeadRow.appendChild(thActions);
         }
-        
-        document.getElementById('databaseSelect').addEventListener('change', function() { // Add an event listener to the database select element
-            updateTableHeaders(this.value); // Update the table headers based on the selected database
+
+        // Event listener for the database selection dropdown
+        document.getElementById('databaseSelect').addEventListener('change', function () {
+            const databaseName = this.value;
+            updateTableHeaders(databaseName);
+            fetchData(databaseName);
         });
-        
-        document.getElementById('searchForm').addEventListener('submit', async function(event) { // Add an event listener to the search form
+
+        // Event listener for the search form
+        document.getElementById('searchForm').addEventListener('submit', async function (event) {
             event.preventDefault(); // Prevent the default form submission
-            const databaseName = document.getElementById('databaseSelect').value; // Get the selected database name
-            const surname = document.getElementById('surname').value; // Get the surname value
-            const forename = document.getElementById('forename').value; // Get the forename value
-            const regiment = document.getElementById('regiment').value; // Get the regiment value
-            const service = document.getElementById('service').value; // Get the service number value
-            // Function to fetch data from the server
+            const databaseName = document.getElementById('databaseSelect').value;
+            const surname = document.getElementById('surname').value;
+            const forename = document.getElementById('forename').value;
+            const regiment = document.getElementById('regiment').value;
+            const service = document.getElementById('service').value;
+
             const fetchData = async (databaseName) => {
-                const response = await fetch('http://localhost:8000/get_data', { // Create a fetch request to the server
+                const response = await fetch('http://localhost:8000/get_data', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ 
+                    body: JSON.stringify({
                         databaseName: databaseName,
                         surname: surname,
                         forename: forename,
@@ -187,80 +235,21 @@
                 return response.json(); // Return the response as JSON
             };
 
-            const result = await fetchData(databaseName); // Get the database name
-            const data = result.data; // Get the fetched data
-            // Checks if the data is empty
-            const dataBody = document.getElementById('dataBody');
-            dataBody.innerHTML = '';
-            if (data.length === 0) {
-                dataBody.innerHTML = '<tr><td colspan="33">No data available</td></tr>'; // Display a message if no data is available
-            } else {
-                data.forEach(row => { // Populate the table with the fetched data
-                    const tr = document.createElement('tr'); // Create a table row
-                    columns[databaseName].forEach(column => { // Loop through the columns
-                        const td = document.createElement('td'); // Create a table data cell
-                        td.contentEditable = 'false'; // Set the content editable attribute to false
-                        td.textContent = row[column.toLowerCase().replace(/ /g, '_')] || ''; // Set the text content of the cell
-                        tr.appendChild(td); // Append the cell to the row
-                    }); // Create action buttons for each row
-                    const tdActions = document.createElement('td');
-                    tdActions.innerHTML = `
-                        <button class="edit-button">Edit</button>
-                        <button class="save-button" style="display:none;">Save</button>
-                        <button class="cancel-button" style="display:none;">Cancel</button>
-                    `;
-                    tr.appendChild(tdActions);
-                    dataBody.appendChild(tr);
-                });
-            } // Update the result count button
-            document.querySelector('.result-count-button').textContent = `Results: ${data.length}`;
-        });
-        // Add event listeners to the action buttons
-        document.querySelectorAll('.edit-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                row.querySelectorAll('td[contenteditable]').forEach(cell => {
-                    cell.setAttribute('contenteditable', 'true');
-                });
-                row.querySelector('.edit-button').style.display = 'none'; // Hide the edit button
-                row.querySelector('.save-button').style.display = 'inline'; // Show the save button
-                row.querySelector('.cancel-button').style.display = 'inline'; // Show the cancel button
-            });
-        });
-        // Add event listeners to the save buttons
-        document.querySelectorAll('.save-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                row.querySelectorAll('td[contenteditable]').forEach(cell => { // Loop through the cells
-                    cell.setAttribute('contenteditable', 'false'); // Set the content editable attribute to false
-                });
-                row.querySelector('.edit-button').style.display = 'inline'; // Show the edit button
-                row.querySelector('.save-button').style.display = 'none'; // Hide the save button
-                row.querySelector('.cancel-button').style.display = 'none'; // Hide the cancel button
-                alert('Changes saved!'); // Display an alert message
-            });
-        });
-
-        document.querySelectorAll('.cancel-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                row.querySelectorAll('td[contenteditable]').forEach(cell => {
-                    cell.setAttribute('contenteditable', 'false');
-                });
-                row.querySelector('.edit-button').style.display = 'inline';
-                row.querySelector('.save-button').style.display = 'none';
-                row.querySelector('.cancel-button').style.display = 'none';
-                alert('Changes canceled!');
-            });
+            const result = await fetchData(databaseName);
+            const data = result.data || [];
+            sessionStorage.setItem('currentData', JSON.stringify(data));
+            begin_pointer = 0;
+            end_pointer = 3;
+            displayPage(data, databaseName);
         });
 
         // Fetch all rows on page load
-        document.addEventListener('DOMContentLoaded', async function() {
+        document.addEventListener('DOMContentLoaded', async function () {
             const databaseName = document.getElementById('databaseSelect').value;
             updateTableHeaders(databaseName);
-            // Function to fetch data from the server
+
             const fetchData = async (databaseName) => {
-                const response = await fetch('http://localhost:8000/get_data', { // Create a fetch request to the server
+                const response = await fetch('http://localhost:8000/get_data', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -276,33 +265,12 @@
                 return response.json(); // Return the response as JSON
             };
 
-            const result = await fetchData(databaseName); // Get the database name
-            const data = result.data; // Get the fetched data
-            // Checks if the data is empty
-            const dataBody = document.getElementById('dataBody');
-            dataBody.innerHTML = '';
-            if (data.length === 0) {
-                dataBody.innerHTML = '<tr><td colspan="33">No data available</td></tr>'; // Display a message if no data is available
-            } else { // Populate the table with the fetched data
-                data.forEach(row => { // Loop through the rows
-                    const tr = document.createElement('tr'); // Create a table row
-                    columns[databaseName].forEach(column => { // Loop through the columns
-                        const td = document.createElement('td'); // Create a table data cell
-                        td.contentEditable = 'false'; // Set the content editable attribute to false
-                        td.textContent = row[column.toLowerCase().replace(/ /g, '_')] || ''; // Set the text content of the cell
-                        tr.appendChild(td); // Append the cell to the row
-                    }); // Create action buttons for each row
-                    const tdActions = document.createElement('td');
-                    tdActions.innerHTML = `
-                        <button class="edit-button">Edit</button>
-                        <button class="save-button" style="display:none;">Save</button>
-                        <button class="cancel-button" style="display:none;">Cancel</button>
-                    `;
-                    tr.appendChild(tdActions); // Append the action buttons to the row
-                    dataBody.appendChild(tr); // Append the row to the table body
-                });
-            } // Update the result count button
-            document.querySelector('.result-count-button').textContent = `Results: ${data.length}`;
+            const result = await fetchData(databaseName);
+            const data = result.data || [];
+            sessionStorage.setItem('currentData', JSON.stringify(data));
+            begin_pointer = 0;
+            end_pointer = 3;
+            displayPage(data, databaseName);
         });
     </script>
 </body>
