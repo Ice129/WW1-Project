@@ -26,7 +26,8 @@ def hash_password_sha256(password: str, salt: bytes, iterations: int = 100000) -
     except Exception as e:
         logging.error(f"An error occurred while hashing the password: {e}")
         raise
-    
+
+# Saves password and salt to file    
 def save_to_file(filename: str, hashed_password: str, salt: str):
     try:
         with open (filename, 'w') as file:
@@ -36,4 +37,16 @@ def save_to_file(filename: str, hashed_password: str, salt: str):
     except Exception as e:
         logging.error(f"An error occurred while saving to file: {e}")
         raise
-    
+
+# Generates new salt, hashes new password and saves them to password.txt 
+def change_admin_password(newPassword: str) -> bool:
+    try:
+        salt = generate_salt()
+        salt_hex = salt.hex()
+        hashed_password = hash_password_sha256(newPassword, salt)
+        save_to_file("password.txt", hashed_password, salt_hex)
+        logging.info("Password successfully updated.")
+        return True
+    except Exception as e:
+        logging.error(f"An error occurred while changing the password: {e}")
+        return false
