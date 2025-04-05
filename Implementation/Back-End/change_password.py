@@ -49,4 +49,4 @@ def change_admin_password(newPassword: str) -> bool:
         return True
     except Exception as e:
         logging.error(f"An error occurred while changing the password: {e}")
-        return false
+        return False
