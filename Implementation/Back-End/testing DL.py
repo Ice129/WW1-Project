@@ -8,7 +8,7 @@ class MyTestCase(unittest.TestCase):
 
 
 
-    def test_Data_Base_Header_Extraction(self):
+    def test_Data_Base_Header_Extraction_1(self):
         database = sqlite3.connect("database.db")
         cursor = database.cursor()
         cursor.execute("SELECT * FROM NewspaperReferences2025")
@@ -33,6 +33,13 @@ class MyTestCase(unittest.TestCase):
         worksheet.autofit()
         workbook.close()
 
+    def test_Data_Base_Header_Extraction_2(self):
+        database = sqlite3.connect("database.db")
+        cursor = database.cursor()
+        cursor.execute("SELECT * FROM NewspaperReferences2025")
+        Data = cursor.fetchall()
+        Headers = [description[0] for description in cursor.description]
+        self.assertEqual(Headers[1], "surname")  #The first Header should be surname
 
 if __name__ == '__main__':
     unittest.main()
