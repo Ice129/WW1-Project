@@ -14,7 +14,7 @@ class MyTestCase(unittest.TestCase):
         cursor.execute("SELECT * FROM NewspaperReferences2025")
         Data = cursor.fetchall()
         Headers = [description[0] for description in cursor.description]
-        self.assertEqual(Headers[0], "ID")  #The first Header should be Surname
+        self.assertEqual(Headers[0], "ID")  #The first Header should be ID
 
     def DLNewspaperReferences2025(self):
         database = sqlite3.connect("database.db")
