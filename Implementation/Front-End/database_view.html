@@ -101,9 +101,9 @@
             bradfordmemorials: ['Forename', 'Surname', 'Regiment', 'Unit', 'Memorial', 'Memorial Location', 'Memorial Info', 'Memorial Postcode', 'District', 'Photo Available'],
             buriedinbradford: ['Forename', 'Surname', 'Age', 'Medals', 'Date of Birth', 'Rank', 'Unit', 'Cemetery', 'Grave Ref', 'Info'],
             newspaperreferences2025: ['Forename', 'Surname', 'Rank', 'Address', 'Regiment', 'Unit', 'Article Comment', 'Newspaper Name', 'Newspaper Date', 'Page/Col', 'Photo Included'],
-            rollofhonour: ['Forename', 'Surname', 'Address', 'Electoral Ward', 'Town', 'Rank', 'Regiment', 'Unit', 'Company', 'Age', 'Service No.', 'Other Regiment', 'Other Service No.', 'Medals', 'Enlistment Date', 'Discharge Date', 'Death Date', 'Misc Info', 'Cemetery/Memorial', 'Cemetery/Memorial Ref', 'Cemetery/Memorial Country', 'Additional CWGC Info']
+            rollofhonour: ['Forename', 'Surname', 'Address', 'Electoral Ward', 'Town', 'Rank', 'Regiment', 'Unit', 'Company', 'Age', 'service_no', 'other_regiment', 'other_service_no', 'medals', 'enlisted_date', 'discharged_date', 'death_date', 'misc_info_nroh', 'cemetery_memorial', 'cemetery_memorial_ref', 'cemetery_memorial_country', 'additional_cwgc_info']
         };
-        // Implementing the pagination
+        // Pagination variables
         let begin_pointer = 0;
         let end_pointer = 3;
 
@@ -142,24 +142,66 @@
             document.querySelector('.result-count-button').textContent = `Results: ${data.length}`;
         }
 
+        // Function to fetch and display the current page for "Roll of Honour"
+        async function fetchRollOfHonourPage(begin, end) {
+            const response = await fetch('http://localhost:8000/get_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    databaseName: 'rollofhonour',
+                    begin: begin,
+                    end: end,
+                    surname: document.getElementById('surname').value || '',
+                    forename: document.getElementById('forename').value || '',
+                    regiment: document.getElementById('regiment').value || '',
+                    service_number: document.getElementById('service').value || ''
+                })
+            });
+
+            const result = await response.json();
+            const data = result.data || [];
+            const totalResults = result.total || 0;
+
+            displayPage(data, 'rollofhonour');
+
+            // Update the result count button
+            document.querySelector('.result-count-button').textContent = `Results: ${totalResults}`;
+        }
+
         // Event listeners for pagination buttons
         document.querySelector('.next-record-button').addEventListener('click', function () {
             const databaseName = document.getElementById('databaseSelect').value;
-            const data = JSON.parse(sessionStorage.getItem('currentData')) || [];
-            if (end_pointer < data.length) {
+            if (databaseName === 'rollofhonour') {
                 begin_pointer += 3;
                 end_pointer += 3;
-                displayPage(data, databaseName);
+                fetchRollOfHonourPage(begin_pointer, end_pointer);
+            } else {
+                const data = JSON.parse(sessionStorage.getItem('currentData')) || [];
+                if (end_pointer < data.length) {
+                    begin_pointer += 3;
+                    end_pointer += 3;
+                    displayPage(data, databaseName);
+                }
             }
         });
 
         document.querySelector('.prev-record-button').addEventListener('click', function () {
             const databaseName = document.getElementById('databaseSelect').value;
-            const data = JSON.parse(sessionStorage.getItem('currentData')) || [];
-            if (begin_pointer > 0) {
-                begin_pointer -= 3;
-                end_pointer -= 3;
-                displayPage(data, databaseName);
+            if (databaseName === 'rollofhonour') {
+                if (begin_pointer > 0) {
+                    begin_pointer -= 3;
+                    end_pointer -= 3;
+                    fetchRollOfHonourPage(begin_pointer, end_pointer);
+                }
+            } else {
+                const data = JSON.parse(sessionStorage.getItem('currentData')) || [];
+                if (begin_pointer > 0) {
+                    begin_pointer -= 3;
+                    end_pointer -= 3;
+                    displayPage(data, databaseName);
+                }
             }
         });
 
@@ -205,72 +247,106 @@
         // Event listener for the database selection dropdown
         document.getElementById('databaseSelect').addEventListener('change', function () {
             const databaseName = this.value;
+            begin_pointer = 0;
+            end_pointer = 3;
             updateTableHeaders(databaseName);
-            fetchData(databaseName);
+            if (databaseName === 'rollofhonour') {
+                fetchRollOfHonourPage(begin_pointer, end_pointer);
+            } else {
+                const fetchData = async (databaseName) => {
+                    const response = await fetch('http://localhost:8000/get_data', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            databaseName: databaseName,
+                            surname: '',
+                            forename: '',
+                            regiment: '',
+                            service_number: ''
+                        })
+                    });
+                    return response.json();
+                };
+
+                fetchData(databaseName).then(result => {
+                    const data = result.data || [];
+                    sessionStorage.setItem('currentData', JSON.stringify(data));
+                    displayPage(data, databaseName);
+                });
+            }
         });
 
         // Event listener for the search form
         document.getElementById('searchForm').addEventListener('submit', async function (event) {
             event.preventDefault(); // Prevent the default form submission
             const databaseName = document.getElementById('databaseSelect').value;
-            const surname = document.getElementById('surname').value;
-            const forename = document.getElementById('forename').value;
-            const regiment = document.getElementById('regiment').value;
-            const service = document.getElementById('service').value;
+            if (databaseName === 'rollofhonour') {
+                begin_pointer = 0;
+                end_pointer = 3;
+                fetchRollOfHonourPage(begin_pointer, end_pointer);
+            } else {
+                const surname = document.getElementById('surname').value;
+                const forename = document.getElementById('forename').value;
+                const regiment = document.getElementById('regiment').value;
+                const service = document.getElementById('service').value;
 
-            const fetchData = async (databaseName) => {
-                const response = await fetch('http://localhost:8000/get_data', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        databaseName: databaseName,
-                        surname: surname,
-                        forename: forename,
-                        regiment: regiment,
-                        service_number: service
-                    })
-                });
-                return response.json(); // Return the response as JSON
-            };
+                const fetchData = async (databaseName) => {
+                    const response = await fetch('http://localhost:8000/get_data', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            databaseName: databaseName,
+                            surname: surname,
+                            forename: forename,
+                            regiment: regiment,
+                            service_number: service
+                        })
+                    });
+                    return response.json(); // Return the response as JSON
+                };
 
-            const result = await fetchData(databaseName);
-            const data = result.data || [];
-            sessionStorage.setItem('currentData', JSON.stringify(data));
-            begin_pointer = 0;
-            end_pointer = 3;
-            displayPage(data, databaseName);
+                const result = await fetchData(databaseName);
+                const data = result.data || [];
+                sessionStorage.setItem('currentData', JSON.stringify(data));
+                begin_pointer = 0;
+                end_pointer = 3;
+                displayPage(data, databaseName);
+            }
         });
 
         // Fetch all rows on page load
         document.addEventListener('DOMContentLoaded', async function () {
             const databaseName = document.getElementById('databaseSelect').value;
             updateTableHeaders(databaseName);
+            if (databaseName === 'rollofhonour') {
+                fetchRollOfHonourPage(begin_pointer, end_pointer);
+            } else {
+                const fetchData = async (databaseName) => {
+                    const response = await fetch('http://localhost:8000/get_data', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            databaseName: databaseName,
+                            surname: '',
+                            forename: '',
+                            regiment: '',
+                            service_number: ''
+                        })
+                    });
+                    return response.json();
+                };
 
-            const fetchData = async (databaseName) => {
-                const response = await fetch('http://localhost:8000/get_data', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        databaseName: databaseName,
-                        surname: '',
-                        forename: '',
-                        regiment: '',
-                        service_number: ''
-                    })
-                });
-                return response.json(); // Return the response as JSON
-            };
-
-            const result = await fetchData(databaseName);
-            const data = result.data || [];
-            sessionStorage.setItem('currentData', JSON.stringify(data));
-            begin_pointer = 0;
-            end_pointer = 3;
-            displayPage(data, databaseName);
+                const result = await fetchData(databaseName);
+                const data = result.data || [];
+                sessionStorage.setItem('currentData', JSON.stringify(data));
+                displayPage(data, databaseName);
+            }
         });
     </script>
 </body>
