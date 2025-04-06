@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,26 +20,14 @@
     </div>
     <!-- A sidebar with navigation links -->
     <div class="sidebar-container">
-        <div class="sidebar">
+        <div class="sidebar-admin">
             <ul>
                 <li>
-                    <a href="guest_home">Home</a>
+                    <a href="guest_home">Guest Home View</a>
                 </li>
-                <li>
-                    <a href="townships">Bradford and surrounding townships</a>
-                </li>
-                <li>
-                    <a href="memorials">Names on Bradford Memorials</a>
-                </li>
-                <li>
-                    <a href="buried">Buried in Bradford</a>
-                </li>
-                <li>
-                    <a href="newspaper">Newspaper References</a>
-                </li>
-                <li class="active">
-                    <a href="biographies">Biographies</a>
-                </li>
+            <li>
+                <a href="admin_dashboard">Back to admin dashboard</a>
+            </li>
                 <li>
                     <a href="/">Log Out</a>
                 </li>
@@ -74,6 +62,8 @@
                     <button type="reset" class="clear-button">Clear</button>
                 </form>
             </div>
+            <section class="table-selection">
+            <div class="table-wrapper">
             <!-- Added a table to display the fetched data -->
             <table>
                 <thead id="tableHead">
@@ -86,6 +76,7 @@
                 </tbody>
             </table>
         </div>
+    </section>
         <!-- Added navigation buttons for pagination -->
         <div class="nav-buttons">
             <button class="result-count-button">Results: 0</button>
@@ -94,6 +85,7 @@
             <button class="close-button" onclick="window.location.href='guest_home'">Close</button>
         </div>
     </div>
+
     <script>
         // Fetch table data from the server
         const columns = {

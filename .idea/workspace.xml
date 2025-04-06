@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="updated style">
-      <change beforePath="$PROJECT_DIR$/.idea/WW1-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WW1-Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Back-End/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/backend.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementation/Front-End/biographies.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/biographies.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementation/Front-End/buried.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/buried.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/guest_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/guest_home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/database_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/database_view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/memorials.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/memorials.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementation/Front-End/newspaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/newspaper.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementation/Front-End/static/Styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/static/Styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/townships.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/townships.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,22 +36,22 @@
     &quot;state&quot;: &quot;OPEN&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Ice129/WW1-Project.git",
-    "accountId": "f885bfc2-dfcb-42bf-84ba-742a8b7885db"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ice129/WW1-Project.git&quot;,
+    &quot;accountId&quot;: &quot;f885bfc2-dfcb-42bf-84ba-742a8b7885db&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "Ice129",
-    "repository": "WW1-Project"
+    &quot;owner&quot;: &quot;Ice129&quot;,
+    &quot;repository&quot;: &quot;WW1-Project&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -72,7 +68,7 @@
     "Python.worksheet.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "client-update-hope",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Edward Quail/PycharmProjects/WW1-Project",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
@@ -105,7 +101,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-14705d77f0bb-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.25659.43" />
+        <option value="bundled-python-sdk-4f4e415b4190-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.26053.29" />
       </set>
     </attachedChunks>
   </component>

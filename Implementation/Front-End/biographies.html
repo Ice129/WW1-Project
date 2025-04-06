@@ -64,6 +64,21 @@
         .view-pdf-btn:hover {
             background-color: #45a049;
         }
+
+        .table-section {
+    width: 100%; /* Ensure the section takes up the full width */
+    padding-bottom: 20px; /* Padding to prevent cut-off */
+}
+
+.table-wrapper {
+    width: 100%;
+    max-height: 400px; /* You can adjust this to your preferred height */
+    overflow-x: auto;
+    overflow-y: auto; /* This enables vertical scrolling */
+    -webkit-overflow-scrolling: touch;
+}
+
+
     </style>
 </head>
 
@@ -115,6 +130,8 @@
                 </form>
             </div>
             <!-- Added a table to display the fetched data -->
+            <section class="table-section">
+    <div class="table-wrapper">
             <table>
         <thead>
             <tr>
@@ -130,6 +147,8 @@
         </tbody>
     </table>
         </div>
+            </section>
+
         <!-- Added navigation buttons for pagination -->
         <div class="nav-buttons">
             <button class="result-count-button">Results: 0</button>
