@@ -272,6 +272,58 @@ def drop_databases():
     cursor.execute("DROP TABLE IF EXISTS RollOfHonour")
     cursor.execute("DROP TABLE IF EXISTS BuriedInBradford")
 
+
+def delete_data(databaseName: str):
+    print("received delete request for database:", databaseName)
+    # check if databaseName is valid
+    if databaseName.lower() not in ["BradfordMemorials".lower(), "NewspaperReferences2025".lower(), "BiographySpreadsheet".lower(), "RollOfHonour".lower(), "BuriedInBradford".lower()]:
+        print("Invalid database name.")
+        return False
+    # delete all the rows from the database
+    cursor.execute(f"DELETE FROM {databaseName}")
+    database.commit()
+    print(f"All rows from {databaseName} have been deleted.")
+    return True
+
+def upload_to_database(databaseName: str, data: list[dict]):
+    try:
+        # Validate database name
+        if databaseName.lower() not in ["bradfordmemorials", "newspaperreferences2025", 
+                                        "biographyspreadsheet", "rollofhonour", "buriedinbradford"]:
+            print("Invalid database name.")
+            return False
+
+        # Validate data
+        if not isinstance(data, list) or not all(isinstance(item, dict) for item in data):
+            print("Invalid data format.")
+            return False
+
+        cursor = database.cursor()
+        inserted_count = 0
+
+        for item in data:
+            # Normalize column names: lower case and replace spaces with underscores
+            normalized_item = {key.lower().replace(" ", "_"): value for key, value in item.items()}
+            print("Inserting:", normalized_item)  #
+            
+            columns = [f'`{key}`' for key in normalized_item.keys()]
+            placeholders = ['?'] * len(normalized_item)
+
+            sql = f"INSERT INTO `{databaseName}` ({', '.join(columns)}) VALUES ({', '.join(placeholders)})"
+            cursor.execute(sql, tuple(normalized_item.values()))
+            inserted_count += 1
+
+        database.commit()
+        print(f"Inserted {inserted_count} records into {databaseName}")
+        print("inserted total of", inserted_count, "rows")
+        return inserted_count
+
+    except Exception as e:
+        database.rollback()
+        print(f"Database error: {str(e)}")
+        return False
+
+    
 # Assigned to: Charlie
 # This function will call the load_csv() on all of the csv files in the directory
 # It will then convert their returned values into the created SQL databases in create_database()

@@ -128,9 +128,73 @@ async def change_password(newPasswordHash: str, authToken: str):
     return {"status": "success", "code": 200}
 
 # Assigned to: ???
+# @app.delete("/delete_row")
+# async def delete_row(databaseName: str, filterObject: dict, authToken: str):
+#     # print databaseName, filterObject, authToken
+#     print("printing data: ", databaseName, filterObject, authToken)
+#     return {"status": "success", "code": 200}
+
+
+from pydantic import BaseModel
+
+# Define the request body model
+class DeleteRequest(BaseModel):
+    databaseName: str
+    filterObject: dict
+    authToken: str
+
+from backend import delete_data
+
 @app.delete("/delete_row")
-async def delete_row(databaseName: str, filterObject: dict, authToken: str):
-    return {"status": "success", "code": 200}
+async def delete_row(request: DeleteRequest):
+    print("Received delete request for database:", request.databaseName)
+    
+    databaseName = request.databaseName
+    filterObject = request.filterObject
+    authToken = request.authToken
+
+    # check if filterObject is empty
+    if not filterObject:
+        successful = delete_data(databaseName)
+        if successful:
+            return {"status": "success", "code": 200}
+        else:
+            return {"status": "error", "code": 400, "message": "Failed to delete data"}
+        
+from fastapi import HTTPException
+
+# Add to your existing models
+class UploadRequest(BaseModel):
+    databaseName: str
+    data: list[dict]  # List of records to insert
+    authToken: str
+
+from backend import upload_to_database
+
+@app.post("/upload_data")
+async def upload_data(request: UploadRequest):
+    # Authentication
+    valid_token = "A_I_HATE_JS_JUST_END_MY-SUFFERING"
+    if request.authToken != valid_token:
+        return {"status": "error", "message": "Unauthorized", "code": 401}
+    try:
+        inserted_count = upload_to_database(
+            request.databaseName, 
+            request.data
+        )
+        return {
+            "status": "success",
+            "inserted_count": inserted_count,
+            "code": 200
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e),
+            "code": 500
+        }
+
+
 
 # Assigned to: Charlie
 # Should return a JSON object containing the data that matches the filter object
