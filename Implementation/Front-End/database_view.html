@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
 <body>
     <header>
@@ -17,29 +20,20 @@
     <div class="design_line_under_header"></div>
     <div class="data_managment_buttons">
         <button class="small button" onclick="DownloadSelectedTable()">Download Data</button>
+        <button class="small button" onclick="UploadData()">Upload Data</button>
+        <button class="small button" onclick="PrintData()">Print Data</button>
+        <button class="small button" onclick="DeleteData()">Delete Data</button>
     </div>
     <!-- A sidebar with navigation links -->
     <div class="sidebar-container">
-        <div class="sidebar">
+        <div class="sidebar-admin">
             <ul>
                 <li>
-                    <a href="guest_home">Home</a>
+                    <a href="guest_home">Guest Home View</a>
                 </li>
-                <li>
-                    <a href="townships">Bradford and surrounding townships</a>
-                </li>
-                <li>
-                    <a href="memorials">Names on Bradford Memorials</a>
-                </li>
-                <li>
-                    <a href="buried">Buried in Bradford</a>
-                </li>
-                <li>
-                    <a href="newspaper">Newspaper References</a>
-                </li>
-                <li class="active">
-                    <a href="biographies">Biographies</a>
-                </li>
+            <li>
+                <a href="admin_dashboard">Back to admin dashboard</a>
+            </li>
                 <li>
                     <a href="/">Log Out</a>
                 </li>
@@ -74,6 +68,8 @@
                     <button type="reset" class="clear-button">Clear</button>
                 </form>
             </div>
+            <section class="table-selection">
+            <div class="table-wrapper">
             <!-- Added a table to display the fetched data -->
             <table>
                 <thead id="tableHead">
@@ -86,6 +82,7 @@
                 </tbody>
             </table>
         </div>
+    </section>
         <!-- Added navigation buttons for pagination -->
         <div class="nav-buttons">
             <button class="result-count-button">Results: 0</button>
@@ -94,6 +91,7 @@
             <button class="close-button" onclick="window.location.href='guest_home'">Close</button>
         </div>
     </div>
+
     <script>
         // Fetch table data from the server
         const columns = {
@@ -348,6 +346,177 @@
                 displayPage(data, databaseName);
             }
         });
+
+
+function UploadData() {
+    const databaseName = document.getElementById('databaseSelect').value;
+    const authToken = "A_I_HATE_JS_JUST_END_MY-SUFFERING";
+    
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.csv,.json,.xlsx';
+    
+    fileInput.onchange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const btn = document.querySelector('button[onclick="UploadData()"]');
+        btn.textContent = "Reading file...";
+        btn.disabled = true;
+
+        try {
+            // Handle different file types
+            let data;
+            if (file.name.endsWith('.xlsx')) {
+                data = await readExcelFile(file);
+            } else if (file.name.endsWith('.csv')) {
+                data = await readCSVFile(file);
+            } else if (file.name.endsWith('.json')) {
+                data = await readJSONFile(file);
+            } else {
+                throw new Error('Unsupported file format');
+            }
+
+            if (!confirm(`Upload ${data.length} records to ${databaseName}?`)) return;
+
+            btn.textContent = "Uploading...";
+            
+            const response = await fetch('/upload_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    databaseName: databaseName,
+                    data: data,
+                    authToken: authToken
+                })
+            });
+
+            const result = await response.json();
+            if (result.status === "success") {
+                alert(`Uploaded ${result.inserted_count} records!`);
+                document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+            } else {
+                alert(`Upload failed: ${result.message}`);
+            }
+        } catch (error) {
+            alert(`Error processing file: ${error.message}`);
+        } finally {
+            btn.textContent = "Upload Data";
+            btn.disabled = false;
+        }
+    };
+    
+    fileInput.click();
+}
+
+// Helper functions
+async function readExcelFile(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+            resolve(XLSX.utils.sheet_to_json(worksheet));
+        };
+        reader.onerror = reject;
+        reader.readAsArrayBuffer(file);
+    });
+}
+
+async function readCSVFile(file) {
+    return new Promise((resolve, reject) => {
+        Papa.parse(file, {
+            complete: (results) => resolve(results.data),
+            error: reject,
+            header: true,
+            skipEmptyLines: true
+        });
+    });
+}
+
+async function readJSONFile(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                resolve(JSON.parse(e.target.result));
+            } catch (error) {
+                reject(error);
+            }
+        };
+        reader.onerror = reject;
+        reader.readAsText(file);
+    });
+}
+
+function PrintData() {
+    const originalTable = document.querySelector('table');
+    const clone = originalTable.cloneNode(true);
+    
+    // Remove action buttons column
+    clone.querySelectorAll('th:last-child, td:last-child').forEach(element => element.remove());
+    
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+            <head>
+                <title>Print Preview</title>
+                <style>
+                    table { border-collapse: collapse; width: 100%; }
+                    th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+                    @media print { 
+                        @page { size: landscape; }
+                    }
+                </style>
+            </head>
+            <body>
+                <h2>${document.title}</h2>
+                ${clone.outerHTML}
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+}
+
+function DeleteData() {
+    const databaseName = document.getElementById('databaseSelect').value;
+    const authToken = "A_I_HATE_JS_JUST_END_MY-SUFFERING";
+    
+    // Confirmation dialog
+    if (!confirm(`Delete ALL data from ${databaseName}? This cannot be undone.`)) return;
+
+    console.log("database name: ", databaseName)
+
+    fetch('/delete_row', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            databaseName: databaseName,
+            filterObject: {}, // Empty filter = delete all rows
+            authToken: authToken
+        })
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.status === "success") {
+            alert("All data deleted successfully!");
+            // Refresh the table
+            document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+        } else {
+            alert(`Delete failed: ${result.message}`);
+        }
+    })
+    .catch(error => {
+        alert("Delete failed: " + error.message);
+    });
+}
     </script>
 </body>
 </html>
