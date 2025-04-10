@@ -10,6 +10,7 @@ from pydantic import BaseModel, ValidationError
 import uvicorn
 import subprocess
 from fastapi.middleware.cors import CORSMiddleware
+from change_password import change_admin_password
 
 app = FastAPI()
 # Add CORS middleware
@@ -122,10 +123,18 @@ async def upload_csv(obj: CsvUpload):
 async def upload_individual(obj: IndividualUpload):
     return {"status": "success", "code": 200}
 
-# Assigned to: ???
+# Assigned to: Connor
 @app.patch("/change_password")
-async def change_password(newPasswordHash: str, authToken: str):
-    return {"status": "success", "code": 200}
+async def change_password(newPassword: str, authToken: str):
+    # Token validation is skipped for now
+    try:
+        success = change_admin_password(newPassword)
+        if success:
+            return {"status": "success", "code": 200, "message": "Password updated successfully."}
+        else:
+            return {"status": "error", "code": 500, "message": "Failed to update password."}
+    except Exception as e:
+        return {"status": "error", "code": 500, "message": str(e)}
 
 # Assigned to: ???
 @app.delete("/delete_row")
