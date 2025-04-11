@@ -69,19 +69,22 @@
     "Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction.executor": "Run",
     "Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction_2.executor": "Run",
     "Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_Header_Extraction_1.executor": "Run",
+    "Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_2.executor": "Run",
+    "Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_last.executor": "Run",
+    "Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_last_0.executor": "Run",
     "Python tests.Python tests in testing DL.py.executor": "Run",
     "Python.api.executor": "Run",
     "Python.backend.executor": "Run",
     "Python.worksheet.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "TESTTING",
+    "git-widget-placeholder": "#37 on TESTTING",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Edward Quail/PycharmProjects/WW1-Project",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
-  <component name="RunManager" selected="Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_Header_Extraction_1">
+  <component name="RunManager" selected="Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_last_0">
     <configuration name="api" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="WW1-Project" />
       <option name="ENV_FILES" value="" />
@@ -102,36 +105,6 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for testing DL.MyTestCase" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="WW1-Project" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Implementation/Back-End" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;testing DL.MyTestCase&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="WW1-Project" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Implementation/Back-End" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;testing DL.MyTestCase.test_Data_Base_Header_Extraction&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction_2" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -164,7 +137,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in testing_DL.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_2" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="WW1-Project" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -175,17 +148,47 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/Implementation/Back-End/testing_DL.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;testing_DL.MyTestCase.test_Data_Base_data_Extraction_2&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_last" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="WW1-Project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Implementation/Back-End" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;testing_DL.MyTestCase.test_Data_Base_data_Extraction_last&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_last_0" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="WW1-Project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Implementation/Back-End" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;testing_DL.MyTestCase.test_Data_Base_data_Extraction_last_0&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_last_0" />
+        <item itemvalue="Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_last" />
+        <item itemvalue="Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_data_Extraction_2" />
         <item itemvalue="Python tests.Python tests for testing_DL.MyTestCase.test_Data_Base_Header_Extraction_1" />
         <item itemvalue="Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction_2" />
-        <item itemvalue="Python tests.Python tests for testing DL.MyTestCase.test_Data_Base_Header_Extraction" />
-        <item itemvalue="Python tests.Python tests in testing_DL.py" />
-        <item itemvalue="Python tests.Python tests for testing DL.MyTestCase" />
       </list>
     </recent_temporary>
   </component>
@@ -293,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743850327226</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Unit testing Xcel Dowloader">
+      <option name="closed" value="true" />
+      <created>1743892819010</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1743892819010</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
