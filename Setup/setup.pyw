@@ -83,7 +83,7 @@ cd /d "{os.path.join(target_folder, "Back-End")}"
 start "" "{python_path}" startup.pyw
 """
         f.write(batch_content)
-    # TODO: update file extensions to pyw
+
 
 
 def main():
