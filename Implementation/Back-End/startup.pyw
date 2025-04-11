@@ -94,26 +94,16 @@ def main():
     pid_file_path = os.path.join(script_dir, "PID")
     
     try:
-        # Find Python executable
         python_path = find_python_path()
         python_command = [python_path]
-        
-        # Run backend
         run_backend(python_command, backend_path)
-        
         # Give backend time to finish file processing
         time.sleep(1)
-        
-        # Start API server
+
         start_api_server(python_command, api_path)
-        
-        # Kill Edge browser
         kill_edge_browser()
-        
         # Wait for all processes to close
         time.sleep(0.3)
-        
-        # Start kiosk keeper
         start_kiosk_keeper(python_command, kiosk_keeper_path, pid_file_path)
         
         return True
