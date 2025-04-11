@@ -11,7 +11,7 @@ class MyTestCase(unittest.TestCase):
     def test_Data_Base_Header_Extraction_1(self):
         database = sqlite3.connect("database.db")
         cursor = database.cursor()
-        cursor.execute("SELECT * FROM NewspaperReferences2025")
+        cursor.execute("SELECT * FROM BuriedInBradford")
         Data = cursor.fetchall()
         Headers = [description[0] for description in cursor.description]
         self.assertEqual(Headers[0], "ID")  #The first Header should be ID
