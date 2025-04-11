@@ -12,7 +12,7 @@ while True:
                 "start",
                 "msedge",
                 "--kiosk",
-                f"localhost:8000",
+                f"http://localhost:8000",
                 "--edge-kiosk-type=fullscreen",
                 "-no-first-run",
             ],
