@@ -39,7 +39,7 @@ REM Use the found Python path instead of py command
 "%python_path%" -m pip install --upgrade pip
 "%python_path%" -m pip install -r requirements.txt
 
-"%python_path%" setup.py
+"%python_path%" setup.pyw
 
 rem clear screen then say instilation is done
 cls
