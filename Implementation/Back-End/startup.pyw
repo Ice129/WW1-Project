@@ -88,8 +88,8 @@ def main():
     script_dir = get_script_dir()
     
     # Use absolute paths for all script calls
-    backend_path = os.path.join(script_dir, "backend.py")
-    api_path = os.path.join(script_dir, "api.py")
+    backend_path = os.path.join(script_dir, "backend.pyw")
+    api_path = os.path.join(script_dir, "api.pyw")
     kiosk_keeper_path = os.path.join(script_dir, "kiosk_keeper.pyw")
     pid_file_path = os.path.join(script_dir, "PID")
     

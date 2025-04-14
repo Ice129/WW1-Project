@@ -8,6 +8,71 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* PDF Modal Styles */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    
+        .pdf-modal-content {
+            position: relative;
+            margin: 2% auto;
+            width: 90%;
+            height: 90%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+    
+        .pdf-close {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff0000;
+            cursor: pointer;
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px 12px;
+            border-radius: 5px;
+        }
+    
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+    <script>
+        function openPdfModal(pdfFile) {
+            const modal = document.createElement('div');
+            modal.className = 'pdf-modal';
+            modal.innerHTML = `
+                <div class="pdf-modal-content">
+                    <span class="pdf-close" onclick="closePdfModal()">&times;</span>
+                    <iframe class="pdf-viewer" src="/static/pdfs/${pdfFile}" frameborder="0"></iframe>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.style.display = 'block';
+        }
+
+        function closePdfModal() {
+            const modal = document.querySelector('.pdf-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                modal.remove();
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -361,40 +426,39 @@ position: fixed;
         </div>
 
 <div class="surrounding">
- <h5>Bradford and Surrounding township's</h5>
+ <h5><a href="townships" style="text-decoration: none; color: black;">Bradford and Surrounding township's</a></h5>
  <div class="button-container">
-        <button onclick="window.location.href='townships'">More Information</button>
+        <button onclick="openPdfModal('townships_info.pdf')">More Information</button>
     </div>
 </div>
 
 <div class="names">
-
-<h5>Names on Bradford Memorials</h5>
+<h5><a href="memorials" style="text-decoration: none; color: black;">Names on Bradford Memorials</a></h5>
    <div class="button-container">
-        <button onclick="window.location.href='memorials'">More Information</button>
+        <button onclick="openPdfModal('memorials_info.pdf')">More Information</button>
     </div>
 </div>
 
 <div class="buried">
-<h5>Buried in Bradford</h5>
+<h5><a href="buried" style="text-decoration: none; color: black;">Buried in Bradford</a></h5>
     <div class="button-container">
-        <button onclick="window.location.href='buried'">More Information</button>
+        <button onclick="openPdfModal('buried_info.pdf')">More Information</button>
     </div>
 
 </div>
 
 <div class="newspaper">
-<h5>Newspaper References</h5>
+<h5><a href="newspaper" style="text-decoration: none; color: black;">Newspaper References</a></h5>
     <div class="button-container">
-        <button onclick="window.location.href='newspaper'">More Information</button>
+        <button onclick="openPdfModal('newspaper_info.pdf')">More Information</button>
     </div>
 
 </div>
 
 <div class="biographies">
-<h5>Biographies</h5>
+<h5><a href="biographies" style="text-decoration: none; color: black;">Biographies</a></h5>
    <div class="button-container">
-        <button onclick="window.location.href='biographies'">More Information</button>
+        <button onclick="openPdfModal('biographies_info.pdf')">More Information</button>
     </div>
 
 </div>

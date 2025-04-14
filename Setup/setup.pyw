@@ -27,13 +27,20 @@ def find_and_extract_zip(current_dir, zip_prefix):
     with zipfile.ZipFile(zip_file, "r") as zip_ref:
         zip_ref.extractall(current_dir)
     
+    print(f"Extracted {zip_file} to {current_dir}")
+    print(f"Extracted to {os.path.join(current_dir, zip_name)}")
+    print(f"Extracted to {os.path.join(current_dir, zip_name, 'Implementation')}")
+    
     return zip_file, zip_name
 
 
 def copy_implementation_files(current_dir, zip_name, target_folder, wanted_folder="Implementation"):
     """Copy implementation files to the target folder."""
     implementation_dir = os.path.join(current_dir, zip_name, wanted_folder)
+    if not os.path.exists(implementation_dir):
+        implementation_dir = os.path.join(current_dir, "Implementation")
     if os.path.exists(implementation_dir):
+        print(f"Copying files from {implementation_dir} to {target_folder}")
         for item in os.listdir(implementation_dir):
             src = os.path.join(implementation_dir, item)
             dst = os.path.join(target_folder, item)
@@ -42,12 +49,16 @@ def copy_implementation_files(current_dir, zip_name, target_folder, wanted_folde
                 shutil.copytree(src, dst, dirs_exist_ok=True)
             else:
                 shutil.copy2(src, dst)
+    else:
+        raise FileNotFoundError(f"Could not find {wanted_folder} in {os.path.join(current_dir, zip_name)}")
+    return implementation_dir
 
 
 def cleanup_files(current_dir, zip_file, zip_name):
     """Clean up extracted files."""
     os.remove(zip_file)
     shutil.rmtree(os.path.join(current_dir, zip_name), ignore_errors=True)
+    print(f"Removed {zip_file} and {os.path.join(current_dir, zip_name)}")
 
 
 def get_desktop_path():
@@ -96,14 +107,12 @@ def main():
     zip_file, zip_name = find_and_extract_zip(current_dir, zip_prefix)
     
     # Copy files and clean up
-    copy_implementation_files(current_dir, zip_name, target_folder)
-    cleanup_files(current_dir, zip_file, zip_name)
+    implementation_dir = copy_implementation_files(current_dir, zip_name, target_folder)
+    cleanup_files(current_dir, zip_file, implementation_dir)
     
     # Create desktop shortcut
     desktop_dir = get_desktop_path()
     python_path = find_python_executable()
     create_shortcut_batch_file(desktop_dir, target_folder, python_path)
 
-
-if __name__ == "__main__":
-    main()
+main()
