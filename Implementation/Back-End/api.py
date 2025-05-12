@@ -71,6 +71,10 @@ app.mount("/static", StaticFiles(directory="../Front-End/static"), name="static"
 async def root():
     return FileResponse("../Front-End/index.html")
 
+@app.get("/starter_page")
+async def starter_page():
+    return FileResponse("../Front-End/starter_page.html")
+
 @app.get("/guest_home")
 async def guest_home():
     return FileResponse("../Front-End/guest_home.html")

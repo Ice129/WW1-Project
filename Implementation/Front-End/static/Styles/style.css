@@ -30,7 +30,7 @@ header {
 .design_line_under_header{
     position:fixed;
     width:100%;
-    top:21%;
+    top:25%;
     background-color:#872e3c;
     border-bottom: 5px solid #9d3042;
 }
@@ -41,6 +41,7 @@ h1 {
     text-align: center;
     font-size:60px;
     padding:60px;
+    color:black;
     text-decoration:underline;
     padding-left:300px;
     font-family: 'kameron', Helvetica, Arial, sans-serif;
@@ -60,10 +61,13 @@ h3 {
     text-decoration:underline;
     padding-left:90px;
     font-family: 'kameron', Helvetica, Arial, sans-serif;
-    color:white;
+    color:black;
 }
 
-
+h5 {
+text-decoration:none;
+color:white;
+}
 
 
 
@@ -74,6 +78,41 @@ p {
 }
 
 /*class boxes design*/
+h7 {
+text-align: center;
+    font-size:120px;
+    font-family: 'kameron', Helvetica, Arial, sans-serif;
+ }
+
+.starter {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2%;
+  width: 25%;
+  height: 25%;
+
+  display: flex;
+  justify-content: center; /* Horizontal */
+  align-items: center;     /* Vertical */
+
+  text-align: center;
+  border-radius: 15px;
+  background-color: #800020;
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border: none;
+}
+
+
+
+.starter:hover {
+  background-color: #45a049;
+}
+
+
 
 .contact_box {
     position: fixed;
@@ -89,8 +128,8 @@ p {
 
 
 .about_us_box{
-    position:relative;
-    bottom:30%;
+    position:fixed;
+    bottom:35%;
     left:2%;
     padding:2%;
     width:25%;
@@ -102,7 +141,7 @@ p {
 .guest_box{
     position:fixed;
     left:35%;
-    bottom:15%;
+    bottom:25%;
     width:25%;
     height:40%;
     border-radius: 15px;
@@ -115,7 +154,7 @@ p {
 .admin_box{
     position:fixed;
     left:65%;
-    bottom:15%;
+    bottom:25%;
     width:25%;
     height:40%;
     border-radius: 15px;
@@ -125,15 +164,27 @@ p {
     padding:2%;
     }
 
+.exit{
+ position:fixed;
+    left:50%;
+    bottom:5%;
+    width:25%;
+    height:10%;
+    border-radius: 15px;
+    background-color:#800020;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid #9d3042;
+    padding:2%;
+}
  /*admin login page*/
 
 .login_box {
-    position: relative;
-    top: 50%;
-    left: 50%;
+    position: fixed;
+    top: 35%;
+    left: 55%;
     transform: translate(-50%, -50%); /* Centers the box */
-    width:30%;
-    height: 50%;
+    width:40%;
+    height: 40%;
     border-radius: 15px;
     background-color: #800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
@@ -154,7 +205,7 @@ p {
     width:100%;
     height:40px;
     border-radius:15px;
-    margin-top: 10px;
+    margin-top: 80px;
 }
 
 .login_box button {
@@ -165,7 +216,7 @@ p {
     font-size: 50px;
     color:black;
     background-color: #800020;
-    margin-top: 20px;
+    margin-top: 70px;
     color:white;
 }
 
@@ -187,7 +238,7 @@ p {
     background-color: #800020;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
     border: 2px solid #9d3042;
-    margin-top:80px;
+    margin-top:20px;
     margin-left:60px;
     color:white;
 }
@@ -255,7 +306,7 @@ position:fixed;
 .logout_home-admin {
     position:fixed;
     left:2%;
-    top:25%;
+    top:30%;
     width:10%;
     height:5%;
     border-radius: 15px;
@@ -279,11 +330,11 @@ position:fixed;
 
 .sidebar {
     position: fixed;
-    top: 21%;
+    top: 25%;
     left: 0;
     width: 20%;
     display:flex;
-    height: 100%;
+    height: 90%;
     background-color: #800020;
     color: white;
     flex-grow: 0;
@@ -307,7 +358,7 @@ position:fixed;
 }
 
 .sidebar li {
-    padding: 24px;
+    padding:18px;
     border-bottom: 1px solid #600010;
 }
 
@@ -466,7 +517,7 @@ th {
 
 .sidebar-admin {
     position: fixed;
-    top: 21%;
+    top: 25.5%;
     left: 0;
     width: 20%;
     display:flex;
