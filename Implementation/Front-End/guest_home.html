@@ -389,6 +389,64 @@ position: fixed;
         }
 
 
+  .img-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .img-modal-content {
+        position: relative;
+        margin: 2% auto;
+        width: 90%;
+        max-width: 800px;
+        background-color:white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding:15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 60px;
+        font-weight: bold;
+        color: black;
+        cursor: pointer;
+        z-index: 1001;
+        background-color: rgba(255, 255, 255, 0.3);
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .img-viewer {
+        max-width: 100%;
+        max-height: 80vh;
+        display: block;
+        margin: auto;
+        border: 2px solid white;
+    }
+
+    .view-img-btn {
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .view-img-btn:hover {
+        background-color: #45a049;
+    }
 </style>
 
 
@@ -430,9 +488,76 @@ position: fixed;
         </div>
 
 <div class="surrounding">
-    <h5>Bradford and Surrounding Township's</h5>
+    <h5>
+        <a href="townships" style="color:white; text-decoration:none;">
+            Bradford and Surrounding Townships
+        </a>
+    </h5>
     <div class="button-container">
-        <button class="read-more-btn" onclick="openPdfModal('example.pdf')">Read More</button>
+        <button class="view-img-btn" onclick="openImageModal('static/photos/townships.jpg')">View Image</button>
+    </div>
+</div>
+
+<div id="imageModal" class="img-modal">
+    <div class="img-modal-content">
+        <span class="img-close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="img-viewer" src="" alt="Preview">
+    </div>
+</div>
+
+<div class="names">
+
+<h5><a href="memorials" style="color:white; text-decoration:none;">Names on Bradford Memorials</a></h5>
+
+    <div class="button-container">
+        <button class="view-img-btn" onclick="openImageModal('static/photos/memorials.jpg')">View Image</button>
+    </div>
+</div>
+
+<div id="imageModal" class="img-modal">
+    <div class="img-modal-content">
+        <span class="img-close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="img-viewer" src="" alt="Preview">
+    </div>
+</div>
+
+<div class="buried">
+<h5>
+    <a href="buried" style="color:white; text-decoration:none;">
+        Buried in Bradford
+</a>
+</h5>
+       <div class="button-container">
+        <button class="view-img-btn" onclick="openImageModal('static/photos/buried.jpg')">View Image</button>
+    </div>
+</div>
+
+<div id="imageModal" class="img-modal">
+    <div class="img-modal-content">
+        <span class="img-close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="img-viewer" src="" alt="Preview">
+    </div>
+</div>
+
+<div class="newspaper">
+<h5><a href="newspaper" style="color:white; text-decoration:none;">Newspaper References</a></h5>
+  <div class="button-container">
+        <button class="view-img-btn" onclick="openImageModal('static/photos/newspaper.jpg')">View Image</button>
+    </div>
+</div>
+
+<div id="imageModal" class="img-modal">
+    <div class="img-modal-content">
+        <span class="img-close" onclick="closeImageModal()">&times;</span>
+        <img id="modalImage" class="img-viewer" src="" alt="Preview">
+    </div>
+
+</div>
+
+<div class="biographies">
+<h5><a href="biographies" style="color:white; text-decoration:none;">Biographies</a></h5>
+   <div class="button-container">
+        <button class="read-more-btn" onclick="openPdfModal('Allan Black pte Hugh Mcallister.pdf')">Read More</button>
     </div>
 </div>
 
@@ -442,39 +567,6 @@ position: fixed;
             <iframe id="pdfViewer" class="pdf-viewer" title="Biography PDF Document Viewer"></iframe>
         </div>
     </div>
-
-
-<div class="names">
-
-<h5>Names on Bradford Memorials</h5>
-   <div class="button-container">
-        <button onclick="window.location.href='memorials'">More Information</button>
-    </div>
-</div>
-
-<div class="buried">
-<h5>Buried in Bradford</h5>
-    <div class="button-container">
-        <button onclick="window.location.href='buried'">More Information</button>
-    </div>
-
-</div>
-
-<div class="newspaper">
-<h5>Newspaper References</h5>
-    <div class="button-container">
-        <button onclick="window.location.href='newspaper'">More Information</button>
-    </div>
-
-</div>
-
-<div class="biographies">
-<h5>Biographies</h5>
-   <div class="button-container">
-        <button onclick="window.location.href='biographies'">More Information</button>
-    </div>
-
-</div>
 
 
 
@@ -496,8 +588,23 @@ document.querySelector('.pdf-close').addEventListener('click', function () {
 });
 
 
+ function openImageModal(imgSrc) {
+        document.getElementById('modalImage').src = imgSrc;
+        document.getElementById('imageModal').style.display = 'block';
+    }
 
+    function closeImageModal() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
+
+    // Optional: Close on outside click
+    window.onclick = function(event) {
+        const modal = document.getElementById('imageModal');
+        if (event.target === modal) {
+            closeImageModal();
+        }
+    }
 
 </script>
-    </body>
+</body>
 </html>

@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="updated style">
+      <change afterPath="$PROJECT_DIR$/Implementation/Front-End/starter_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/biographies.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/biographies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Back-End/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/admin_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/admin_dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementation/Front-End/buried.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/buried.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/database_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/database_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/memorials.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/memorials.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/newspaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/newspaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/guest_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/guest_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Implementation/Front-End/static/Styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/static/Styles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,10 +19,17 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="hope-changes-pal" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,12 +71,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "Python.api.executor": "Run",
     "Python.backend.executor": "Run",
     "Python.worksheet.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "#40 on hope-changes-pal",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Edward Quail/PycharmProjects/WW1-Project",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
