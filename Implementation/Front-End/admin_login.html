@@ -28,12 +28,38 @@
 
 <!--need to put 8 char min to have it work on practice-->
 <div class="login_box">
-    <form action="admin_dashboard" method="GET">
+    <form id="login_form">
         <label for="pwd">Admin Password:</label>
-        <input type="password" id="pwd" name="pwd" minlength="8" required><br><br>
+        <input type="password" id="pwd" name="pwd" required><br><br>
         <button type="submit">Login</button>
     </form>
 </div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const password = document.getElementById('pwd').value;
+        fetch('backend.py', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ pwd: password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = 'admin_dashboard';
+            } else {
+                alert('Incorrect password.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Something went wrong. Try again later.');
+        });
+    });
+    </script>
 
 </body>
 </html>
