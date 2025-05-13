@@ -22,25 +22,25 @@ def load_xlsx(fileLocation: str = "", fileBytes: bytes = None) -> dict:
         workbook = openpyxl.load_workbook(fileLocation)
     else:
         workbook = openpyxl.load_workbook(BytesIO(fileBytes))
-    
+
     # Initialize the dictionary to store the data
     data_dict = {}
-    
+
     # Iterate through each sheet in the workbook
     for sheet_name in workbook.sheetnames:
         sheet = workbook[sheet_name]
-        
+
         # Initialize a list to store rows for the current sheet
         rows = []
-        
+
         # Iterate through each row in the sheet
         for row in sheet.iter_rows(values_only=True):
             # Append the row (as a tuple) to the rows list
             rows.append(row)
-        
+
         # Add the rows list to the dictionary with the sheet name as the key
         data_dict[sheet_name] = rows
-    
+
     return data_dict
 
 def DLNewspaperReferences2025():
@@ -352,7 +352,7 @@ def insert_to_sql(sheetData: dict) -> bool:
                 # format rank by converting " and ' to web safe characters
                 if photo_available is not None:
                     photo_available = photo_available.replace('"', "&quot;").replace("'", "&apos;")
-                
+
                 cursor = database.cursor()
 
                 completed_statement = ""+insert_statements[desired_table]
@@ -426,7 +426,7 @@ def insert_to_sql(sheetData: dict) -> bool:
                 # format rank by converting " and ' to web safe characters
                 if photo_incl is not None:
                     photo_incl = photo_incl.replace('"', "&quot;").replace("'", "&apos;")
-                
+
                 cursor = database.cursor()
 
                 completed_statement = ""+insert_statements[desired_table]
@@ -479,7 +479,7 @@ def insert_to_sql(sheetData: dict) -> bool:
                 # format rank by converting " and ' to web safe characters
                 if biography_attachment is not None:
                     biography_attachment = biography_attachment.replace('"', "&quot;").replace("'", "&apos;")
-                
+
                 cursor = database.cursor()
 
                 completed_statement = ""+insert_statements[desired_table]
@@ -510,7 +510,7 @@ def insert_to_sql(sheetData: dict) -> bool:
                 if iterator < filter_data[sheet_name]["skip_rows"]:
                     iterator += 1
                     continue
-                
+
                 surname = row[0]
                 # format rank by converting " and ' to web safe characters
                 if surname is not None:
@@ -563,15 +563,15 @@ def insert_to_sql(sheetData: dict) -> bool:
                 if medals is not None:
                     medals = medals.replace('"', "&quot;").replace("'", "&apos;")
                 if isinstance(row[15], datetime.datetime):
-                    enlisted_date = row[15].strftime("%Y-%m-%d") if row[15] is not None else None
+                    enlisted_date = row[15].strftime("%d-%m-%Y") if row[15] is not None else None
                 else:
                     enlisted_date = None
                 if isinstance(row[16], datetime.datetime):
-                    discharge_date = row[16].strftime("%Y-%m-%d") if row[16] is not None else None
+                    discharge_date = row[16].strftime("%d-%m-%Y") if row[16] is not None else None
                 else:
                     discharge_date = None
                 if isinstance(row[17], datetime.datetime):
-                    death_date = row[17].strftime("%Y-%m-%d") if row[17] is not None else None
+                    death_date = row[17].strftime("%d-%m-%Y") if row[17] is not None else None
                 else:
                     death_date = None
                 misc_info_nroh = row[18]
@@ -641,7 +641,7 @@ def insert_to_sql(sheetData: dict) -> bool:
                     cemetery_memorial_country = None
                 if additional_cwgc_info == "Not recorded":
                     additional_cwgc_info = None
-                
+
                 cursor = database.cursor()
 
                 completed_statement = ""+insert_statements[desired_table]
@@ -675,7 +675,7 @@ def insert_to_sql(sheetData: dict) -> bool:
                 if iterator < filter_data[sheet_name]["skip_rows"]:
                     iterator += 1
                     continue
-                
+
                 surname = row[0]
                 # format rank by converting " and ' to web safe characters
                 surname = surname.replace('"', "&quot;").replace("'", "&apos;")
@@ -685,7 +685,7 @@ def insert_to_sql(sheetData: dict) -> bool:
                 age = row[2]
                 medals = row[3]
                 if isinstance(row[4], datetime.datetime):
-                    date_of_birth = row[4].strftime("%Y-%m-%d") if row[4] is not None else None
+                    date_of_birth = row[4].strftime("%d-%m-%Y") if row[4] is not None else None
                 else:
                     date_of_birth = None
                 rank = row[5]
@@ -697,7 +697,7 @@ def insert_to_sql(sheetData: dict) -> bool:
                 info = row[11]
                 # format info by converting " and ' to web safe characters
                 info = info.replace('"', "&quot;").replace("'", "&apos;")
-                
+
                 cursor = database.cursor()
 
                 completed_statement = ""+insert_statements[desired_table]
