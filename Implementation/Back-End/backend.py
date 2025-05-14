@@ -229,7 +229,7 @@ def create_database ():
             newspaper_name VARCHAR(150),
             newspaper_date DATE,
             page_col VARCHAR(10),
-            photo_incl BOOLEAN,
+            photo_incl BOOLEAN
         );
      """)
 
@@ -755,12 +755,11 @@ def is_first_run() -> bool:
 # Do not edit any code below this point.
 # Only edit code you have been assigned in this project.
 if __name__ == "__main__":
-    if is_first_run(): #replace with first_run check
-        drop_databases()
-        insert_to_sql(load_xlsx("Tests Data/Those buried in Bradford.xlsx"))
-        insert_to_sql(load_xlsx("Tests Data/Bradford and surrounding townships Great War Roll of Honour 2025.xlsx"))
-        insert_to_sql(load_xlsx("Tests Data/Bradford Memorials.xlsx"))
-        insert_to_sql(load_xlsx("Tests Data/Newspaper references 2025.xlsx"))
-        insert_to_sql(load_xlsx("Tests Data/Biography spreadsheet.xlsx"))
+    drop_databases()
+    insert_to_sql(load_xlsx("Tests Data/Those buried in Bradford.xlsx"))
+    insert_to_sql(load_xlsx("Tests Data/Bradford and surrounding townships Great War Roll of Honour 2025.xlsx"))
+    insert_to_sql(load_xlsx("Tests Data/Bradford Memorials.xlsx"))
+    insert_to_sql(load_xlsx("Tests Data/Newspaper references 2025.xlsx"))
+    insert_to_sql(load_xlsx("Tests Data/Biography spreadsheet.xlsx"))
 
     exit()
