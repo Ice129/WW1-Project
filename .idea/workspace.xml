@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="updated style">
-      <change afterPath="$PROJECT_DIR$/Implementation/Front-End/starter_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Back-End/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Back-End/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/admin_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/admin_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/buried.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/buried.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/guest_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/guest_home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Implementation/Front-End/static/Styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Implementation/Front-End/static/Styles/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="22e81bd8-4104-4d4c-b4c5-339fd67d5f7c" name="Changes" comment="updated style" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="hope-changes-pal" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -77,13 +68,13 @@
     "Python.worksheet.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#40 on hope-changes-pal",
+    "git-widget-placeholder": "main__dl",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Edward Quail/PycharmProjects/WW1-Project",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.api">
     <configuration name="api" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="WW1-Project" />
       <option name="ENV_FILES" value="" />
@@ -106,11 +97,38 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="backend" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WW1-Project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Implementation/Back-End" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Implementation/Back-End/backend.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.backend" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-4f4e415b4190-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.26053.29" />
+        <option value="bundled-python-sdk-14705d77f0bb-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.25659.43" />
       </set>
     </attachedChunks>
   </component>
@@ -155,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741633447032</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updated style">
+      <option name="closed" value="true" />
+      <created>1747260531004</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747260531004</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
